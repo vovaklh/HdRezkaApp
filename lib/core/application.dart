@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hdrezka_app/l10n/app_locale.dart';
@@ -20,28 +21,33 @@ class Application extends StatelessWidget {
       store: store,
       child: StoreConnector<AppState, _ViewModel>(
         vm: () => _Factory(this),
-        builder: (BuildContext context, _ViewModel vm) => MaterialApp(
-          locale: vm.appLocale.locale,
-          supportedLocales: L10n.all,
-          builder: (context, child) => ResponsiveWrapper.builder(
-            child,
-            defaultScale: true,
-            breakpoints: const [
-              ResponsiveBreakpoint.resize(300, name: MOBILE),
-              ResponsiveBreakpoint.autoScale(580, name: TABLET),
-              ResponsiveBreakpoint.autoScale(1000, name: DESKTOP),
+        builder: (BuildContext context, _ViewModel vm) => Shortcuts(
+          shortcuts: <LogicalKeySet, Intent>{
+            LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
+          },
+          child: MaterialApp(
+            locale: vm.appLocale.locale,
+            supportedLocales: L10n.all,
+            builder: (context, child) => ResponsiveWrapper.builder(
+              child,
+              defaultScale: true,
+              breakpoints: const [
+                ResponsiveBreakpoint.resize(300, name: MOBILE),
+                ResponsiveBreakpoint.autoScale(580, name: TABLET),
+                ResponsiveBreakpoint.autoScale(1000, name: DESKTOP),
+              ],
+            ),
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
             ],
+            theme: createLightTheme(),
+            darkTheme: createDarkTheme(),
+            themeMode: vm.themeMode,
+            home: const HomePage(title: 'title'),
           ),
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          theme: createLightTheme(),
-          darkTheme: createDarkTheme(),
-          themeMode: vm.themeMode,
-          home: const HomePage(title: 'title'),
         ),
       ),
     );
