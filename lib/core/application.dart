@@ -5,10 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hdrezka_app/l10n/app_locale.dart';
 import 'package:hdrezka_app/l10n/l10n.dart';
-import 'package:hdrezka_app/presentation/pages/home_page.dart';
+import 'package:hdrezka_app/presentation/pages/content_page.dart';
 import 'package:hdrezka_app/presentation/redux/app_state.dart';
 import 'package:hdrezka_app/presentation/themes/theme.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 class Application extends StatelessWidget {
   final Store<AppState> store;
@@ -28,15 +27,6 @@ class Application extends StatelessWidget {
           child: MaterialApp(
             locale: vm.appLocale.locale,
             supportedLocales: L10n.all,
-            builder: (context, child) => ResponsiveWrapper.builder(
-              child,
-              defaultScale: true,
-              breakpoints: const [
-                ResponsiveBreakpoint.resize(300, name: MOBILE),
-                ResponsiveBreakpoint.autoScale(580, name: TABLET),
-                ResponsiveBreakpoint.autoScale(1000, name: DESKTOP),
-              ],
-            ),
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -46,7 +36,7 @@ class Application extends StatelessWidget {
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
             themeMode: vm.themeMode,
-            home: const HomePage(title: 'title'),
+            home: const ContentPage(),
           ),
         ),
       ),

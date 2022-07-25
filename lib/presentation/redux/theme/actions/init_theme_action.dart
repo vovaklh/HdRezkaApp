@@ -7,7 +7,7 @@ import 'package:hdrezka_app/presentation/redux/app_state.dart';
 class InitThemeAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
-    final themeMode = locator<SharedPrefs>().getThemeMode() ?? ThemeMode.light;
+    final themeMode = locator<SharedPrefs>().getThemeMode() ?? ThemeMode.dark;
     return state.copyWith(themeMode: themeMode);
   }
 }

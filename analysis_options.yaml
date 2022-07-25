@@ -61,8 +61,6 @@ dart_code_metrics:
         severity: warning
     - no-equal-then-else:
         severity: warning
-    - no-empty-block:
-        severity: warning
     - no-object-declaration:
         severity: warning
     - prefer-first:

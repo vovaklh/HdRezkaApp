@@ -6,6 +6,7 @@ ThemeData createLightTheme() {
     extensions: <ThemeExtension<dynamic>>[
       ThemeColors.light,
       ThemeTextStyles.light,
+      ThemeGradients.light,
     ],
   );
 }
