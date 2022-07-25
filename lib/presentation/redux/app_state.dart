@@ -12,7 +12,7 @@ class AppState with _$AppState {
   }) = _AppState;
 
   factory AppState.initial() => const AppState(
-        themeMode: ThemeMode.light,
-        appLocale: AppLocale.en,
+        themeMode: ThemeMode.dark,
+        appLocale: AppLocale.ru,
       );
 }

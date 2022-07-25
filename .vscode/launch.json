@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "tv-platform",
+            "type": "dart",
+            "request": "launch",
+            "toolArgs": [
+                "--dart-define",
+                "TV_MODE=ON"
+            ],
+        },
+        {
+            "name": "other-platform",
+            "type": "dart",
+            "request": "launch",
+            "toolArgs": [
+                "--dart-define",
+                "TV_MODE=OFF"
+            ],
+        },
+    ]
+}

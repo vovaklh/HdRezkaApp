@@ -7,7 +7,7 @@ import 'package:hdrezka_app/presentation/redux/app_state.dart';
 class InitLocaleAction extends ReduxAction<AppState> {
   @override
   AppState reduce() {
-    final locale = locator<SharedPrefs>().getLocale() ?? AppLocale.en;
+    final locale = locator<SharedPrefs>().getLocale() ?? AppLocale.ru;
     return state.copyWith(appLocale: locale);
   }
 }
