@@ -9,6 +9,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color filterButtonFocusColor;
   final Color refreshButtonIconColor;
   final Color refreshButtonFocusColor;
+  final Color playButtonIconColor;
+  final Color playButtonFocusColor;
+  final Color favoriteButtonIconColor;
+  final Color favoriteButtonFocusColor;
 
   const ThemeColors({
     required this.test,
@@ -19,6 +23,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.filterButtonFocusColor,
     required this.refreshButtonIconColor,
     required this.refreshButtonFocusColor,
+    required this.playButtonIconColor,
+    required this.playButtonFocusColor,
+    required this.favoriteButtonIconColor,
+    required this.favoriteButtonFocusColor,
   });
 
   @override
@@ -31,6 +39,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? filterButtonFocusColor,
     Color? refreshButtonIconColor,
     Color? refreshButtonFocusColor,
+    Color? playButtonIconColor,
+    Color? playButtonFocusColor,
+    Color? favoriteButtonIconColor,
+    Color? favoriteButtonFocusColor,
   }) {
     return ThemeColors(
       test: test ?? this.test,
@@ -48,6 +60,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           refreshButtonIconColor ?? this.refreshButtonIconColor,
       refreshButtonFocusColor:
           refreshButtonFocusColor ?? this.refreshButtonFocusColor,
+      playButtonIconColor: playButtonIconColor ?? this.playButtonIconColor,
+      playButtonFocusColor: playButtonFocusColor ?? this.playButtonFocusColor,
+      favoriteButtonIconColor:
+          favoriteButtonIconColor ?? this.favoriteButtonIconColor,
+      favoriteButtonFocusColor:
+          favoriteButtonFocusColor ?? this.favoriteButtonFocusColor,
     );
   }
 
@@ -76,6 +94,14 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(refreshButtonIconColor, other.refreshButtonIconColor, t)!,
       refreshButtonFocusColor: Color.lerp(
           refreshButtonFocusColor, other.refreshButtonFocusColor, t)!,
+      playButtonIconColor:
+          Color.lerp(playButtonIconColor, other.playButtonIconColor, t)!,
+      playButtonFocusColor:
+          Color.lerp(playButtonFocusColor, other.playButtonFocusColor, t)!,
+      favoriteButtonIconColor: Color.lerp(
+          favoriteButtonIconColor, other.favoriteButtonIconColor, t)!,
+      favoriteButtonFocusColor: Color.lerp(
+          favoriteButtonFocusColor, other.favoriteButtonFocusColor, t)!,
     );
   }
 
@@ -88,6 +114,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         filterButtonFocusColor: AppColors.red,
         refreshButtonIconColor: AppColors.grey,
         refreshButtonFocusColor: AppColors.red,
+        playButtonIconColor: AppColors.grey,
+        playButtonFocusColor: AppColors.red,
+        favoriteButtonIconColor: AppColors.grey,
+        favoriteButtonFocusColor: AppColors.red,
       );
 
   static get dark => ThemeColors(
@@ -99,5 +129,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         filterButtonFocusColor: AppColors.red,
         refreshButtonIconColor: AppColors.purpleAccent,
         refreshButtonFocusColor: AppColors.blue.withOpacity(0.3),
+        playButtonIconColor: AppColors.blue,
+        playButtonFocusColor: AppColors.white.withOpacity(0.3),
+        favoriteButtonIconColor: AppColors.red,
+        favoriteButtonFocusColor: AppColors.white.withOpacity(0.3),
       );
 }

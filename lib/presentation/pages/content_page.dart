@@ -7,6 +7,7 @@ import 'package:hdrezka_app/data/datasources/local/models/content_filter_wrapper
 import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/presentation/blocs/content_bloc/content_bloc.dart';
 import 'package:hdrezka_app/presentation/dialogs/filter_dialog.dart';
+import 'package:hdrezka_app/presentation/pages/content_details_page.dart';
 import 'package:hdrezka_app/presentation/widgets/content_widget.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -52,6 +53,16 @@ class _ContentPageState extends State<ContentPage> {
     } else {
       _pagingController.appendPage(content, newPage + 1);
     }
+  }
+
+  void _onContentTap(Content content) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ContentDetailsPage(
+          url: content.url,
+        ),
+      ),
+    );
   }
 
   @override
@@ -118,7 +129,7 @@ class _ContentPageState extends State<ContentPage> {
         animateTransitions: true,
         itemBuilder: (_, item, index) => ContentWidget(
           content: item,
-          onTap: (content) {},
+          onTap: _onContentTap,
         ),
         firstPageErrorIndicatorBuilder: (_) =>
             _buildErrorIndicator(_pagingController.refresh),
