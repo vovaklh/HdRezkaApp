@@ -60,35 +60,37 @@ class _ContentWidgetState extends State<ContentWidget> {
     final content = widget.content;
     return GestureDetector(
       onTap: () => widget.onTap(content),
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  _buildContentImage(),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: _buildContentType(),
-                  ),
-                  if (content.status != null)
-                    Positioned.fill(
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: _buildContentStatus(),
-                      ),
+      child: Opacity(
+        opacity: isFocused
+            ? 1.0
+            : MyPlatform.isTvMode
+                ? 0.5
+                : 1.0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                _buildContentImage(),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: _buildContentType(),
+                ),
+                if (content.status != null)
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: _buildContentStatus(),
                     ),
-                ],
-              ),
-              const SizedBox(height: 6),
-              _buildContentTitle(),
-              const SizedBox(height: 2),
-              Expanded(child: _buildContentShortInfo()),
-            ],
-          ),
-          if (!isFocused && MyPlatform.isTvMode) _buildGradientLayer(),
-        ],
+                  ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            _buildContentTitle(),
+            const SizedBox(height: 2),
+            Expanded(child: _buildContentShortInfo()),
+          ],
+        ),
       ),
     );
   }
@@ -145,16 +147,6 @@ class _ContentWidgetState extends State<ContentWidget> {
       style: context.text.contentShortInfo,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
-    );
-  }
-
-  Widget _buildGradientLayer() {
-    return Positioned.fill(
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: context.gradient.contentLayer,
-        ),
-      ),
     );
   }
 }

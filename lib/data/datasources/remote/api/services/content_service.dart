@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/api_string.dart';
+import 'package:hdrezka_app/data/datasources/remote/api/models/content_details_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -14,5 +15,10 @@ abstract class ContentService {
     @Path('page') int page,
     @Query('filter') String filter,
     @Query('genre') String genre,
+  );
+
+  @GET(ApiString.contentDetails)
+  Future<ContentDetailsModel> getContentDetails(
+    @Query('url') String filter,
   );
 }

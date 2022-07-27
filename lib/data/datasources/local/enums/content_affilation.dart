@@ -1,0 +1,4 @@
+enum ContentAffilation {
+  movie,
+  series;
+}
