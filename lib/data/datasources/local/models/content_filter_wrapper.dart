@@ -13,7 +13,7 @@ class ContentFilterWrapper with _$ContentFilterWrapper {
   }) = _ContentFilterWrapper;
 
   factory ContentFilterWrapper.initial() => const ContentFilterWrapper(
-        filter: ContentFilter.last,
+        filter: ContentFilter.watching,
         type: ContentType.all,
       );
 

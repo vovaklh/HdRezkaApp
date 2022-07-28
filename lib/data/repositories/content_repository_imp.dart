@@ -40,4 +40,21 @@ class ContentRepositoryImp extends ContentRepository {
 
     return contentDetailsConverter.modelToEntity(response);
   }
+
+  @override
+  Future<Map<String, String>> getContentTranslations(String url) async {
+    final response = await contentService.getContentTranslations(url);
+
+    return response;
+  }
+
+  @override
+  Future<Map<String, String>> getMovieVideos(
+    String url,
+    String translationId,
+  ) async {
+    final response = await contentService.getMovieVideos(url, translationId);
+
+    return response;
+  }
 }

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
+import 'package:hdrezka_app/data/datasources/local/enums/content_affilation.dart';
 import 'package:hdrezka_app/domain/entities/content_details.dart';
 import 'package:hdrezka_app/presentation/blocs/content_details_bloc/content_details_bloc.dart';
+import 'package:hdrezka_app/presentation/dialogs/movie_dialog.dart';
 import 'package:hdrezka_app/presentation/widgets/loader.dart';
 
 class ContentDetailsPage extends StatefulWidget {
@@ -21,6 +23,22 @@ class ContentDetailsPage extends StatefulWidget {
 
 class _ContentDetailsPageState extends State<ContentDetailsPage> {
   final _bloc = locator<ContentDetailsBloc>();
+
+  void _onPlay(ContentDetails contentDetails) {
+    switch (contentDetails.affilation) {
+      case ContentAffilation.movie:
+        showDialog(
+          context: context,
+          builder: (_) => MovieDialog(
+            url: contentDetails.url,
+            title: contentDetails.title,
+          ),
+        );
+        break;
+      case ContentAffilation.series:
+        break;
+    }
+  }
 
   @override
   void initState() {
@@ -90,29 +108,31 @@ class _ContentDetailsPageState extends State<ContentDetailsPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
+          flex: 2,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               CachedNetworkImage(imageUrl: contentDetails.imageUrl),
               const SizedBox(height: 10),
-              _buildButtons(),
+              _buildButtons(contentDetails),
             ],
           ),
         ),
         const SizedBox(width: 8),
         Expanded(
+          flex: 4,
           child: _buildContentData(contentDetails),
         ),
       ],
     );
   }
 
-  Row _buildButtons() {
+  Row _buildButtons(ContentDetails contentDetails) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => _onPlay(contentDetails),
           iconSize: 40,
           splashRadius: 28,
           focusColor: context.color.playButtonFocusColor,

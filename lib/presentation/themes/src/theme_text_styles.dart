@@ -13,6 +13,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle contentDetailsData;
   final TextStyle contentDetailsPlot;
   final TextStyle contentDetailsDescription;
+  final TextStyle movieDialogTitle;
+  final TextStyle movieDialogItem;
 
   ThemeTextStyles({
     required this.test,
@@ -27,6 +29,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.contentDetailsData,
     required this.contentDetailsPlot,
     required this.contentDetailsDescription,
+    required this.movieDialogTitle,
+    required this.movieDialogItem,
   });
 
   @override
@@ -44,6 +48,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? contentDetailsData,
     TextStyle? contentDetailsPlot,
     TextStyle? contentDetailsDescription,
+    TextStyle? movieDialogTitle,
+    TextStyle? movieDialogItem,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -59,6 +65,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       contentDetailsPlot: contentDetailsPlot ?? this.contentDetailsPlot,
       contentDetailsDescription:
           contentDetailsDescription ?? this.contentDetailsDescription,
+      movieDialogTitle: movieDialogTitle ?? this.movieDialogTitle,
+      movieDialogItem: movieDialogItem ?? this.movieDialogItem,
     );
   }
 
@@ -90,6 +98,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(contentDetailsPlot, other.contentDetailsPlot, t)!,
       contentDetailsDescription: TextStyle.lerp(
           contentDetailsDescription, other.contentDetailsDescription, t)!,
+      movieDialogTitle:
+          TextStyle.lerp(movieDialogTitle, other.movieDialogTitle, t)!,
+      movieDialogItem:
+          TextStyle.lerp(movieDialogItem, other.movieDialogItem, t)!,
     );
   }
 
@@ -143,6 +155,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        movieDialogTitle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        movieDialogItem: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -192,6 +212,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.bold,
         ),
         contentDetailsDescription: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        movieDialogTitle: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        movieDialogItem: headline1.copyWith(
           color: AppColors.white,
         ),
       );

@@ -33,5 +33,5 @@ Map<String, dynamic> _$$_ContentDetailsModelToJson(
 
 const _$ContentAffilationEnumMap = {
   ContentAffilation.movie: 'movie',
-  ContentAffilation.series: 'series',
+  ContentAffilation.series: 'tv_series',
 };

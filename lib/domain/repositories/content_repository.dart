@@ -11,4 +11,8 @@ abstract class ContentRepository {
   );
 
   Future<ContentDetails> getContentDetails(String url);
+
+  Future<Map<String, String>> getContentTranslations(String url);
+
+  Future<Map<String, String>> getMovieVideos(String url, String translationId);
 }
