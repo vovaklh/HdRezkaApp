@@ -21,4 +21,15 @@ abstract class ContentService {
   Future<ContentDetailsModel> getContentDetails(
     @Query('url') String filter,
   );
+
+  @GET(ApiString.contentTranslations)
+  Future<Map<String, String>> getContentTranslations(
+    @Query('url') String url,
+  );
+
+  @GET(ApiString.movieVideos)
+  Future<Map<String, String>> getMovieVideos(
+    @Query('url') String url,
+    @Query('translation_id') String translationId,
+  );
 }

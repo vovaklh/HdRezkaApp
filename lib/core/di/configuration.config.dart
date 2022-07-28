@@ -21,15 +21,16 @@ import '../../domain/entities/content.dart' as _i6;
 import '../../domain/entities/content_data.dart' as _i8;
 import '../../domain/entities/content_details.dart' as _i10;
 import '../../domain/repositories/content_repository.dart' as _i13;
-import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i14;
+import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i15;
 import '../../presentation/blocs/content_details_bloc/content_details_bloc.dart'
-    as _i15;
-import 'modules/api_module.dart' as _i16;
-import 'modules/bloc_module.dart' as _i20;
-import 'modules/converter_module.dart' as _i17;
-import 'modules/repository_module.dart' as _i19;
+    as _i16;
+import '../../presentation/blocs/movie_bloc/movie_bloc.dart' as _i14;
+import 'modules/api_module.dart' as _i17;
+import 'modules/bloc_module.dart' as _i21;
+import 'modules/converter_module.dart' as _i18;
+import 'modules/repository_module.dart' as _i20;
 import 'modules/storage_module.dart'
-    as _i18; // ignore_for_file: unnecessary_lambdas
+    as _i19; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -62,19 +63,21 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
       get<_i12.ContentService>(),
       get<_i4.ModelConverter<_i5.ContentModel, _i6.Content>>(),
       get<_i4.ModelConverter<_i9.ContentDetailsModel, _i10.ContentDetails>>()));
-  gh.factory<_i14.ContentBloc>(
+  gh.factory<_i14.MovieBloc>(
+      () => blocModule.movieBloc(get<_i13.ContentRepository>()));
+  gh.factory<_i15.ContentBloc>(
       () => blocModule.contentBloc(get<_i13.ContentRepository>()));
-  gh.factory<_i15.ContentDetailsBloc>(
+  gh.factory<_i16.ContentDetailsBloc>(
       () => blocModule.contentDetailsBloc(get<_i13.ContentRepository>()));
   return get;
 }
 
-class _$ApiModule extends _i16.ApiModule {}
+class _$ApiModule extends _i17.ApiModule {}
 
-class _$ConverterModule extends _i17.ConverterModule {}
+class _$ConverterModule extends _i18.ConverterModule {}
 
-class _$StorageModule extends _i18.StorageModule {}
+class _$StorageModule extends _i19.StorageModule {}
 
-class _$RepositoryModule extends _i19.RepositoryModule {}
+class _$RepositoryModule extends _i20.RepositoryModule {}
 
-class _$BlocModule extends _i20.BlocModule {}
+class _$BlocModule extends _i21.BlocModule {}

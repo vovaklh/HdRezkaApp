@@ -27,6 +27,7 @@ class Application extends StatelessWidget {
           child: MaterialApp(
             locale: vm.appLocale.locale,
             supportedLocales: L10n.all,
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,

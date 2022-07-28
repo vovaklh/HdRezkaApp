@@ -15,5 +15,16 @@
     "film": "Фильм",
     "series": "Сериал",
     "cartoon": "Мультфильм",
-    "anime": "Аниме"
+    "anime": "Аниме",
+    "@_VIDEO_PAGE": {},
+    "generalDefaultError": "Видео не может быть воспроизведено",
+    "generalDefault": "По умолчанию",
+    "qualityAuto": "Авто",
+    "generalNone": "По умолчанію",
+    "generalRetry": "Повторить",
+    "overflowMenuPlaybackSpeed": "Скорость воспроизведения",
+    "overflowMenuQuality": "Качество видео",
+    "@_MOVIE_DIALOG": {},
+    "voiceActing": "Озвучка",
+    "resolution": "Качество"
 }
