@@ -31,6 +31,8 @@ dependencies:
   json_diff: ^0.2.0
   better_player: ^0.0.83
   external_video_player_launcher: ^0.0.3
+  fluttertoast: ^8.0.9
+  useful_extensions: ^0.0.1
 
 dev_dependencies:
   flutter_test:

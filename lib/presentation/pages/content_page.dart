@@ -168,7 +168,6 @@ class _ContentPageState extends State<ContentPage> {
       onPressed: onTryAgain,
       splashRadius: 16,
       iconSize: 30,
-      focusColor: context.color.refreshButtonFocusColor,
       icon: Icon(
         Icons.refresh,
         color: context.color.refreshButtonIconColor,

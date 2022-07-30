@@ -4,29 +4,27 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color test;
   final Color contentStatusBackground;
   final Color filterDialogDropdownColor;
-  final Color filterDialogDropdownFocusColor;
   final Color filterButtonFillColor;
   final Color filterButtonFocusColor;
   final Color refreshButtonIconColor;
-  final Color refreshButtonFocusColor;
   final Color playButtonIconColor;
   final Color playButtonFocusColor;
   final Color favoriteButtonIconColor;
   final Color favoriteButtonFocusColor;
+  final Color tvSeriesDialogDropdownColor;
 
   const ThemeColors({
     required this.test,
     required this.contentStatusBackground,
     required this.filterDialogDropdownColor,
-    required this.filterDialogDropdownFocusColor,
     required this.filterButtonFillColor,
     required this.filterButtonFocusColor,
     required this.refreshButtonIconColor,
-    required this.refreshButtonFocusColor,
     required this.playButtonIconColor,
     required this.playButtonFocusColor,
     required this.favoriteButtonIconColor,
     required this.favoriteButtonFocusColor,
+    required this.tvSeriesDialogDropdownColor,
   });
 
   @override
@@ -34,7 +32,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? test,
     Color? contentStatusBackground,
     Color? filterDialogDropdownColor,
-    Color? filterDialogDropdownFocusColor,
     Color? filterButtonFillColor,
     Color? filterButtonFocusColor,
     Color? refreshButtonIconColor,
@@ -43,6 +40,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? playButtonFocusColor,
     Color? favoriteButtonIconColor,
     Color? favoriteButtonFocusColor,
+    Color? tvSeriesDialogDropdownColor,
   }) {
     return ThemeColors(
       test: test ?? this.test,
@@ -50,22 +48,20 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           contentStatusBackground ?? this.contentStatusBackground,
       filterDialogDropdownColor:
           filterDialogDropdownColor ?? this.filterDialogDropdownColor,
-      filterDialogDropdownFocusColor:
-          filterDialogDropdownFocusColor ?? this.filterDialogDropdownFocusColor,
       filterButtonFillColor:
           filterButtonFillColor ?? this.filterButtonFillColor,
       filterButtonFocusColor:
           filterButtonFocusColor ?? this.filterButtonFocusColor,
       refreshButtonIconColor:
           refreshButtonIconColor ?? this.refreshButtonIconColor,
-      refreshButtonFocusColor:
-          refreshButtonFocusColor ?? this.refreshButtonFocusColor,
       playButtonIconColor: playButtonIconColor ?? this.playButtonIconColor,
       playButtonFocusColor: playButtonFocusColor ?? this.playButtonFocusColor,
       favoriteButtonIconColor:
           favoriteButtonIconColor ?? this.favoriteButtonIconColor,
       favoriteButtonFocusColor:
           favoriteButtonFocusColor ?? this.favoriteButtonFocusColor,
+      tvSeriesDialogDropdownColor:
+          tvSeriesDialogDropdownColor ?? this.tvSeriesDialogDropdownColor,
     );
   }
 
@@ -84,16 +80,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           contentStatusBackground, other.contentStatusBackground, t)!,
       filterDialogDropdownColor: Color.lerp(
           filterDialogDropdownColor, other.filterDialogDropdownColor, t)!,
-      filterDialogDropdownFocusColor: Color.lerp(filterDialogDropdownFocusColor,
-          other.filterDialogDropdownFocusColor, t)!,
       filterButtonFillColor:
           Color.lerp(filterButtonFillColor, other.filterButtonFillColor, t)!,
       filterButtonFocusColor:
           Color.lerp(filterButtonFocusColor, other.filterButtonFocusColor, t)!,
       refreshButtonIconColor:
           Color.lerp(refreshButtonIconColor, other.refreshButtonIconColor, t)!,
-      refreshButtonFocusColor: Color.lerp(
-          refreshButtonFocusColor, other.refreshButtonFocusColor, t)!,
       playButtonIconColor:
           Color.lerp(playButtonIconColor, other.playButtonIconColor, t)!,
       playButtonFocusColor:
@@ -102,6 +94,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           favoriteButtonIconColor, other.favoriteButtonIconColor, t)!,
       favoriteButtonFocusColor: Color.lerp(
           favoriteButtonFocusColor, other.favoriteButtonFocusColor, t)!,
+      tvSeriesDialogDropdownColor: Color.lerp(
+          tvSeriesDialogDropdownColor, other.tvSeriesDialogDropdownColor, t)!,
     );
   }
 
@@ -109,29 +103,27 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         test: AppColors.white,
         contentStatusBackground: AppColors.black,
         filterDialogDropdownColor: AppColors.white,
-        filterDialogDropdownFocusColor: AppColors.black,
         filterButtonFillColor: AppColors.grey,
         filterButtonFocusColor: AppColors.red,
         refreshButtonIconColor: AppColors.grey,
-        refreshButtonFocusColor: AppColors.red,
         playButtonIconColor: AppColors.grey,
         playButtonFocusColor: AppColors.red,
         favoriteButtonIconColor: AppColors.grey,
         favoriteButtonFocusColor: AppColors.red,
+        tvSeriesDialogDropdownColor: AppColors.white,
       );
 
   static get dark => ThemeColors(
         test: AppColors.white,
         contentStatusBackground: AppColors.darkerRed,
         filterDialogDropdownColor: AppColors.lighterDark,
-        filterDialogDropdownFocusColor: AppColors.blue.withOpacity(0.2),
         filterButtonFillColor: AppColors.grey,
         filterButtonFocusColor: AppColors.red,
         refreshButtonIconColor: AppColors.purpleAccent,
-        refreshButtonFocusColor: AppColors.blue.withOpacity(0.3),
         playButtonIconColor: AppColors.blue,
         playButtonFocusColor: AppColors.white.withOpacity(0.3),
         favoriteButtonIconColor: AppColors.red,
         favoriteButtonFocusColor: AppColors.white.withOpacity(0.3),
+        tvSeriesDialogDropdownColor: AppColors.lighterDark,
       );
 }

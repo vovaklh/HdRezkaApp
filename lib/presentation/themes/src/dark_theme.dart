@@ -20,5 +20,6 @@ ThemeData createDarkTheme() {
         color: AppColors.white,
       ),
     ),
+    focusColor: Colors.blue.withOpacity(0.2),
   );
 }

@@ -15,6 +15,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle contentDetailsDescription;
   final TextStyle movieDialogTitle;
   final TextStyle movieDialogItem;
+  final TextStyle videoDialogTitle;
+  final TextStyle videoDialogItem;
+  final TextStyle tvSeriesDialogExpansionTitle;
+  final TextStyle tvSeriesDialogExpansionItem;
+  final TextStyle tvSeriesDialogMenuItem;
 
   ThemeTextStyles({
     required this.test,
@@ -31,6 +36,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.contentDetailsDescription,
     required this.movieDialogTitle,
     required this.movieDialogItem,
+    required this.videoDialogTitle,
+    required this.videoDialogItem,
+    required this.tvSeriesDialogExpansionTitle,
+    required this.tvSeriesDialogExpansionItem,
+    required this.tvSeriesDialogMenuItem,
   });
 
   @override
@@ -50,6 +60,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? contentDetailsDescription,
     TextStyle? movieDialogTitle,
     TextStyle? movieDialogItem,
+    TextStyle? videoDialogTitle,
+    TextStyle? videoDialogItem,
+    TextStyle? tvSeriesDialogExpansionTitle,
+    TextStyle? tvSeriesDialogExpansionItem,
+    TextStyle? tvSeriesDialogMenuItem,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -67,6 +82,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           contentDetailsDescription ?? this.contentDetailsDescription,
       movieDialogTitle: movieDialogTitle ?? this.movieDialogTitle,
       movieDialogItem: movieDialogItem ?? this.movieDialogItem,
+      videoDialogTitle: videoDialogTitle ?? this.videoDialogTitle,
+      videoDialogItem: videoDialogItem ?? this.videoDialogItem,
+      tvSeriesDialogExpansionTitle:
+          tvSeriesDialogExpansionTitle ?? this.tvSeriesDialogExpansionTitle,
+      tvSeriesDialogExpansionItem:
+          tvSeriesDialogExpansionItem ?? this.tvSeriesDialogExpansionItem,
+      tvSeriesDialogMenuItem:
+          tvSeriesDialogMenuItem ?? this.tvSeriesDialogMenuItem,
     );
   }
 
@@ -102,6 +125,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(movieDialogTitle, other.movieDialogTitle, t)!,
       movieDialogItem:
           TextStyle.lerp(movieDialogItem, other.movieDialogItem, t)!,
+      videoDialogTitle:
+          TextStyle.lerp(videoDialogTitle, other.videoDialogTitle, t)!,
+      videoDialogItem:
+          TextStyle.lerp(videoDialogItem, other.videoDialogItem, t)!,
+      tvSeriesDialogExpansionTitle: TextStyle.lerp(
+          tvSeriesDialogExpansionTitle, other.tvSeriesDialogExpansionTitle, t)!,
+      tvSeriesDialogExpansionItem: TextStyle.lerp(
+          tvSeriesDialogExpansionItem, other.tvSeriesDialogExpansionItem, t)!,
+      tvSeriesDialogMenuItem: TextStyle.lerp(
+          tvSeriesDialogMenuItem, other.tvSeriesDialogMenuItem, t)!,
     );
   }
 
@@ -163,6 +196,26 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        videoDialogTitle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        videoDialogItem: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        tvSeriesDialogExpansionTitle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        tvSeriesDialogExpansionItem: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        tvSeriesDialogMenuItem: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -220,6 +273,23 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.bold,
         ),
         movieDialogItem: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        videoDialogTitle: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        videoDialogItem: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        tvSeriesDialogExpansionTitle: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        tvSeriesDialogExpansionItem: headline2.copyWith(
+          color: AppColors.white,
+        ),
+        tvSeriesDialogMenuItem: headline2.copyWith(
           color: AppColors.white,
         ),
       );

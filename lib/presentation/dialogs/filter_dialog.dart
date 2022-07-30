@@ -77,7 +77,6 @@ class _FilterDialogState extends State<FilterDialog> {
             onChanged: _onFilterChanged,
             isExpanded: true,
             elevation: 0,
-            focusColor: context.color.filterDialogDropdownFocusColor,
             items: ContentFilter.values
                 .map((filter) => DropdownMenuItem(
                       value: filter,
@@ -97,7 +96,6 @@ class _FilterDialogState extends State<FilterDialog> {
             onChanged: _onTypeChanged,
             isExpanded: true,
             elevation: 0,
-            focusColor: context.color.filterDialogDropdownFocusColor,
             items: ContentType.values
                 .map((type) => DropdownMenuItem(
                       value: type,

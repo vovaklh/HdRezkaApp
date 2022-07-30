@@ -7,6 +7,7 @@ import 'package:hdrezka_app/data/datasources/local/enums/content_affilation.dart
 import 'package:hdrezka_app/domain/entities/content_details.dart';
 import 'package:hdrezka_app/presentation/blocs/content_details_bloc/content_details_bloc.dart';
 import 'package:hdrezka_app/presentation/dialogs/movie_dialog.dart';
+import 'package:hdrezka_app/presentation/dialogs/tv_series_dialog.dart';
 import 'package:hdrezka_app/presentation/widgets/loader.dart';
 
 class ContentDetailsPage extends StatefulWidget {
@@ -35,7 +36,14 @@ class _ContentDetailsPageState extends State<ContentDetailsPage> {
           ),
         );
         break;
-      case ContentAffilation.series:
+      case ContentAffilation.tvSeries:
+        showDialog(
+          context: context,
+          builder: (_) => TvSeriesDialog(
+            url: contentDetails.url,
+            title: contentDetails.title,
+          ),
+        );
         break;
     }
   }
