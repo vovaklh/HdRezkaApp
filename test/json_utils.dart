@@ -1,5 +1,6 @@
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_details_model.dart';
+import 'package:hdrezka_app/data/datasources/remote/api/models/season_model.dart';
 
 typedef FromJsonConverter<T> = T Function(Map<String, dynamic>);
 typedef ToJsonConverter<T> = Map<String, dynamic> Function(T);
@@ -10,6 +11,7 @@ class JsonMock {
   static const Map<Type, String> _jsonMockPathMap = {
     ContentModel: 'test/mocks/content_model.json',
     ContentDetailsModel: 'test/mocks/content_details_model.json',
+    SeasonModel: 'test/mocks/season_model.json',
   };
 
   static FromJsonConverter<T> getFromJson<T>() =>
@@ -18,6 +20,7 @@ class JsonMock {
   static final Map<Type, dynamic> _getFromJsonMap = {
     ContentModel: (json) => ContentModel.fromJson(json),
     ContentDetailsModel: (json) => ContentDetailsModel.fromJson(json),
+    SeasonModel: (json) => SeasonModel.fromJson(json),
   };
 
   static ToJsonConverter<T> getToJson<T>() =>
@@ -26,5 +29,6 @@ class JsonMock {
   static final Map<Type, dynamic> _getToJsonMap = {
     ContentModel: (ContentModel m) => m.toJson(),
     ContentDetailsModel: (ContentDetailsModel m) => m.toJson(),
+    SeasonModel: (SeasonModel m) => m.toJson(),
   };
 }

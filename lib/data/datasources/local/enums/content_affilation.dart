@@ -4,5 +4,5 @@ enum ContentAffilation {
   @JsonValue("movie")
   movie,
   @JsonValue("tv_series")
-  series;
+  tvSeries;
 }

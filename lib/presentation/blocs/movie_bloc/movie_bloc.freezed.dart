@@ -20,38 +20,32 @@ mixin _$MovieEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String url) getTranslations,
-    required TResult Function(String url, String translationId) getVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String url)? getTranslations,
-    TResult Function(String url, String translationId)? getVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String url)? getTranslations,
-    TResult Function(String url, String translationId)? getVideos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetMovieTranslationsEvent value) getTranslations,
-    required TResult Function(GetMovieVideosEvent value) getVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetMovieTranslationsEvent value)? getTranslations,
-    TResult Function(GetMovieVideosEvent value)? getVideos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetMovieTranslationsEvent value)? getTranslations,
-    TResult Function(GetMovieVideosEvent value)? getVideos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,7 +155,6 @@ class _$GetMovieTranslationsEvent implements GetMovieTranslationsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String url) getTranslations,
-    required TResult Function(String url, String translationId) getVideos,
   }) {
     return getTranslations(url);
   }
@@ -170,7 +163,6 @@ class _$GetMovieTranslationsEvent implements GetMovieTranslationsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String url)? getTranslations,
-    TResult Function(String url, String translationId)? getVideos,
   }) {
     return getTranslations?.call(url);
   }
@@ -179,7 +171,6 @@ class _$GetMovieTranslationsEvent implements GetMovieTranslationsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String url)? getTranslations,
-    TResult Function(String url, String translationId)? getVideos,
     required TResult orElse(),
   }) {
     if (getTranslations != null) {
@@ -192,7 +183,6 @@ class _$GetMovieTranslationsEvent implements GetMovieTranslationsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetMovieTranslationsEvent value) getTranslations,
-    required TResult Function(GetMovieVideosEvent value) getVideos,
   }) {
     return getTranslations(this);
   }
@@ -201,7 +191,6 @@ class _$GetMovieTranslationsEvent implements GetMovieTranslationsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetMovieTranslationsEvent value)? getTranslations,
-    TResult Function(GetMovieVideosEvent value)? getVideos,
   }) {
     return getTranslations?.call(this);
   }
@@ -210,7 +199,6 @@ class _$GetMovieTranslationsEvent implements GetMovieTranslationsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetMovieTranslationsEvent value)? getTranslations,
-    TResult Function(GetMovieVideosEvent value)? getVideos,
     required TResult orElse(),
   }) {
     if (getTranslations != null) {
@@ -233,167 +221,13 @@ abstract class GetMovieTranslationsEvent implements MovieEvent {
 }
 
 /// @nodoc
-abstract class _$$GetMovieVideosEventCopyWith<$Res>
-    implements $MovieEventCopyWith<$Res> {
-  factory _$$GetMovieVideosEventCopyWith(_$GetMovieVideosEvent value,
-          $Res Function(_$GetMovieVideosEvent) then) =
-      __$$GetMovieVideosEventCopyWithImpl<$Res>;
-  @override
-  $Res call({String url, String translationId});
-}
-
-/// @nodoc
-class __$$GetMovieVideosEventCopyWithImpl<$Res>
-    extends _$MovieEventCopyWithImpl<$Res>
-    implements _$$GetMovieVideosEventCopyWith<$Res> {
-  __$$GetMovieVideosEventCopyWithImpl(
-      _$GetMovieVideosEvent _value, $Res Function(_$GetMovieVideosEvent) _then)
-      : super(_value, (v) => _then(v as _$GetMovieVideosEvent));
-
-  @override
-  _$GetMovieVideosEvent get _value => super._value as _$GetMovieVideosEvent;
-
-  @override
-  $Res call({
-    Object? url = freezed,
-    Object? translationId = freezed,
-  }) {
-    return _then(_$GetMovieVideosEvent(
-      url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      translationId == freezed
-          ? _value.translationId
-          : translationId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetMovieVideosEvent implements GetMovieVideosEvent {
-  const _$GetMovieVideosEvent(this.url, this.translationId);
-
-  @override
-  final String url;
-  @override
-  final String translationId;
-
-  @override
-  String toString() {
-    return 'MovieEvent.getVideos(url: $url, translationId: $translationId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetMovieVideosEvent &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality()
-                .equals(other.translationId, translationId));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(translationId));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$GetMovieVideosEventCopyWith<_$GetMovieVideosEvent> get copyWith =>
-      __$$GetMovieVideosEventCopyWithImpl<_$GetMovieVideosEvent>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String url) getTranslations,
-    required TResult Function(String url, String translationId) getVideos,
-  }) {
-    return getVideos(url, translationId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String url)? getTranslations,
-    TResult Function(String url, String translationId)? getVideos,
-  }) {
-    return getVideos?.call(url, translationId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String url)? getTranslations,
-    TResult Function(String url, String translationId)? getVideos,
-    required TResult orElse(),
-  }) {
-    if (getVideos != null) {
-      return getVideos(url, translationId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(GetMovieTranslationsEvent value) getTranslations,
-    required TResult Function(GetMovieVideosEvent value) getVideos,
-  }) {
-    return getVideos(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetMovieTranslationsEvent value)? getTranslations,
-    TResult Function(GetMovieVideosEvent value)? getVideos,
-  }) {
-    return getVideos?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetMovieTranslationsEvent value)? getTranslations,
-    TResult Function(GetMovieVideosEvent value)? getVideos,
-    required TResult orElse(),
-  }) {
-    if (getVideos != null) {
-      return getVideos(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GetMovieVideosEvent implements MovieEvent {
-  const factory GetMovieVideosEvent(
-      final String url, final String translationId) = _$GetMovieVideosEvent;
-
-  @override
-  String get url;
-  String get translationId;
-  @override
-  @JsonKey(ignore: true)
-  _$$GetMovieVideosEventCopyWith<_$GetMovieVideosEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$MovieState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Object exception) error,
-    required TResult Function(Map<String, String> translations)
-        successTranslations,
-    required TResult Function(Map<String, String> videos) successVideos,
+    required TResult Function(Map<String, String> translations) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -401,8 +235,7 @@ mixin _$MovieState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -410,8 +243,7 @@ mixin _$MovieState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -420,9 +252,7 @@ mixin _$MovieState {
     required TResult Function(_MovieInitialState value) initial,
     required TResult Function(_MovieLoadingState value) loading,
     required TResult Function(_MovieErrorState value) error,
-    required TResult Function(_MovieSuccessTranslationsState value)
-        successTranslations,
-    required TResult Function(_MovieSuccessVideosState value) successVideos,
+    required TResult Function(_MovieSuccessState value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -430,8 +260,7 @@ mixin _$MovieState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -439,8 +268,7 @@ mixin _$MovieState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -506,9 +334,7 @@ class _$_MovieInitialState implements _MovieInitialState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Object exception) error,
-    required TResult Function(Map<String, String> translations)
-        successTranslations,
-    required TResult Function(Map<String, String> videos) successVideos,
+    required TResult Function(Map<String, String> translations) success,
   }) {
     return initial();
   }
@@ -519,8 +345,7 @@ class _$_MovieInitialState implements _MovieInitialState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
   }) {
     return initial?.call();
   }
@@ -531,8 +356,7 @@ class _$_MovieInitialState implements _MovieInitialState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -547,9 +371,7 @@ class _$_MovieInitialState implements _MovieInitialState {
     required TResult Function(_MovieInitialState value) initial,
     required TResult Function(_MovieLoadingState value) loading,
     required TResult Function(_MovieErrorState value) error,
-    required TResult Function(_MovieSuccessTranslationsState value)
-        successTranslations,
-    required TResult Function(_MovieSuccessVideosState value) successVideos,
+    required TResult Function(_MovieSuccessState value) success,
   }) {
     return initial(this);
   }
@@ -560,8 +382,7 @@ class _$_MovieInitialState implements _MovieInitialState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
   }) {
     return initial?.call(this);
   }
@@ -572,8 +393,7 @@ class _$_MovieInitialState implements _MovieInitialState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -631,9 +451,7 @@ class _$_MovieLoadingState implements _MovieLoadingState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Object exception) error,
-    required TResult Function(Map<String, String> translations)
-        successTranslations,
-    required TResult Function(Map<String, String> videos) successVideos,
+    required TResult Function(Map<String, String> translations) success,
   }) {
     return loading();
   }
@@ -644,8 +462,7 @@ class _$_MovieLoadingState implements _MovieLoadingState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
   }) {
     return loading?.call();
   }
@@ -656,8 +473,7 @@ class _$_MovieLoadingState implements _MovieLoadingState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -672,9 +488,7 @@ class _$_MovieLoadingState implements _MovieLoadingState {
     required TResult Function(_MovieInitialState value) initial,
     required TResult Function(_MovieLoadingState value) loading,
     required TResult Function(_MovieErrorState value) error,
-    required TResult Function(_MovieSuccessTranslationsState value)
-        successTranslations,
-    required TResult Function(_MovieSuccessVideosState value) successVideos,
+    required TResult Function(_MovieSuccessState value) success,
   }) {
     return loading(this);
   }
@@ -685,8 +499,7 @@ class _$_MovieLoadingState implements _MovieLoadingState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
   }) {
     return loading?.call(this);
   }
@@ -697,8 +510,7 @@ class _$_MovieLoadingState implements _MovieLoadingState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -780,9 +592,7 @@ class _$_MovieErrorState implements _MovieErrorState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Object exception) error,
-    required TResult Function(Map<String, String> translations)
-        successTranslations,
-    required TResult Function(Map<String, String> videos) successVideos,
+    required TResult Function(Map<String, String> translations) success,
   }) {
     return error(exception);
   }
@@ -793,8 +603,7 @@ class _$_MovieErrorState implements _MovieErrorState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
   }) {
     return error?.call(exception);
   }
@@ -805,8 +614,7 @@ class _$_MovieErrorState implements _MovieErrorState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -821,9 +629,7 @@ class _$_MovieErrorState implements _MovieErrorState {
     required TResult Function(_MovieInitialState value) initial,
     required TResult Function(_MovieLoadingState value) loading,
     required TResult Function(_MovieErrorState value) error,
-    required TResult Function(_MovieSuccessTranslationsState value)
-        successTranslations,
-    required TResult Function(_MovieSuccessVideosState value) successVideos,
+    required TResult Function(_MovieSuccessState value) success,
   }) {
     return error(this);
   }
@@ -834,8 +640,7 @@ class _$_MovieErrorState implements _MovieErrorState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
   }) {
     return error?.call(this);
   }
@@ -846,8 +651,7 @@ class _$_MovieErrorState implements _MovieErrorState {
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -867,32 +671,29 @@ abstract class _MovieErrorState implements MovieState {
 }
 
 /// @nodoc
-abstract class _$$_MovieSuccessTranslationsStateCopyWith<$Res> {
-  factory _$$_MovieSuccessTranslationsStateCopyWith(
-          _$_MovieSuccessTranslationsState value,
-          $Res Function(_$_MovieSuccessTranslationsState) then) =
-      __$$_MovieSuccessTranslationsStateCopyWithImpl<$Res>;
+abstract class _$$_MovieSuccessStateCopyWith<$Res> {
+  factory _$$_MovieSuccessStateCopyWith(_$_MovieSuccessState value,
+          $Res Function(_$_MovieSuccessState) then) =
+      __$$_MovieSuccessStateCopyWithImpl<$Res>;
   $Res call({Map<String, String> translations});
 }
 
 /// @nodoc
-class __$$_MovieSuccessTranslationsStateCopyWithImpl<$Res>
+class __$$_MovieSuccessStateCopyWithImpl<$Res>
     extends _$MovieStateCopyWithImpl<$Res>
-    implements _$$_MovieSuccessTranslationsStateCopyWith<$Res> {
-  __$$_MovieSuccessTranslationsStateCopyWithImpl(
-      _$_MovieSuccessTranslationsState _value,
-      $Res Function(_$_MovieSuccessTranslationsState) _then)
-      : super(_value, (v) => _then(v as _$_MovieSuccessTranslationsState));
+    implements _$$_MovieSuccessStateCopyWith<$Res> {
+  __$$_MovieSuccessStateCopyWithImpl(
+      _$_MovieSuccessState _value, $Res Function(_$_MovieSuccessState) _then)
+      : super(_value, (v) => _then(v as _$_MovieSuccessState));
 
   @override
-  _$_MovieSuccessTranslationsState get _value =>
-      super._value as _$_MovieSuccessTranslationsState;
+  _$_MovieSuccessState get _value => super._value as _$_MovieSuccessState;
 
   @override
   $Res call({
     Object? translations = freezed,
   }) {
-    return _then(_$_MovieSuccessTranslationsState(
+    return _then(_$_MovieSuccessState(
       translations == freezed
           ? _value._translations
           : translations // ignore: cast_nullable_to_non_nullable
@@ -903,9 +704,8 @@ class __$$_MovieSuccessTranslationsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MovieSuccessTranslationsState
-    implements _MovieSuccessTranslationsState {
-  const _$_MovieSuccessTranslationsState(final Map<String, String> translations)
+class _$_MovieSuccessState implements _MovieSuccessState {
+  const _$_MovieSuccessState(final Map<String, String> translations)
       : _translations = translations;
 
   final Map<String, String> _translations;
@@ -917,14 +717,14 @@ class _$_MovieSuccessTranslationsState
 
   @override
   String toString() {
-    return 'MovieState.successTranslations(translations: $translations)';
+    return 'MovieState.success(translations: $translations)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MovieSuccessTranslationsState &&
+            other is _$_MovieSuccessState &&
             const DeepCollectionEquality()
                 .equals(other._translations, _translations));
   }
@@ -935,9 +735,9 @@ class _$_MovieSuccessTranslationsState
 
   @JsonKey(ignore: true)
   @override
-  _$$_MovieSuccessTranslationsStateCopyWith<_$_MovieSuccessTranslationsState>
-      get copyWith => __$$_MovieSuccessTranslationsStateCopyWithImpl<
-          _$_MovieSuccessTranslationsState>(this, _$identity);
+  _$$_MovieSuccessStateCopyWith<_$_MovieSuccessState> get copyWith =>
+      __$$_MovieSuccessStateCopyWithImpl<_$_MovieSuccessState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -945,11 +745,9 @@ class _$_MovieSuccessTranslationsState
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Object exception) error,
-    required TResult Function(Map<String, String> translations)
-        successTranslations,
-    required TResult Function(Map<String, String> videos) successVideos,
+    required TResult Function(Map<String, String> translations) success,
   }) {
-    return successTranslations(translations);
+    return success(translations);
   }
 
   @override
@@ -958,10 +756,9 @@ class _$_MovieSuccessTranslationsState
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
   }) {
-    return successTranslations?.call(translations);
+    return success?.call(translations);
   }
 
   @override
@@ -970,12 +767,11 @@ class _$_MovieSuccessTranslationsState
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
+    TResult Function(Map<String, String> translations)? success,
     required TResult orElse(),
   }) {
-    if (successTranslations != null) {
-      return successTranslations(translations);
+    if (success != null) {
+      return success(translations);
     }
     return orElse();
   }
@@ -986,11 +782,9 @@ class _$_MovieSuccessTranslationsState
     required TResult Function(_MovieInitialState value) initial,
     required TResult Function(_MovieLoadingState value) loading,
     required TResult Function(_MovieErrorState value) error,
-    required TResult Function(_MovieSuccessTranslationsState value)
-        successTranslations,
-    required TResult Function(_MovieSuccessVideosState value) successVideos,
+    required TResult Function(_MovieSuccessState value) success,
   }) {
-    return successTranslations(this);
+    return success(this);
   }
 
   @override
@@ -999,10 +793,9 @@ class _$_MovieSuccessTranslationsState
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
   }) {
-    return successTranslations?.call(this);
+    return success?.call(this);
   }
 
   @override
@@ -1011,187 +804,22 @@ class _$_MovieSuccessTranslationsState
     TResult Function(_MovieInitialState value)? initial,
     TResult Function(_MovieLoadingState value)? loading,
     TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
+    TResult Function(_MovieSuccessState value)? success,
     required TResult orElse(),
   }) {
-    if (successTranslations != null) {
-      return successTranslations(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _MovieSuccessTranslationsState implements MovieState {
-  const factory _MovieSuccessTranslationsState(
-          final Map<String, String> translations) =
-      _$_MovieSuccessTranslationsState;
+abstract class _MovieSuccessState implements MovieState {
+  const factory _MovieSuccessState(final Map<String, String> translations) =
+      _$_MovieSuccessState;
 
   Map<String, String> get translations;
   @JsonKey(ignore: true)
-  _$$_MovieSuccessTranslationsStateCopyWith<_$_MovieSuccessTranslationsState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_MovieSuccessVideosStateCopyWith<$Res> {
-  factory _$$_MovieSuccessVideosStateCopyWith(_$_MovieSuccessVideosState value,
-          $Res Function(_$_MovieSuccessVideosState) then) =
-      __$$_MovieSuccessVideosStateCopyWithImpl<$Res>;
-  $Res call({Map<String, String> videos});
-}
-
-/// @nodoc
-class __$$_MovieSuccessVideosStateCopyWithImpl<$Res>
-    extends _$MovieStateCopyWithImpl<$Res>
-    implements _$$_MovieSuccessVideosStateCopyWith<$Res> {
-  __$$_MovieSuccessVideosStateCopyWithImpl(_$_MovieSuccessVideosState _value,
-      $Res Function(_$_MovieSuccessVideosState) _then)
-      : super(_value, (v) => _then(v as _$_MovieSuccessVideosState));
-
-  @override
-  _$_MovieSuccessVideosState get _value =>
-      super._value as _$_MovieSuccessVideosState;
-
-  @override
-  $Res call({
-    Object? videos = freezed,
-  }) {
-    return _then(_$_MovieSuccessVideosState(
-      videos == freezed
-          ? _value._videos
-          : videos // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_MovieSuccessVideosState implements _MovieSuccessVideosState {
-  const _$_MovieSuccessVideosState(final Map<String, String> videos)
-      : _videos = videos;
-
-  final Map<String, String> _videos;
-  @override
-  Map<String, String> get videos {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_videos);
-  }
-
-  @override
-  String toString() {
-    return 'MovieState.successVideos(videos: $videos)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_MovieSuccessVideosState &&
-            const DeepCollectionEquality().equals(other._videos, _videos));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_videos));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_MovieSuccessVideosStateCopyWith<_$_MovieSuccessVideosState>
-      get copyWith =>
-          __$$_MovieSuccessVideosStateCopyWithImpl<_$_MovieSuccessVideosState>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(Object exception) error,
-    required TResult Function(Map<String, String> translations)
-        successTranslations,
-    required TResult Function(Map<String, String> videos) successVideos,
-  }) {
-    return successVideos(videos);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
-  }) {
-    return successVideos?.call(videos);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(Object exception)? error,
-    TResult Function(Map<String, String> translations)? successTranslations,
-    TResult Function(Map<String, String> videos)? successVideos,
-    required TResult orElse(),
-  }) {
-    if (successVideos != null) {
-      return successVideos(videos);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_MovieInitialState value) initial,
-    required TResult Function(_MovieLoadingState value) loading,
-    required TResult Function(_MovieErrorState value) error,
-    required TResult Function(_MovieSuccessTranslationsState value)
-        successTranslations,
-    required TResult Function(_MovieSuccessVideosState value) successVideos,
-  }) {
-    return successVideos(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MovieInitialState value)? initial,
-    TResult Function(_MovieLoadingState value)? loading,
-    TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
-  }) {
-    return successVideos?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_MovieInitialState value)? initial,
-    TResult Function(_MovieLoadingState value)? loading,
-    TResult Function(_MovieErrorState value)? error,
-    TResult Function(_MovieSuccessTranslationsState value)? successTranslations,
-    TResult Function(_MovieSuccessVideosState value)? successVideos,
-    required TResult orElse(),
-  }) {
-    if (successVideos != null) {
-      return successVideos(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _MovieSuccessVideosState implements MovieState {
-  const factory _MovieSuccessVideosState(final Map<String, String> videos) =
-      _$_MovieSuccessVideosState;
-
-  Map<String, String> get videos;
-  @JsonKey(ignore: true)
-  _$$_MovieSuccessVideosStateCopyWith<_$_MovieSuccessVideosState>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_MovieSuccessStateCopyWith<_$_MovieSuccessState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

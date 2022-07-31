@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:json_diff/json_diff.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_details_model.dart';
+import 'package:hdrezka_app/data/datasources/remote/api/models/season_model.dart';
 
 import '../json_utils.dart';
 
@@ -12,6 +13,7 @@ void main() {
   group('[serialization]', () {
     test('ContentModel', () => testSerialization<ContentModel>());
     test('ContentDetailsModel', () => testSerialization<ContentDetailsModel>());
+    test('SeasonModel', () => testSerialization<SeasonModel>());
   });
 }
 

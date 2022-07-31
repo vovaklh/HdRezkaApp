@@ -14,9 +14,6 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     on<GetMovieTranslationsEvent>(
       (event, emit) => _getMovieTranslations(event.url, emit),
     );
-    on<GetMovieVideosEvent>(
-      (event, emit) => _getMovieVideos(event.url, event.translationId, emit),
-    );
   }
 
   Future<void> _getMovieTranslations(String url, Emitter emit) async {
@@ -24,24 +21,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
       final movieTranslations =
           await contentRepository.getContentTranslations(url);
 
-      emit(MovieState.successTranslations(movieTranslations));
-    } catch (exception) {
-      emit(MovieState.error(exception));
-    }
-  }
-
-  Future<void> _getMovieVideos(
-    String url,
-    String translationId,
-    Emitter emit,
-  ) async {
-    try {
-      emit(const MovieState.loading());
-
-      final movieVideos =
-          await contentRepository.getMovieVideos(url, translationId);
-
-      emit(MovieState.successVideos(movieVideos));
+      emit(MovieState.success(movieTranslations));
     } catch (exception) {
       emit(MovieState.error(exception));
     }

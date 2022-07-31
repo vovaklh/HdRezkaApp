@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/api_string.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_details_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dart';
+import 'package:hdrezka_app/data/datasources/remote/api/models/seasons_wrapper_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'content_service.g.dart';
@@ -31,5 +32,19 @@ abstract class ContentService {
   Future<Map<String, String>> getMovieVideos(
     @Query('url') String url,
     @Query('translation_id') String translationId,
+  );
+
+  @GET(ApiString.tvSeriesSeasons)
+  Future<SeasonsWrapperModel> getTvSeriesSeasons(
+    @Query('url') String url,
+    @Query('translation_id') String translationId,
+  );
+
+  @GET(ApiString.tvSeriesVideos)
+  Future<Map<String, String>> getTvSeriesVideos(
+    @Query('url') String url,
+    @Query('translation_id') String translationId,
+    @Query('season_id') String seasonId,
+    @Query('series_id') String seriesId,
   );
 }
