@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hdrezka_app/core/utils/utils/platform_widget.dart';
 import 'package:hdrezka_app/l10n/app_locale.dart';
 import 'package:hdrezka_app/l10n/l10n.dart';
-import 'package:hdrezka_app/presentation/pages/content_page.dart';
+import 'package:hdrezka_app/presentation/pages/mobile_home_page.dart';
+import 'package:hdrezka_app/presentation/pages/tv_home_page.dart';
 import 'package:hdrezka_app/presentation/redux/app_state.dart';
 import 'package:hdrezka_app/presentation/themes/theme.dart';
 
@@ -37,7 +39,10 @@ class Application extends StatelessWidget {
             theme: createLightTheme(),
             darkTheme: createDarkTheme(),
             themeMode: vm.themeMode,
-            home: const ContentPage(),
+            home: PlatformWidget.build(
+              const TvHomePage(),
+              const MobileHomePage(),
+            ),
           ),
         ),
       ),
