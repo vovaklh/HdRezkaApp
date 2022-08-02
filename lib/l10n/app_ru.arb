@@ -26,5 +26,13 @@
     "overflowMenuQuality": "Качество видео",
     "@_MOVIE_DIALOG": {},
     "voiceActing": "Озвучка",
-    "resolution": "Качество"
+    "resolution": "Качество",
+    "@_NAVIGATION_PAGES": {},
+    "novelties": "Новинки",
+    "search": "Поиск",
+    "categories": "Категории",
+    "history": "История",
+    "favorites": "Избранное",
+    "settings": "Настройки"
+
 }

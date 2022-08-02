@@ -18,7 +18,8 @@ class ContentPage extends StatefulWidget {
   State<ContentPage> createState() => _ContentPageState();
 }
 
-class _ContentPageState extends State<ContentPage> {
+class _ContentPageState extends State<ContentPage>
+    with AutomaticKeepAliveClientMixin {
   final ContentBloc _bloc = locator<ContentBloc>();
   final PagingController<int, Content> _pagingController =
       PagingController(firstPageKey: 1, invisibleItemsThreshold: 1);
@@ -66,6 +67,9 @@ class _ContentPageState extends State<ContentPage> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   void initState() {
     super.initState();
     _pagingController.addPageRequestListener((pageKey) {
@@ -87,6 +91,7 @@ class _ContentPageState extends State<ContentPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: SafeArea(
         child: BlocListener<ContentBloc, ContentState>(

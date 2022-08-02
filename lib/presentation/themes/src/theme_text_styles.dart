@@ -20,6 +20,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle tvSeriesDialogExpansionTitle;
   final TextStyle tvSeriesDialogExpansionItem;
   final TextStyle tvSeriesDialogMenuItem;
+  final TextStyle navigationRailSelectedStyle;
+  final TextStyle navigationRailUnselectedStyle;
 
   ThemeTextStyles({
     required this.test,
@@ -41,6 +43,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.tvSeriesDialogExpansionTitle,
     required this.tvSeriesDialogExpansionItem,
     required this.tvSeriesDialogMenuItem,
+    required this.navigationRailSelectedStyle,
+    required this.navigationRailUnselectedStyle,
   });
 
   @override
@@ -65,6 +69,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? tvSeriesDialogExpansionTitle,
     TextStyle? tvSeriesDialogExpansionItem,
     TextStyle? tvSeriesDialogMenuItem,
+    TextStyle? navigationRailSelectedStyle,
+    TextStyle? navigationRailUnselectedStyle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -90,6 +96,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           tvSeriesDialogExpansionItem ?? this.tvSeriesDialogExpansionItem,
       tvSeriesDialogMenuItem:
           tvSeriesDialogMenuItem ?? this.tvSeriesDialogMenuItem,
+      navigationRailSelectedStyle:
+          navigationRailSelectedStyle ?? this.navigationRailSelectedStyle,
+      navigationRailUnselectedStyle:
+          navigationRailUnselectedStyle ?? this.navigationRailUnselectedStyle,
     );
   }
 
@@ -135,6 +145,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           tvSeriesDialogExpansionItem, other.tvSeriesDialogExpansionItem, t)!,
       tvSeriesDialogMenuItem: TextStyle.lerp(
           tvSeriesDialogMenuItem, other.tvSeriesDialogMenuItem, t)!,
+      navigationRailSelectedStyle: TextStyle.lerp(
+          navigationRailSelectedStyle, other.navigationRailSelectedStyle, t)!,
+      navigationRailUnselectedStyle: TextStyle.lerp(
+          navigationRailUnselectedStyle,
+          other.navigationRailUnselectedStyle,
+          t)!,
     );
   }
 
@@ -216,6 +232,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        navigationRailSelectedStyle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        navigationRailUnselectedStyle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -290,6 +314,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         tvSeriesDialogMenuItem: headline2.copyWith(
+          color: AppColors.white,
+        ),
+        navigationRailSelectedStyle: headline2.copyWith(
+          color: AppColors.red,
+        ),
+        navigationRailUnselectedStyle: headline2.copyWith(
           color: AppColors.white,
         ),
       );

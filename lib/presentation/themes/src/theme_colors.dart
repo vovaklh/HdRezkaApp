@@ -12,6 +12,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color favoriteButtonIconColor;
   final Color favoriteButtonFocusColor;
   final Color tvSeriesDialogDropdownColor;
+  final Color navigationRailBackgroundColor;
+  final Color navigationRailSelectedIconColor;
+  final Color navigationRailUnselectedIconColor;
+  final Color bottomNavigationBarBackgroundColor;
+  final Color bottomNavigationBarSelectedItemColor;
+  final Color bottomNavigationBarUnselectedItemColor;
 
   const ThemeColors({
     required this.test,
@@ -25,6 +31,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.favoriteButtonIconColor,
     required this.favoriteButtonFocusColor,
     required this.tvSeriesDialogDropdownColor,
+    required this.navigationRailBackgroundColor,
+    required this.navigationRailSelectedIconColor,
+    required this.navigationRailUnselectedIconColor,
+    required this.bottomNavigationBarBackgroundColor,
+    required this.bottomNavigationBarSelectedItemColor,
+    required this.bottomNavigationBarUnselectedItemColor,
   });
 
   @override
@@ -41,6 +53,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? favoriteButtonIconColor,
     Color? favoriteButtonFocusColor,
     Color? tvSeriesDialogDropdownColor,
+    Color? navigationRailBackgroundColor,
+    Color? navigationRailSelectedIconColor,
+    Color? navigationRailUnselectedIconColor,
+    Color? bottomNavigationBarBackgroundColor,
+    Color? bottomNavigationBarSelectedItemColor,
+    Color? bottomNavigationBarUnselectedItemColor,
   }) {
     return ThemeColors(
       test: test ?? this.test,
@@ -62,6 +80,20 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           favoriteButtonFocusColor ?? this.favoriteButtonFocusColor,
       tvSeriesDialogDropdownColor:
           tvSeriesDialogDropdownColor ?? this.tvSeriesDialogDropdownColor,
+      navigationRailBackgroundColor:
+          navigationRailBackgroundColor ?? this.navigationRailBackgroundColor,
+      navigationRailSelectedIconColor: navigationRailSelectedIconColor ??
+          this.navigationRailSelectedIconColor,
+      navigationRailUnselectedIconColor: navigationRailUnselectedIconColor ??
+          this.navigationRailUnselectedIconColor,
+      bottomNavigationBarBackgroundColor: bottomNavigationBarBackgroundColor ??
+          this.bottomNavigationBarBackgroundColor,
+      bottomNavigationBarSelectedItemColor:
+          bottomNavigationBarSelectedItemColor ??
+              this.bottomNavigationBarSelectedItemColor,
+      bottomNavigationBarUnselectedItemColor:
+          bottomNavigationBarUnselectedItemColor ??
+              this.bottomNavigationBarUnselectedItemColor,
     );
   }
 
@@ -96,6 +128,28 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           favoriteButtonFocusColor, other.favoriteButtonFocusColor, t)!,
       tvSeriesDialogDropdownColor: Color.lerp(
           tvSeriesDialogDropdownColor, other.tvSeriesDialogDropdownColor, t)!,
+      navigationRailBackgroundColor: Color.lerp(navigationRailBackgroundColor,
+          other.navigationRailBackgroundColor, t)!,
+      navigationRailSelectedIconColor: Color.lerp(
+          navigationRailSelectedIconColor,
+          other.navigationRailSelectedIconColor,
+          t)!,
+      navigationRailUnselectedIconColor: Color.lerp(
+          navigationRailUnselectedIconColor,
+          other.navigationRailUnselectedIconColor,
+          t)!,
+      bottomNavigationBarBackgroundColor: Color.lerp(
+          bottomNavigationBarBackgroundColor,
+          other.bottomNavigationBarBackgroundColor,
+          t)!,
+      bottomNavigationBarSelectedItemColor: Color.lerp(
+          bottomNavigationBarSelectedItemColor,
+          other.bottomNavigationBarSelectedItemColor,
+          t)!,
+      bottomNavigationBarUnselectedItemColor: Color.lerp(
+          bottomNavigationBarUnselectedItemColor,
+          other.bottomNavigationBarUnselectedItemColor,
+          t)!,
     );
   }
 
@@ -111,6 +165,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         favoriteButtonIconColor: AppColors.grey,
         favoriteButtonFocusColor: AppColors.red,
         tvSeriesDialogDropdownColor: AppColors.white,
+        navigationRailBackgroundColor: AppColors.black,
+        navigationRailSelectedIconColor: AppColors.white,
+        navigationRailUnselectedIconColor: AppColors.grey,
+        bottomNavigationBarBackgroundColor: AppColors.black,
+        bottomNavigationBarSelectedItemColor: AppColors.white,
+        bottomNavigationBarUnselectedItemColor: AppColors.grey,
       );
 
   static get dark => ThemeColors(
@@ -125,5 +185,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         favoriteButtonIconColor: AppColors.red,
         favoriteButtonFocusColor: AppColors.white.withOpacity(0.3),
         tvSeriesDialogDropdownColor: AppColors.lighterDark,
+        navigationRailBackgroundColor: AppColors.black,
+        navigationRailSelectedIconColor: AppColors.red,
+        navigationRailUnselectedIconColor: AppColors.white,
+        bottomNavigationBarBackgroundColor: AppColors.black,
+        bottomNavigationBarSelectedItemColor: AppColors.red,
+        bottomNavigationBarUnselectedItemColor: AppColors.white,
       );
 }
