@@ -47,4 +47,10 @@ abstract class ContentService {
     @Query('season_id') String seasonId,
     @Query('series_id') String seriesId,
   );
+
+  @GET(ApiString.search)
+  Future<List<ContentModel>> search(
+    @Query('query') String query,
+    @Query('page') int page,
+  );
 }

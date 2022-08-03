@@ -11,6 +11,8 @@ abstract class ContentRepository {
     ContentType type,
   );
 
+  Future<List<Content>> search(String query, int page);
+
   Future<ContentDetails> getContentDetails(String url);
 
   Future<Map<String, String>> getContentTranslations(String url);

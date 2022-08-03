@@ -18,6 +18,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color bottomNavigationBarBackgroundColor;
   final Color bottomNavigationBarSelectedItemColor;
   final Color bottomNavigationBarUnselectedItemColor;
+  final Color searchFieldFillColor;
+  final Color searchFieldIconColor;
 
   const ThemeColors({
     required this.test,
@@ -37,6 +39,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.bottomNavigationBarBackgroundColor,
     required this.bottomNavigationBarSelectedItemColor,
     required this.bottomNavigationBarUnselectedItemColor,
+    required this.searchFieldFillColor,
+    required this.searchFieldIconColor,
   });
 
   @override
@@ -59,6 +63,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? bottomNavigationBarBackgroundColor,
     Color? bottomNavigationBarSelectedItemColor,
     Color? bottomNavigationBarUnselectedItemColor,
+    Color? searchFieldFillColor,
+    Color? searchFieldIconColor,
   }) {
     return ThemeColors(
       test: test ?? this.test,
@@ -94,6 +100,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       bottomNavigationBarUnselectedItemColor:
           bottomNavigationBarUnselectedItemColor ??
               this.bottomNavigationBarUnselectedItemColor,
+      searchFieldFillColor: searchFieldFillColor ?? this.searchFieldFillColor,
+      searchFieldIconColor: searchFieldIconColor ?? this.searchFieldIconColor,
     );
   }
 
@@ -150,6 +158,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           bottomNavigationBarUnselectedItemColor,
           other.bottomNavigationBarUnselectedItemColor,
           t)!,
+      searchFieldFillColor:
+          Color.lerp(searchFieldFillColor, other.searchFieldFillColor, t)!,
+      searchFieldIconColor:
+          Color.lerp(searchFieldIconColor, other.searchFieldIconColor, t)!,
     );
   }
 
@@ -171,6 +183,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         bottomNavigationBarBackgroundColor: AppColors.black,
         bottomNavigationBarSelectedItemColor: AppColors.white,
         bottomNavigationBarUnselectedItemColor: AppColors.grey,
+        searchFieldFillColor: AppColors.grey,
+        searchFieldIconColor: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -191,5 +205,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         bottomNavigationBarBackgroundColor: AppColors.black,
         bottomNavigationBarSelectedItemColor: AppColors.red,
         bottomNavigationBarUnselectedItemColor: AppColors.white,
+        searchFieldFillColor: AppColors.lighterDark,
+        searchFieldIconColor: AppColors.white,
       );
 }

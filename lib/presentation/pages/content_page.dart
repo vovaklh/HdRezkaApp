@@ -21,8 +21,10 @@ class ContentPage extends StatefulWidget {
 class _ContentPageState extends State<ContentPage>
     with AutomaticKeepAliveClientMixin {
   final ContentBloc _bloc = locator<ContentBloc>();
-  final PagingController<int, Content> _pagingController =
-      PagingController(firstPageKey: 1, invisibleItemsThreshold: 1);
+  final _pagingController = PagingController<int, Content>(
+    firstPageKey: 1,
+    invisibleItemsThreshold: 1,
+  );
 
   ContentFilterWrapper _currentFilterWrapper = ContentFilterWrapper.initial();
 
@@ -32,6 +34,15 @@ class _ContentPageState extends State<ContentPage>
       error: (_) => _pagingController.error = context.localizations.error,
       orElse: () {},
     );
+  }
+
+  void _addNewData(List<Content> content, bool isLastPage) {
+    final newPage = _pagingController.nextPageKey ?? 0;
+    if (isLastPage) {
+      _pagingController.appendLastPage(content);
+    } else {
+      _pagingController.appendPage(content, newPage + 1);
+    }
   }
 
   void _showDialog() async {
@@ -44,15 +55,6 @@ class _ContentPageState extends State<ContentPage>
     if (newFilterWrapper != null && newFilterWrapper != _currentFilterWrapper) {
       _currentFilterWrapper = newFilterWrapper;
       _pagingController.refresh();
-    }
-  }
-
-  void _addNewData(List<Content> content, bool isLastPage) {
-    final newPage = _pagingController.nextPageKey ?? 0;
-    if (isLastPage) {
-      _pagingController.appendLastPage(content);
-    } else {
-      _pagingController.appendPage(content, newPage + 1);
     }
   }
 
