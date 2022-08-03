@@ -40,6 +40,15 @@ class ContentRepositoryImp extends ContentRepository {
   }
 
   @override
+  Future<List<Content>> search(String query, int page) async {
+    final response = await contentService.search(query, page);
+
+    return response
+        .map((model) => contentConverter.modelToEntity(model))
+        .toList();
+  }
+
+  @override
   Future<ContentDetails> getContentDetails(String url) async {
     final response = await contentService.getContentDetails(url);
 

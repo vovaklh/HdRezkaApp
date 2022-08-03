@@ -21,5 +21,6 @@ ThemeData createDarkTheme() {
       ),
     ),
     focusColor: Colors.blue.withOpacity(0.2),
+    appBarTheme: AppBarTheme(backgroundColor: Colors.black),
   );
 }

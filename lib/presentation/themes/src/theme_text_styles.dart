@@ -22,6 +22,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle tvSeriesDialogMenuItem;
   final TextStyle navigationRailSelectedStyle;
   final TextStyle navigationRailUnselectedStyle;
+  final TextStyle searchHint;
+  final TextStyle searchInput;
 
   ThemeTextStyles({
     required this.test,
@@ -45,6 +47,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.tvSeriesDialogMenuItem,
     required this.navigationRailSelectedStyle,
     required this.navigationRailUnselectedStyle,
+    required this.searchHint,
+    required this.searchInput,
   });
 
   @override
@@ -71,6 +75,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? tvSeriesDialogMenuItem,
     TextStyle? navigationRailSelectedStyle,
     TextStyle? navigationRailUnselectedStyle,
+    TextStyle? searchHint,
+    TextStyle? searchInput,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -100,6 +106,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           navigationRailSelectedStyle ?? this.navigationRailSelectedStyle,
       navigationRailUnselectedStyle:
           navigationRailUnselectedStyle ?? this.navigationRailUnselectedStyle,
+      searchHint: searchHint ?? this.searchHint,
+      searchInput: searchInput ?? this.searchInput,
     );
   }
 
@@ -151,6 +159,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           navigationRailUnselectedStyle,
           other.navigationRailUnselectedStyle,
           t)!,
+      searchHint: TextStyle.lerp(searchHint, other.searchHint, t)!,
+      searchInput: TextStyle.lerp(searchInput, other.searchInput, t)!,
     );
   }
 
@@ -240,6 +250,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        searchHint: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        searchInput: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -320,6 +338,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.red,
         ),
         navigationRailUnselectedStyle: headline2.copyWith(
+          color: AppColors.white,
+        ),
+        searchHint: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        searchInput: headline1.copyWith(
           color: AppColors.white,
         ),
       );

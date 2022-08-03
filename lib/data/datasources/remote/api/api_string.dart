@@ -7,4 +7,6 @@ abstract class ApiString {
 
   static const String tvSeriesSeasons = "content/tv_series/seasons";
   static const String tvSeriesVideos = "content/tv_series/videos";
+
+  static const String search = "content/search";
 }

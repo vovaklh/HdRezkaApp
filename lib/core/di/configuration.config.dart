@@ -4,6 +4,7 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
@@ -24,18 +25,19 @@ import '../../domain/entities/content_data.dart' as _i8;
 import '../../domain/entities/content_details.dart' as _i10;
 import '../../domain/entities/seasons_wrapper.dart' as _i12;
 import '../../domain/repositories/content_repository.dart' as _i15;
-import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i19;
+import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i20;
 import '../../presentation/blocs/content_details_bloc/content_details_bloc.dart'
-    as _i20;
+    as _i21;
 import '../../presentation/blocs/movie_bloc/movie_bloc.dart' as _i16;
-import '../../presentation/blocs/series_bloc/tv_series_bloc.dart' as _i17;
-import '../../presentation/blocs/video_bloc/video_bloc.dart' as _i18;
-import 'modules/api_module.dart' as _i21;
-import 'modules/bloc_module.dart' as _i25;
-import 'modules/converter_module.dart' as _i22;
-import 'modules/repository_module.dart' as _i24;
+import '../../presentation/blocs/search_bloc.dart/search_bloc.dart' as _i17;
+import '../../presentation/blocs/series_bloc/tv_series_bloc.dart' as _i18;
+import '../../presentation/blocs/video_bloc/video_bloc.dart' as _i19;
+import 'modules/api_module.dart' as _i22;
+import 'modules/bloc_module.dart' as _i26;
+import 'modules/converter_module.dart' as _i23;
+import 'modules/repository_module.dart' as _i25;
 import 'modules/storage_module.dart'
-    as _i23; // ignore_for_file: unnecessary_lambdas
+    as _i24; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -76,23 +78,25 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
               _i12.SeasonsWrapper>>()));
   gh.factory<_i16.MovieBloc>(
       () => blocModule.movieBloc(get<_i15.ContentRepository>()));
-  gh.factory<_i17.TvSeriesBloc>(
+  gh.factory<_i17.SearchBloc>(
+      () => blocModule.searchBloc(get<_i15.ContentRepository>()));
+  gh.factory<_i18.TvSeriesBloc>(
       () => blocModule.tvSeriesBloc(get<_i15.ContentRepository>()));
-  gh.factory<_i18.VideoBloc>(
+  gh.factory<_i19.VideoBloc>(
       () => blocModule.videoBloc(get<_i15.ContentRepository>()));
-  gh.factory<_i19.ContentBloc>(
+  gh.factory<_i20.ContentBloc>(
       () => blocModule.contentBloc(get<_i15.ContentRepository>()));
-  gh.factory<_i20.ContentDetailsBloc>(
+  gh.factory<_i21.ContentDetailsBloc>(
       () => blocModule.contentDetailsBloc(get<_i15.ContentRepository>()));
   return get;
 }
 
-class _$ApiModule extends _i21.ApiModule {}
+class _$ApiModule extends _i22.ApiModule {}
 
-class _$ConverterModule extends _i22.ConverterModule {}
+class _$ConverterModule extends _i23.ConverterModule {}
 
-class _$StorageModule extends _i23.StorageModule {}
+class _$StorageModule extends _i24.StorageModule {}
 
-class _$RepositoryModule extends _i24.RepositoryModule {}
+class _$RepositoryModule extends _i25.RepositoryModule {}
 
-class _$BlocModule extends _i25.BlocModule {}
+class _$BlocModule extends _i26.BlocModule {}
