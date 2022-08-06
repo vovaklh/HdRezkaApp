@@ -11,10 +11,11 @@ class Content with _$Content {
     required int id,
     required String title,
     required String shortInfo,
-    required String url,
+    required String mirrorLessUrl,
     required String imageUrl,
     required String type,
     String? status,
+    DateTime? addedToHistoryAt,
   }) = _Content;
 
   ContentType get contentType =>

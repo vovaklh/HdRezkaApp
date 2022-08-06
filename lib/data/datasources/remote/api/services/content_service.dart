@@ -20,7 +20,7 @@ abstract class ContentService {
 
   @GET(ApiString.contentDetails)
   Future<ContentDetailsModel> getContentDetails(
-    @Query('url') String filter,
+    @Query('mirror_less_url') String mirrorLessUrl,
   );
 
   @GET(ApiString.contentTranslations)

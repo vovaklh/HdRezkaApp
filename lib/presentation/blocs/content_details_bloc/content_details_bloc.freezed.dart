@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ContentDetailsEvent {
-  String get url => throw _privateConstructorUsedError;
+  String get mirrorLessUrl => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String url) getDetails,
+    required TResult Function(String mirrorLessUrl) getDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String url)? getDetails,
+    TResult Function(String mirrorLessUrl)? getDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String url)? getDetails,
+    TResult Function(String mirrorLessUrl)? getDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ abstract class $ContentDetailsEventCopyWith<$Res> {
   factory $ContentDetailsEventCopyWith(
           ContentDetailsEvent value, $Res Function(ContentDetailsEvent) then) =
       _$ContentDetailsEventCopyWithImpl<$Res>;
-  $Res call({String url});
+  $Res call({String mirrorLessUrl});
 }
 
 /// @nodoc
@@ -74,12 +74,12 @@ class _$ContentDetailsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? url = freezed,
+    Object? mirrorLessUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      mirrorLessUrl: mirrorLessUrl == freezed
+          ? _value.mirrorLessUrl
+          : mirrorLessUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -92,7 +92,7 @@ abstract class _$$GetContentDetailsEventCopyWith<$Res>
           $Res Function(_$GetContentDetailsEvent) then) =
       __$$GetContentDetailsEventCopyWithImpl<$Res>;
   @override
-  $Res call({String url});
+  $Res call({String mirrorLessUrl});
 }
 
 /// @nodoc
@@ -109,12 +109,12 @@ class __$$GetContentDetailsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? url = freezed,
+    Object? mirrorLessUrl = freezed,
   }) {
     return _then(_$GetContentDetailsEvent(
-      url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      mirrorLessUrl == freezed
+          ? _value.mirrorLessUrl
+          : mirrorLessUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -123,14 +123,14 @@ class __$$GetContentDetailsEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetContentDetailsEvent implements GetContentDetailsEvent {
-  const _$GetContentDetailsEvent(this.url);
+  const _$GetContentDetailsEvent(this.mirrorLessUrl);
 
   @override
-  final String url;
+  final String mirrorLessUrl;
 
   @override
   String toString() {
-    return 'ContentDetailsEvent.getDetails(url: $url)';
+    return 'ContentDetailsEvent.getDetails(mirrorLessUrl: $mirrorLessUrl)';
   }
 
   @override
@@ -138,12 +138,13 @@ class _$GetContentDetailsEvent implements GetContentDetailsEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetContentDetailsEvent &&
-            const DeepCollectionEquality().equals(other.url, url));
+            const DeepCollectionEquality()
+                .equals(other.mirrorLessUrl, mirrorLessUrl));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(url));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(mirrorLessUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -154,27 +155,27 @@ class _$GetContentDetailsEvent implements GetContentDetailsEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String url) getDetails,
+    required TResult Function(String mirrorLessUrl) getDetails,
   }) {
-    return getDetails(url);
+    return getDetails(mirrorLessUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String url)? getDetails,
+    TResult Function(String mirrorLessUrl)? getDetails,
   }) {
-    return getDetails?.call(url);
+    return getDetails?.call(mirrorLessUrl);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String url)? getDetails,
+    TResult Function(String mirrorLessUrl)? getDetails,
     required TResult orElse(),
   }) {
     if (getDetails != null) {
-      return getDetails(url);
+      return getDetails(mirrorLessUrl);
     }
     return orElse();
   }
@@ -209,11 +210,11 @@ class _$GetContentDetailsEvent implements GetContentDetailsEvent {
 }
 
 abstract class GetContentDetailsEvent implements ContentDetailsEvent {
-  const factory GetContentDetailsEvent(final String url) =
+  const factory GetContentDetailsEvent(final String mirrorLessUrl) =
       _$GetContentDetailsEvent;
 
   @override
-  String get url;
+  String get mirrorLessUrl;
   @override
   @JsonKey(ignore: true)
   _$$GetContentDetailsEventCopyWith<_$GetContentDetailsEvent> get copyWith =>

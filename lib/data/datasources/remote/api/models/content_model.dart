@@ -9,7 +9,7 @@ class ContentModel with _$ContentModel {
 
   const factory ContentModel({
     required int id,
-    required String url,
+    required String mirrorLessUrl,
     required String type,
     required String title,
     required String shortInfo,

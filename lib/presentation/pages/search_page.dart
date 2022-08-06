@@ -36,7 +36,7 @@ class _SearchPageState extends State<SearchPage>
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ContentDetailsPage(
-          url: content.url,
+          content: content,
         ),
       ),
     );

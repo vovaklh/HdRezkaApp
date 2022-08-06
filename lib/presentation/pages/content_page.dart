@@ -62,7 +62,7 @@ class _ContentPageState extends State<ContentPage>
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ContentDetailsPage(
-          url: content.url,
+          content: content,
         ),
       ),
     );
