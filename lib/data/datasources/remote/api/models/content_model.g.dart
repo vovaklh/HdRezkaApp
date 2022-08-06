@@ -9,7 +9,7 @@ part of 'content_model.dart';
 _$_ContentModel _$$_ContentModelFromJson(Map<String, dynamic> json) =>
     _$_ContentModel(
       id: json['id'] as int,
-      url: json['url'] as String,
+      mirrorLessUrl: json['mirrorLessUrl'] as String,
       type: json['type'] as String,
       title: json['title'] as String,
       shortInfo: json['shortInfo'] as String,
@@ -20,7 +20,7 @@ _$_ContentModel _$$_ContentModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ContentModelToJson(_$_ContentModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'url': instance.url,
+      'mirrorLessUrl': instance.mirrorLessUrl,
       'type': instance.type,
       'title': instance.title,
       'shortInfo': instance.shortInfo,

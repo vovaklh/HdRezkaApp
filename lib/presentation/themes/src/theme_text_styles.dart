@@ -24,6 +24,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle navigationRailUnselectedStyle;
   final TextStyle searchHint;
   final TextStyle searchInput;
+  final TextStyle historySubtitle;
 
   ThemeTextStyles({
     required this.test,
@@ -49,6 +50,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.navigationRailUnselectedStyle,
     required this.searchHint,
     required this.searchInput,
+    required this.historySubtitle,
   });
 
   @override
@@ -77,6 +79,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? navigationRailUnselectedStyle,
     TextStyle? searchHint,
     TextStyle? searchInput,
+    TextStyle? historySubtitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -108,6 +111,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           navigationRailUnselectedStyle ?? this.navigationRailUnselectedStyle,
       searchHint: searchHint ?? this.searchHint,
       searchInput: searchInput ?? this.searchInput,
+      historySubtitle: historySubtitle ?? this.historySubtitle,
     );
   }
 
@@ -161,6 +165,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           t)!,
       searchHint: TextStyle.lerp(searchHint, other.searchHint, t)!,
       searchInput: TextStyle.lerp(searchInput, other.searchInput, t)!,
+      historySubtitle:
+          TextStyle.lerp(historySubtitle, other.historySubtitle, t)!,
     );
   }
 
@@ -258,6 +264,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        historySubtitle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -344,6 +354,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         searchInput: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        historySubtitle: headline2.copyWith(
           color: AppColors.white,
         ),
       );

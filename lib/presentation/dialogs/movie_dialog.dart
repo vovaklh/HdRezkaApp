@@ -9,12 +9,14 @@ import 'package:hdrezka_app/presentation/widgets/loader.dart';
 class MovieDialog extends StatelessWidget {
   final String url;
   final String title;
+  final VoidCallback? onVideoTappped;
 
   final _bloc = locator<MovieBloc>();
 
   MovieDialog({
     required this.url,
     required this.title,
+    this.onVideoTappped,
     Key? key,
   }) : super(key: key);
 
@@ -25,6 +27,7 @@ class MovieDialog extends StatelessWidget {
         title: title,
         url: url,
         translationId: translationId,
+        onVideoTappped: onVideoTappped,
       ),
     );
   }

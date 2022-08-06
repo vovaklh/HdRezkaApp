@@ -49,8 +49,8 @@ class ContentRepositoryImp extends ContentRepository {
   }
 
   @override
-  Future<ContentDetails> getContentDetails(String url) async {
-    final response = await contentService.getContentDetails(url);
+  Future<ContentDetails> getContentDetails(String mirrorLessUrl) async {
+    final response = await contentService.getContentDetails(mirrorLessUrl);
 
     return contentDetailsConverter.modelToEntity(response);
   }

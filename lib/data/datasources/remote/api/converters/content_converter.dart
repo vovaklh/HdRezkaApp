@@ -9,7 +9,7 @@ class ContentConverter extends ModelConverter<ContentModel, Content> {
       id: model.id,
       title: model.title,
       shortInfo: model.shortInfo,
-      url: model.url,
+      mirrorLessUrl: model.mirrorLessUrl,
       imageUrl: model.imageUrl,
       type: model.type,
       status: model.status,

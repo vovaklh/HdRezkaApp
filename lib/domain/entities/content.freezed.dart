@@ -19,10 +19,11 @@ mixin _$Content {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get shortInfo => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
+  String get mirrorLessUrl => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
+  DateTime? get addedToHistoryAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ContentCopyWith<Content> get copyWith => throw _privateConstructorUsedError;
@@ -36,10 +37,11 @@ abstract class $ContentCopyWith<$Res> {
       {int id,
       String title,
       String shortInfo,
-      String url,
+      String mirrorLessUrl,
       String imageUrl,
       String type,
-      String? status});
+      String? status,
+      DateTime? addedToHistoryAt});
 }
 
 /// @nodoc
@@ -55,10 +57,11 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? id = freezed,
     Object? title = freezed,
     Object? shortInfo = freezed,
-    Object? url = freezed,
+    Object? mirrorLessUrl = freezed,
     Object? imageUrl = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? addedToHistoryAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -73,9 +76,9 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.shortInfo
           : shortInfo // ignore: cast_nullable_to_non_nullable
               as String,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      mirrorLessUrl: mirrorLessUrl == freezed
+          ? _value.mirrorLessUrl
+          : mirrorLessUrl // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
@@ -89,6 +92,10 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      addedToHistoryAt: addedToHistoryAt == freezed
+          ? _value.addedToHistoryAt
+          : addedToHistoryAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -103,10 +110,11 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       {int id,
       String title,
       String shortInfo,
-      String url,
+      String mirrorLessUrl,
       String imageUrl,
       String type,
-      String? status});
+      String? status,
+      DateTime? addedToHistoryAt});
 }
 
 /// @nodoc
@@ -123,10 +131,11 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? shortInfo = freezed,
-    Object? url = freezed,
+    Object? mirrorLessUrl = freezed,
     Object? imageUrl = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? addedToHistoryAt = freezed,
   }) {
     return _then(_$_Content(
       id: id == freezed
@@ -141,9 +150,9 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.shortInfo
           : shortInfo // ignore: cast_nullable_to_non_nullable
               as String,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      mirrorLessUrl: mirrorLessUrl == freezed
+          ? _value.mirrorLessUrl
+          : mirrorLessUrl // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
@@ -157,6 +166,10 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      addedToHistoryAt: addedToHistoryAt == freezed
+          ? _value.addedToHistoryAt
+          : addedToHistoryAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -168,10 +181,11 @@ class _$_Content extends _Content {
       {required this.id,
       required this.title,
       required this.shortInfo,
-      required this.url,
+      required this.mirrorLessUrl,
       required this.imageUrl,
       required this.type,
-      this.status})
+      this.status,
+      this.addedToHistoryAt})
       : super._();
 
   @override
@@ -181,17 +195,19 @@ class _$_Content extends _Content {
   @override
   final String shortInfo;
   @override
-  final String url;
+  final String mirrorLessUrl;
   @override
   final String imageUrl;
   @override
   final String type;
   @override
   final String? status;
+  @override
+  final DateTime? addedToHistoryAt;
 
   @override
   String toString() {
-    return 'Content(id: $id, title: $title, shortInfo: $shortInfo, url: $url, imageUrl: $imageUrl, type: $type, status: $status)';
+    return 'Content(id: $id, title: $title, shortInfo: $shortInfo, mirrorLessUrl: $mirrorLessUrl, imageUrl: $imageUrl, type: $type, status: $status, addedToHistoryAt: $addedToHistoryAt)';
   }
 
   @override
@@ -202,10 +218,13 @@ class _$_Content extends _Content {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.shortInfo, shortInfo) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality()
+                .equals(other.mirrorLessUrl, mirrorLessUrl) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.addedToHistoryAt, addedToHistoryAt));
   }
 
   @override
@@ -214,10 +233,11 @@ class _$_Content extends _Content {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(shortInfo),
-      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(mirrorLessUrl),
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(addedToHistoryAt));
 
   @JsonKey(ignore: true)
   @override
@@ -230,10 +250,11 @@ abstract class _Content extends Content {
       {required final int id,
       required final String title,
       required final String shortInfo,
-      required final String url,
+      required final String mirrorLessUrl,
       required final String imageUrl,
       required final String type,
-      final String? status}) = _$_Content;
+      final String? status,
+      final DateTime? addedToHistoryAt}) = _$_Content;
   const _Content._() : super._();
 
   @override
@@ -243,13 +264,15 @@ abstract class _Content extends Content {
   @override
   String get shortInfo;
   @override
-  String get url;
+  String get mirrorLessUrl;
   @override
   String get imageUrl;
   @override
   String get type;
   @override
   String? get status;
+  @override
+  DateTime? get addedToHistoryAt;
   @override
   @JsonKey(ignore: true)
   _$$_ContentCopyWith<_$_Content> get copyWith =>

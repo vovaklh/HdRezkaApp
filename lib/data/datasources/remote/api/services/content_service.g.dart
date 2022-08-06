@@ -37,9 +37,11 @@ class _ContentService implements ContentService {
   }
 
   @override
-  Future<ContentDetailsModel> getContentDetails(filter) async {
+  Future<ContentDetailsModel> getContentDetails(mirrorLessUrl) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'url': filter};
+    final queryParameters = <String, dynamic>{
+      r'mirror_less_url': mirrorLessUrl
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(

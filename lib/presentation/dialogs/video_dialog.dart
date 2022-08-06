@@ -12,6 +12,7 @@ class VideoDialog extends StatelessWidget {
   final String title;
   final String url;
   final String translationId;
+  final VoidCallback? onVideoTappped;
   final String? seasonId;
   final String? seriesId;
 
@@ -21,6 +22,7 @@ class VideoDialog extends StatelessWidget {
     required this.title,
     required this.url,
     required this.translationId,
+    this.onVideoTappped,
     this.seasonId,
     this.seriesId,
     Key? key,
@@ -49,6 +51,7 @@ class VideoDialog extends StatelessWidget {
         ),
       );
     }
+    onVideoTappped?.call();
   }
 
   @override

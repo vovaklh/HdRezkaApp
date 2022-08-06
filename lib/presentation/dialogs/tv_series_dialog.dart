@@ -10,12 +10,14 @@ import 'package:hdrezka_app/presentation/widgets/loader.dart';
 class TvSeriesDialog extends StatelessWidget {
   final String url;
   final String title;
+  final VoidCallback? onVideoTappped;
 
   final _bloc = locator<TvSeriesBloc>();
 
   TvSeriesDialog({
     required this.url,
     required this.title,
+    this.onVideoTappped,
     Key? key,
   }) : super(key: key);
 
@@ -30,6 +32,7 @@ class TvSeriesDialog extends StatelessWidget {
       builder: (_) => VideoDialog(
         title: title,
         url: url,
+        onVideoTappped: onVideoTappped,
         translationId: translationId,
         seasonId: seasonId,
         seriesId: seriesId,

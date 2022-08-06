@@ -21,7 +21,7 @@ ContentModel _$ContentModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ContentModel {
   int get id => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
+  String get mirrorLessUrl => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get shortInfo => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $ContentModelCopyWith<$Res> {
       _$ContentModelCopyWithImpl<$Res>;
   $Res call(
       {int id,
-      String url,
+      String mirrorLessUrl,
       String type,
       String title,
       String shortInfo,
@@ -60,7 +60,7 @@ class _$ContentModelCopyWithImpl<$Res> implements $ContentModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? url = freezed,
+    Object? mirrorLessUrl = freezed,
     Object? type = freezed,
     Object? title = freezed,
     Object? shortInfo = freezed,
@@ -72,9 +72,9 @@ class _$ContentModelCopyWithImpl<$Res> implements $ContentModelCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      mirrorLessUrl: mirrorLessUrl == freezed
+          ? _value.mirrorLessUrl
+          : mirrorLessUrl // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -109,7 +109,7 @@ abstract class _$$_ContentModelCopyWith<$Res>
   @override
   $Res call(
       {int id,
-      String url,
+      String mirrorLessUrl,
       String type,
       String title,
       String shortInfo,
@@ -131,7 +131,7 @@ class __$$_ContentModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? url = freezed,
+    Object? mirrorLessUrl = freezed,
     Object? type = freezed,
     Object? title = freezed,
     Object? shortInfo = freezed,
@@ -143,9 +143,9 @@ class __$$_ContentModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      mirrorLessUrl: mirrorLessUrl == freezed
+          ? _value.mirrorLessUrl
+          : mirrorLessUrl // ignore: cast_nullable_to_non_nullable
               as String,
       type: type == freezed
           ? _value.type
@@ -176,7 +176,7 @@ class __$$_ContentModelCopyWithImpl<$Res>
 class _$_ContentModel extends _ContentModel {
   const _$_ContentModel(
       {required this.id,
-      required this.url,
+      required this.mirrorLessUrl,
       required this.type,
       required this.title,
       required this.shortInfo,
@@ -190,7 +190,7 @@ class _$_ContentModel extends _ContentModel {
   @override
   final int id;
   @override
-  final String url;
+  final String mirrorLessUrl;
   @override
   final String type;
   @override
@@ -204,7 +204,7 @@ class _$_ContentModel extends _ContentModel {
 
   @override
   String toString() {
-    return 'ContentModel(id: $id, url: $url, type: $type, title: $title, shortInfo: $shortInfo, imageUrl: $imageUrl, status: $status)';
+    return 'ContentModel(id: $id, mirrorLessUrl: $mirrorLessUrl, type: $type, title: $title, shortInfo: $shortInfo, imageUrl: $imageUrl, status: $status)';
   }
 
   @override
@@ -213,7 +213,8 @@ class _$_ContentModel extends _ContentModel {
         (other.runtimeType == runtimeType &&
             other is _$_ContentModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality()
+                .equals(other.mirrorLessUrl, mirrorLessUrl) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.shortInfo, shortInfo) &&
@@ -226,7 +227,7 @@ class _$_ContentModel extends _ContentModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(mirrorLessUrl),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(shortInfo),
@@ -249,7 +250,7 @@ class _$_ContentModel extends _ContentModel {
 abstract class _ContentModel extends ContentModel {
   const factory _ContentModel(
       {required final int id,
-      required final String url,
+      required final String mirrorLessUrl,
       required final String type,
       required final String title,
       required final String shortInfo,
@@ -263,7 +264,7 @@ abstract class _ContentModel extends ContentModel {
   @override
   int get id;
   @override
-  String get url;
+  String get mirrorLessUrl;
   @override
   String get type;
   @override

@@ -9,6 +9,8 @@ analyzer:
     - lib/**/**.freezed.dart
     - test/**
     - lib/presentation/themes/**
+    - lib/data/repositories/history_repository_imp.dart
+    - lib/data/datasources/local/database/app_database.dart
   errors:
     invalid_annotation_target: ignore
 

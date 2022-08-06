@@ -15,8 +15,6 @@ void main() async {
   final store = newStore();
   store.dispatch(InitThemeAction());
   store.dispatch(InitLocaleAction());
-  BlocOverrides.runZoned(
-    () => runApp(Application(store: store)),
-    blocObserver: BlocMonitor(),
-  );
+  Bloc.observer = BlocMonitor();
+  runApp(Application(store: store));
 }

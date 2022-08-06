@@ -13,7 +13,7 @@ abstract class ContentRepository {
 
   Future<List<Content>> search(String query, int page);
 
-  Future<ContentDetails> getContentDetails(String url);
+  Future<ContentDetails> getContentDetails(String mirrorLessUrl);
 
   Future<Map<String, String>> getContentTranslations(String url);
 
