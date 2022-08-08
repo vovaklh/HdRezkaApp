@@ -16,8 +16,11 @@ class Content with _$Content {
     required String type,
     String? status,
     DateTime? addedToHistoryAt,
+    DateTime? addedToFavoritesAt,
   }) = _Content;
 
-  ContentType get contentType =>
-      ContentType.values.firstWhere((content) => content.value == type);
+  ContentType get contentType => ContentType.values.firstWhere(
+        (content) => content.value == type,
+        orElse: () => ContentType.film,
+      );
 }

@@ -7,5 +7,5 @@ abstract class HistoryDao {
   Stream<List<ContentHistoryDbModel>> getAllStream();
 
   @Insert(onConflict: OnConflictStrategy.replace)
-  Future<void> add(ContentHistoryDbModel person);
+  Future<void> add(ContentHistoryDbModel content);
 }

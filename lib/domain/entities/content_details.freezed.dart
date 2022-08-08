@@ -23,6 +23,7 @@ mixin _$ContentDetails {
   String get description => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   List<ContentData> get data => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ContentDetailsCopyWith<ContentDetails> get copyWith =>
@@ -41,7 +42,8 @@ abstract class $ContentDetailsCopyWith<$Res> {
       ContentAffilation affilation,
       String description,
       String imageUrl,
-      List<ContentData> data});
+      List<ContentData> data,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$ContentDetailsCopyWithImpl<$Res>
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? data = freezed,
+    Object? isFavorite = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -92,6 +95,10 @@ class _$ContentDetailsCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<ContentData>,
+      isFavorite: isFavorite == freezed
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -110,7 +117,8 @@ abstract class _$$_ContentDetailsCopyWith<$Res>
       ContentAffilation affilation,
       String description,
       String imageUrl,
-      List<ContentData> data});
+      List<ContentData> data,
+      bool isFavorite});
 }
 
 /// @nodoc
@@ -133,6 +141,7 @@ class __$$_ContentDetailsCopyWithImpl<$Res>
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? data = freezed,
+    Object? isFavorite = freezed,
   }) {
     return _then(_$_ContentDetails(
       id: id == freezed
@@ -163,6 +172,10 @@ class __$$_ContentDetailsCopyWithImpl<$Res>
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<ContentData>,
+      isFavorite: isFavorite == freezed
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -177,7 +190,8 @@ class _$_ContentDetails implements _ContentDetails {
       required this.affilation,
       required this.description,
       required this.imageUrl,
-      required final List<ContentData> data})
+      required final List<ContentData> data,
+      this.isFavorite = false})
       : _data = data;
 
   @override
@@ -200,8 +214,12 @@ class _$_ContentDetails implements _ContentDetails {
   }
 
   @override
+  @JsonKey()
+  final bool isFavorite;
+
+  @override
   String toString() {
-    return 'ContentDetails(id: $id, url: $url, title: $title, affilation: $affilation, description: $description, imageUrl: $imageUrl, data: $data)';
+    return 'ContentDetails(id: $id, url: $url, title: $title, affilation: $affilation, description: $description, imageUrl: $imageUrl, data: $data, isFavorite: $isFavorite)';
   }
 
   @override
@@ -217,7 +235,9 @@ class _$_ContentDetails implements _ContentDetails {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other.isFavorite, isFavorite));
   }
 
   @override
@@ -229,7 +249,8 @@ class _$_ContentDetails implements _ContentDetails {
       const DeepCollectionEquality().hash(affilation),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(imageUrl),
-      const DeepCollectionEquality().hash(_data));
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(isFavorite));
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +266,8 @@ abstract class _ContentDetails implements ContentDetails {
       required final ContentAffilation affilation,
       required final String description,
       required final String imageUrl,
-      required final List<ContentData> data}) = _$_ContentDetails;
+      required final List<ContentData> data,
+      final bool isFavorite}) = _$_ContentDetails;
 
   @override
   int get id;
@@ -261,6 +283,8 @@ abstract class _ContentDetails implements ContentDetails {
   String get imageUrl;
   @override
   List<ContentData> get data;
+  @override
+  bool get isFavorite;
   @override
   @JsonKey(ignore: true)
   _$$_ContentDetailsCopyWith<_$_ContentDetails> get copyWith =>

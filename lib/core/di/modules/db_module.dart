@@ -1,4 +1,5 @@
 import 'package:hdrezka_app/data/datasources/local/database/app_database.dart';
+import 'package:hdrezka_app/data/datasources/local/database/daos/favorites_dao.dart';
 import 'package:hdrezka_app/data/datasources/local/database/daos/history_dao.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,4 +16,7 @@ abstract class DbModule {
 
   @lazySingleton
   HistoryDao historyDao(AppDatabase database) => database.historyDao;
+
+  @lazySingleton
+  FavoritesDao favoritesDao(AppDatabase database) => database.favoritesDao;
 }

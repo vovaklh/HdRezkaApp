@@ -6,7 +6,7 @@ import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 import 'package:hdrezka_app/data/datasources/local/enums/content_affilation.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/domain/entities/content_details.dart';
-import 'package:hdrezka_app/presentation/blocs/content_details_bloc/content_details_bloc.dart';
+import 'package:hdrezka_app/presentation/cubits/content_details_cubit/content_details_cubit.dart';
 import 'package:hdrezka_app/presentation/dialogs/movie_dialog.dart';
 import 'package:hdrezka_app/presentation/dialogs/tv_series_dialog.dart';
 import 'package:hdrezka_app/presentation/widgets/loader.dart';
@@ -24,10 +24,10 @@ class ContentDetailsPage extends StatefulWidget {
 }
 
 class _ContentDetailsPageState extends State<ContentDetailsPage> {
-  final _bloc = locator<ContentDetailsBloc>();
+  final _cubit = locator<ContentDetailsCubit>();
 
   void _addToHistory() async {
-    await _bloc.addToHistory(widget.content);
+    await _cubit.addToHistory(widget.content);
   }
 
   void _onPlay(ContentDetails contentDetails) {
@@ -55,18 +55,24 @@ class _ContentDetailsPageState extends State<ContentDetailsPage> {
     }
   }
 
+  void _onFavoriteTap(ContentDetails contentDetails) {
+    contentDetails.isFavorite
+        ? _cubit.deleteFromFavorites(widget.content)
+        : _cubit.addToFavorites(widget.content);
+  }
+
   @override
   void initState() {
-    _bloc.add(GetContentDetailsEvent(widget.content.mirrorLessUrl));
     super.initState();
+    _cubit.getContentDetails(widget.content);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<ContentDetailsBloc, ContentDetailsState>(
-          bloc: _bloc,
+        child: BlocBuilder<ContentDetailsCubit, ContentDetailsState>(
+          bloc: _cubit,
           builder: _blocBuilder,
         ),
       ),
@@ -157,12 +163,12 @@ class _ContentDetailsPageState extends State<ContentDetailsPage> {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () => _onFavoriteTap(contentDetails),
           iconSize: 40,
           splashRadius: 28,
           focusColor: context.color.favoriteButtonFocusColor,
           icon: Icon(
-            Icons.favorite_border,
+            contentDetails.isFavorite ? Icons.favorite : Icons.favorite_border,
             color: context.color.favoriteButtonIconColor,
           ),
         ),

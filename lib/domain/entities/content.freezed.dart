@@ -24,6 +24,7 @@ mixin _$Content {
   String get type => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   DateTime? get addedToHistoryAt => throw _privateConstructorUsedError;
+  DateTime? get addedToFavoritesAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ContentCopyWith<Content> get copyWith => throw _privateConstructorUsedError;
@@ -41,7 +42,8 @@ abstract class $ContentCopyWith<$Res> {
       String imageUrl,
       String type,
       String? status,
-      DateTime? addedToHistoryAt});
+      DateTime? addedToHistoryAt,
+      DateTime? addedToFavoritesAt});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
     Object? type = freezed,
     Object? status = freezed,
     Object? addedToHistoryAt = freezed,
+    Object? addedToFavoritesAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -96,6 +99,10 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
           ? _value.addedToHistoryAt
           : addedToHistoryAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      addedToFavoritesAt: addedToFavoritesAt == freezed
+          ? _value.addedToFavoritesAt
+          : addedToFavoritesAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -114,7 +121,8 @@ abstract class _$$_ContentCopyWith<$Res> implements $ContentCopyWith<$Res> {
       String imageUrl,
       String type,
       String? status,
-      DateTime? addedToHistoryAt});
+      DateTime? addedToHistoryAt,
+      DateTime? addedToFavoritesAt});
 }
 
 /// @nodoc
@@ -136,6 +144,7 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
     Object? type = freezed,
     Object? status = freezed,
     Object? addedToHistoryAt = freezed,
+    Object? addedToFavoritesAt = freezed,
   }) {
     return _then(_$_Content(
       id: id == freezed
@@ -170,6 +179,10 @@ class __$$_ContentCopyWithImpl<$Res> extends _$ContentCopyWithImpl<$Res>
           ? _value.addedToHistoryAt
           : addedToHistoryAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      addedToFavoritesAt: addedToFavoritesAt == freezed
+          ? _value.addedToFavoritesAt
+          : addedToFavoritesAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -185,7 +198,8 @@ class _$_Content extends _Content {
       required this.imageUrl,
       required this.type,
       this.status,
-      this.addedToHistoryAt})
+      this.addedToHistoryAt,
+      this.addedToFavoritesAt})
       : super._();
 
   @override
@@ -204,10 +218,12 @@ class _$_Content extends _Content {
   final String? status;
   @override
   final DateTime? addedToHistoryAt;
+  @override
+  final DateTime? addedToFavoritesAt;
 
   @override
   String toString() {
-    return 'Content(id: $id, title: $title, shortInfo: $shortInfo, mirrorLessUrl: $mirrorLessUrl, imageUrl: $imageUrl, type: $type, status: $status, addedToHistoryAt: $addedToHistoryAt)';
+    return 'Content(id: $id, title: $title, shortInfo: $shortInfo, mirrorLessUrl: $mirrorLessUrl, imageUrl: $imageUrl, type: $type, status: $status, addedToHistoryAt: $addedToHistoryAt, addedToFavoritesAt: $addedToFavoritesAt)';
   }
 
   @override
@@ -224,7 +240,9 @@ class _$_Content extends _Content {
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
-                .equals(other.addedToHistoryAt, addedToHistoryAt));
+                .equals(other.addedToHistoryAt, addedToHistoryAt) &&
+            const DeepCollectionEquality()
+                .equals(other.addedToFavoritesAt, addedToFavoritesAt));
   }
 
   @override
@@ -237,7 +255,8 @@ class _$_Content extends _Content {
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(addedToHistoryAt));
+      const DeepCollectionEquality().hash(addedToHistoryAt),
+      const DeepCollectionEquality().hash(addedToFavoritesAt));
 
   @JsonKey(ignore: true)
   @override
@@ -254,7 +273,8 @@ abstract class _Content extends Content {
       required final String imageUrl,
       required final String type,
       final String? status,
-      final DateTime? addedToHistoryAt}) = _$_Content;
+      final DateTime? addedToHistoryAt,
+      final DateTime? addedToFavoritesAt}) = _$_Content;
   const _Content._() : super._();
 
   @override
@@ -273,6 +293,8 @@ abstract class _Content extends Content {
   String? get status;
   @override
   DateTime? get addedToHistoryAt;
+  @override
+  DateTime? get addedToFavoritesAt;
   @override
   @JsonKey(ignore: true)
   _$$_ContentCopyWith<_$_Content> get copyWith =>

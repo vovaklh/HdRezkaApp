@@ -14,5 +14,6 @@ class ContentDetails with _$ContentDetails {
     required String description,
     required String imageUrl,
     required List<ContentData> data,
+    @Default(false) bool isFavorite,
   }) = _ContentDetails;
 }

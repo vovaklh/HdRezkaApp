@@ -31,6 +31,16 @@ class _SearchPageState extends State<SearchPage>
 
   bool _isListening = false;
   String _lastSearchQuery = "";
+  int _lastFocuseIndex = 0;
+
+  bool _shouldHaveFocus(int index) {
+    int page = _bloc.state.maybeMap(
+      success: (successValue) => successValue.page,
+      error: (errorValue) => errorValue.page,
+      orElse: () => 1,
+    );
+    return index == _lastFocuseIndex && MyPlatform.isTvMode && page > 1;
+  }
 
   void _onContentTap(Content content) {
     Navigator.of(context).push(
@@ -59,6 +69,7 @@ class _SearchPageState extends State<SearchPage>
     List<Content> content,
   ) {
     if (page == 1) {
+      _lastFocuseIndex = 0;
       _pagingController.value = PagingState(
         nextPageKey: nextPage,
         itemList: content,
@@ -219,6 +230,10 @@ class _SearchPageState extends State<SearchPage>
         itemBuilder: (_, item, index) => ContentWidget(
           content: item,
           onTap: _onContentTap,
+          hasFocus: _shouldHaveFocus(index),
+          onFocusChange: (hasFocus) {
+            if (hasFocus) _lastFocuseIndex = index;
+          },
         ),
         firstPageErrorIndicatorBuilder: (_) =>
             _buildErrorIndicator(_pagingController.refresh),
@@ -254,7 +269,8 @@ class _SearchPageState extends State<SearchPage>
 
   Widget _buildRetryButton(VoidCallback onTryAgain) {
     return IconButton(
-      onPressed: onTryAgain,
+      onPressed: () =>
+          Future.delayed(const Duration(milliseconds: 100), onTryAgain),
       splashRadius: 16,
       iconSize: 30,
       icon: Icon(

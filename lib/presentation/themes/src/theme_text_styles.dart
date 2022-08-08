@@ -25,6 +25,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle searchHint;
   final TextStyle searchInput;
   final TextStyle historySubtitle;
+  final TextStyle favoriteSubtitle;
 
   ThemeTextStyles({
     required this.test,
@@ -51,6 +52,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.searchHint,
     required this.searchInput,
     required this.historySubtitle,
+    required this.favoriteSubtitle,
   });
 
   @override
@@ -80,6 +82,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? searchHint,
     TextStyle? searchInput,
     TextStyle? historySubtitle,
+    TextStyle? favoriteSubtitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -112,6 +115,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       searchHint: searchHint ?? this.searchHint,
       searchInput: searchInput ?? this.searchInput,
       historySubtitle: historySubtitle ?? this.historySubtitle,
+      favoriteSubtitle: favoriteSubtitle ?? this.favoriteSubtitle,
     );
   }
 
@@ -167,6 +171,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       searchInput: TextStyle.lerp(searchInput, other.searchInput, t)!,
       historySubtitle:
           TextStyle.lerp(historySubtitle, other.historySubtitle, t)!,
+      favoriteSubtitle:
+          TextStyle.lerp(favoriteSubtitle, other.favoriteSubtitle, t)!,
     );
   }
 
@@ -268,6 +274,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        favoriteSubtitle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -357,6 +367,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         historySubtitle: headline2.copyWith(
+          color: AppColors.white,
+        ),
+        favoriteSubtitle: headline2.copyWith(
           color: AppColors.white,
         ),
       );
