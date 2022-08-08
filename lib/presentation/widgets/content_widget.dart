@@ -8,12 +8,14 @@ import 'package:hdrezka_app/domain/entities/content.dart';
 class ContentWidget extends StatefulWidget {
   final Content content;
   final Function(Content) onTap;
-  final bool autoFocus;
+  final bool hasFocus;
+  final Function(bool)? onFocusChange;
 
   const ContentWidget({
     required this.content,
     required this.onTap,
-    this.autoFocus = false,
+    this.hasFocus = false,
+    this.onFocusChange,
     Key? key,
   }) : super(key: key);
 
@@ -22,6 +24,8 @@ class ContentWidget extends StatefulWidget {
 }
 
 class _ContentWidgetState extends State<ContentWidget> {
+  final FocusNode focusNode = FocusNode();
+
   bool isFocused = false;
 
   KeyEventResult _onKeyHandler(_, RawKeyEvent event) {
@@ -37,12 +41,27 @@ class _ContentWidgetState extends State<ContentWidget> {
     setState(() {
       isFocused = focused;
     });
+    widget.onFocusChange?.call(focused);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.hasFocus) {
+      focusNode.requestFocus();
+    }
+  }
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Focus(
-      autofocus: widget.autoFocus,
+      focusNode: focusNode,
       onFocusChange: _onFocusChanged,
       onKey: _onKeyHandler,
       child: Transform.scale(

@@ -1,4 +1,6 @@
+import 'package:hdrezka_app/data/datasources/local/database/converters.dart/content_favorite_converter.dart';
 import 'package:hdrezka_app/data/datasources/local/database/converters.dart/content_history_converter.dart';
+import 'package:hdrezka_app/data/datasources/local/database/db_models/content_favorite_db_model.dart';
 import 'package:hdrezka_app/data/datasources/local/database/db_models/content_history_db_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/converters/content_converter.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/converters/content_data_converter.dart';
@@ -45,5 +47,10 @@ abstract class ConverterModule {
   @lazySingleton
   DbConverter<ContentHistoryDbModel, Content> contentHistoryConveter() {
     return ContentHistoryConverter();
+  }
+
+  @lazySingleton
+  DbConverter<ContentFavoriteDbModel, Content> contentFavoriteConveter() {
+    return ContentFavoriteConverter();
   }
 }

@@ -27,6 +27,7 @@ class _ContentPageState extends State<ContentPage>
   );
 
   ContentFilterWrapper _currentFilterWrapper = ContentFilterWrapper.initial();
+  int _lastFocuseIndex = 0;
 
   void _handleState(_, ContentState state) {
     state.maybeWhen(
@@ -54,6 +55,7 @@ class _ContentPageState extends State<ContentPage>
     );
     if (newFilterWrapper != null && newFilterWrapper != _currentFilterWrapper) {
       _currentFilterWrapper = newFilterWrapper;
+      _lastFocuseIndex = 0;
       _pagingController.refresh();
     }
   }
@@ -67,6 +69,9 @@ class _ContentPageState extends State<ContentPage>
       ),
     );
   }
+
+  bool _shouldHaveFocus(int index) =>
+      index == _lastFocuseIndex && MyPlatform.isTvMode;
 
   @override
   bool get wantKeepAlive => true;
@@ -135,6 +140,10 @@ class _ContentPageState extends State<ContentPage>
       builderDelegate: PagedChildBuilderDelegate<Content>(
         animateTransitions: true,
         itemBuilder: (_, item, index) => ContentWidget(
+          hasFocus: _shouldHaveFocus(index),
+          onFocusChange: (hasFocus) {
+            if (hasFocus) _lastFocuseIndex = index;
+          },
           content: item,
           onTap: _onContentTap,
         ),
@@ -172,7 +181,8 @@ class _ContentPageState extends State<ContentPage>
 
   Widget _buildRetryButton(VoidCallback onTryAgain) {
     return IconButton(
-      onPressed: onTryAgain,
+      onPressed: () =>
+          Future.delayed(const Duration(milliseconds: 100), onTryAgain),
       splashRadius: 16,
       iconSize: 30,
       icon: Icon(

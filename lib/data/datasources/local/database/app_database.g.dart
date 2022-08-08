@@ -63,6 +63,8 @@ class _$AppDatabase extends AppDatabase {
 
   HistoryDao? _historyDaoInstance;
 
+  FavoritesDao? _favoritesDaoInstance;
+
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
@@ -83,6 +85,8 @@ class _$AppDatabase extends AppDatabase {
       onCreate: (database, version) async {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `History` (`id` INTEGER NOT NULL, `mirrorLessUrl` TEXT NOT NULL, `type` TEXT NOT NULL, `title` TEXT NOT NULL, `shortInfo` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `status` TEXT, `addedAt` INTEGER NOT NULL, PRIMARY KEY (`id`))');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Favorites` (`id` INTEGER NOT NULL, `mirrorLessUrl` TEXT NOT NULL, `type` TEXT NOT NULL, `title` TEXT NOT NULL, `shortInfo` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `status` TEXT, `addedAt` INTEGER NOT NULL, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -93,6 +97,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   HistoryDao get historyDao {
     return _historyDaoInstance ??= _$HistoryDao(database, changeListener);
+  }
+
+  @override
+  FavoritesDao get favoritesDao {
+    return _favoritesDaoInstance ??= _$FavoritesDao(database, changeListener);
   }
 }
 
@@ -140,9 +149,97 @@ class _$HistoryDao extends HistoryDao {
   }
 
   @override
-  Future<void> add(ContentHistoryDbModel person) async {
+  Future<void> add(ContentHistoryDbModel content) async {
     await _contentHistoryDbModelInsertionAdapter.insert(
-        person, OnConflictStrategy.replace);
+        content, OnConflictStrategy.replace);
+  }
+}
+
+class _$FavoritesDao extends FavoritesDao {
+  _$FavoritesDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database, changeListener),
+        _contentFavoriteDbModelInsertionAdapter = InsertionAdapter(
+            database,
+            'Favorites',
+            (ContentFavoriteDbModel item) => <String, Object?>{
+                  'id': item.id,
+                  'mirrorLessUrl': item.mirrorLessUrl,
+                  'type': item.type,
+                  'title': item.title,
+                  'shortInfo': item.shortInfo,
+                  'imageUrl': item.imageUrl,
+                  'status': item.status,
+                  'addedAt': _dateTimeConverter.encode(item.addedAt)
+                },
+            changeListener),
+        _contentFavoriteDbModelDeletionAdapter = DeletionAdapter(
+            database,
+            'Favorites',
+            ['id'],
+            (ContentFavoriteDbModel item) => <String, Object?>{
+                  'id': item.id,
+                  'mirrorLessUrl': item.mirrorLessUrl,
+                  'type': item.type,
+                  'title': item.title,
+                  'shortInfo': item.shortInfo,
+                  'imageUrl': item.imageUrl,
+                  'status': item.status,
+                  'addedAt': _dateTimeConverter.encode(item.addedAt)
+                },
+            changeListener);
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<ContentFavoriteDbModel>
+      _contentFavoriteDbModelInsertionAdapter;
+
+  final DeletionAdapter<ContentFavoriteDbModel>
+      _contentFavoriteDbModelDeletionAdapter;
+
+  @override
+  Stream<List<ContentFavoriteDbModel>> getAllStream() {
+    return _queryAdapter.queryListStream('SELECT * FROM Favorites',
+        mapper: (Map<String, Object?> row) => ContentFavoriteDbModel(
+            id: row['id'] as int,
+            mirrorLessUrl: row['mirrorLessUrl'] as String,
+            type: row['type'] as String,
+            title: row['title'] as String,
+            shortInfo: row['shortInfo'] as String,
+            imageUrl: row['imageUrl'] as String,
+            addedAt: _dateTimeConverter.decode(row['addedAt'] as int),
+            status: row['status'] as String?),
+        queryableName: 'Favorites',
+        isView: false);
+  }
+
+  @override
+  Future<ContentFavoriteDbModel?> getById(int id) async {
+    return _queryAdapter.query('SELECT * FROM Favorites WHERE id = ?1',
+        mapper: (Map<String, Object?> row) => ContentFavoriteDbModel(
+            id: row['id'] as int,
+            mirrorLessUrl: row['mirrorLessUrl'] as String,
+            type: row['type'] as String,
+            title: row['title'] as String,
+            shortInfo: row['shortInfo'] as String,
+            imageUrl: row['imageUrl'] as String,
+            addedAt: _dateTimeConverter.decode(row['addedAt'] as int),
+            status: row['status'] as String?),
+        arguments: [id]);
+  }
+
+  @override
+  Future<void> add(ContentFavoriteDbModel content) async {
+    await _contentFavoriteDbModelInsertionAdapter.insert(
+        content, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<void> deleteFavorite(ContentFavoriteDbModel content) async {
+    await _contentFavoriteDbModelDeletionAdapter.delete(content);
   }
 }
 
