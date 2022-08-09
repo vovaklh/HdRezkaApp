@@ -23,6 +23,7 @@ class _TvHomePageState extends State<TvHomePage> {
     FavoritePage(),
     SettingsPage(),
   ];
+  final FocusNode _focusNode = FocusNode();
   late final PageController _pageController;
 
   int _currentIndex = 0;
@@ -33,6 +34,16 @@ class _TvHomePageState extends State<TvHomePage> {
       _currentIndex = index;
       _pageController.jumpToPage(_currentIndex);
     });
+  }
+
+  void _onFocusChange(bool hasFocus) {
+    setState(() {
+      _extended = hasFocus;
+    });
+    if (hasFocus) {
+      final nodes = _focusNode.traversalChildren;
+      nodes.elementAt(_currentIndex).requestFocus();
+    }
   }
 
   @override
@@ -47,11 +58,8 @@ class _TvHomePageState extends State<TvHomePage> {
       body: Row(
         children: [
           Focus(
-            onFocusChange: (value) {
-              setState(() {
-                _extended = value;
-              });
-            },
+            focusNode: _focusNode,
+            onFocusChange: _onFocusChange,
             skipTraversal: true,
             child: NavigationRail(
               backgroundColor: context.color.navigationRailBackgroundColor,
