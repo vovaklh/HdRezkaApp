@@ -35,9 +35,11 @@ class _FavoritePageState extends State<FavoritePage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      body: BlocBuilder<FavoritesCubit, FavoritesState>(
-        bloc: _cubit,
-        builder: _blocBuilder,
+      body: SafeArea(
+        child: BlocBuilder<FavoritesCubit, FavoritesState>(
+          bloc: _cubit,
+          builder: _blocBuilder,
+        ),
       ),
     );
   }

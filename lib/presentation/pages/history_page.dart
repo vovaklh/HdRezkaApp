@@ -35,9 +35,11 @@ class _HistoryPageState extends State<HistoryPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      body: BlocBuilder<HistoryCubit, HistoryState>(
-        bloc: _cubit,
-        builder: _blocBuilder,
+      body: SafeArea(
+        child: BlocBuilder<HistoryCubit, HistoryState>(
+          bloc: _cubit,
+          builder: _blocBuilder,
+        ),
       ),
     );
   }
