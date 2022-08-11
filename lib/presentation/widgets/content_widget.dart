@@ -64,12 +64,14 @@ class _ContentWidgetState extends State<ContentWidget> {
       focusNode: focusNode,
       onFocusChange: _onFocusChanged,
       onKey: _onKeyHandler,
-      child: Transform.scale(
+      child: AnimatedScale(
         scale: isFocused
             ? 1.0
             : MyPlatform.isTvMode
                 ? 0.9
                 : 1.0,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
         child: _buildContent(),
       ),
     );
