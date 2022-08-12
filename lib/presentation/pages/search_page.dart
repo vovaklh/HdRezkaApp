@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
@@ -24,6 +25,18 @@ class _SearchPageState extends State<SearchPage>
   final _pagingController = PagingController<int, Content>(
     firstPageKey: 1,
     invisibleItemsThreshold: 1,
+  );
+  final FocusNode _textFieldFocusNode = FocusNode(
+    onKey: (node, event) {
+      if (event is RawKeyUpEvent &&
+          event.logicalKey == LogicalKeyboardKey.arrowDown) {
+        node.focusInDirection(TraversalDirection.down);
+      } else if (event is RawKeyUpEvent &&
+          event.logicalKey == LogicalKeyboardKey.arrowRight) {
+        node.focusInDirection(TraversalDirection.right);
+      }
+      return KeyEventResult.handled;
+    },
   );
 
   late final TextEditingController _controller;
@@ -142,6 +155,14 @@ class _SearchPageState extends State<SearchPage>
   }
 
   @override
+  void dispose() {
+    _textFieldFocusNode.dispose();
+    _controller.dispose();
+    _speech.stop();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
@@ -179,6 +200,7 @@ class _SearchPageState extends State<SearchPage>
 
   Widget _buildSearchField() {
     return TextField(
+      focusNode: _textFieldFocusNode,
       controller: _controller,
       decoration: InputDecoration(
         hintText: context.localizations.search,
