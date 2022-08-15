@@ -20,6 +20,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color bottomNavigationBarUnselectedItemColor;
   final Color searchFieldFillColor;
   final Color searchFieldIconColor;
+  final Color categoriesButtonFillColor;
+  final Color categoriesButtonFocusColor;
+  final Color categoriesDialogDropdownColor;
 
   const ThemeColors({
     required this.test,
@@ -41,6 +44,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.bottomNavigationBarUnselectedItemColor,
     required this.searchFieldFillColor,
     required this.searchFieldIconColor,
+    required this.categoriesButtonFillColor,
+    required this.categoriesButtonFocusColor,
+    required this.categoriesDialogDropdownColor,
   });
 
   @override
@@ -65,6 +71,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? bottomNavigationBarUnselectedItemColor,
     Color? searchFieldFillColor,
     Color? searchFieldIconColor,
+    Color? categoriesButtonFillColor,
+    Color? categoriesButtonFocusColor,
+    Color? categoriesDialogDropdownColor,
   }) {
     return ThemeColors(
       test: test ?? this.test,
@@ -102,6 +111,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
               this.bottomNavigationBarUnselectedItemColor,
       searchFieldFillColor: searchFieldFillColor ?? this.searchFieldFillColor,
       searchFieldIconColor: searchFieldIconColor ?? this.searchFieldIconColor,
+      categoriesButtonFillColor:
+          categoriesButtonFillColor ?? this.categoriesButtonFillColor,
+      categoriesButtonFocusColor:
+          categoriesButtonFocusColor ?? this.categoriesButtonFocusColor,
+      categoriesDialogDropdownColor:
+          categoriesDialogDropdownColor ?? this.categoriesDialogDropdownColor,
     );
   }
 
@@ -162,6 +177,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(searchFieldFillColor, other.searchFieldFillColor, t)!,
       searchFieldIconColor:
           Color.lerp(searchFieldIconColor, other.searchFieldIconColor, t)!,
+      categoriesButtonFillColor: Color.lerp(
+          categoriesButtonFillColor, other.categoriesButtonFillColor, t)!,
+      categoriesButtonFocusColor: Color.lerp(
+          categoriesButtonFocusColor, other.categoriesButtonFocusColor, t)!,
+      categoriesDialogDropdownColor: Color.lerp(categoriesDialogDropdownColor,
+          other.categoriesDialogDropdownColor, t)!,
     );
   }
 
@@ -185,6 +206,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         bottomNavigationBarUnselectedItemColor: AppColors.grey,
         searchFieldFillColor: AppColors.grey,
         searchFieldIconColor: AppColors.white,
+        categoriesButtonFillColor: AppColors.grey,
+        categoriesButtonFocusColor: AppColors.red,
+        categoriesDialogDropdownColor: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -207,5 +231,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         bottomNavigationBarUnselectedItemColor: AppColors.white,
         searchFieldFillColor: AppColors.lighterDark,
         searchFieldIconColor: AppColors.white,
+        categoriesButtonFillColor: AppColors.grey,
+        categoriesButtonFocusColor: AppColors.red,
+        categoriesDialogDropdownColor: AppColors.lighterDark,
       );
 }

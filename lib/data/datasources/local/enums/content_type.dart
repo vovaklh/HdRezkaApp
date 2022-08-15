@@ -41,4 +41,19 @@ enum ContentType {
         return context.localizations.anime;
     }
   }
+
+  String toPlural() {
+    switch (this) {
+      case ContentType.all:
+        return "";
+      case ContentType.film:
+        return "films";
+      case ContentType.series:
+        return "series";
+      case ContentType.cartoon:
+        return "cartoons";
+      case ContentType.anime:
+        return "animation";
+    }
+  }
 }
