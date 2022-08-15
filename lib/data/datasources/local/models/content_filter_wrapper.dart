@@ -3,7 +3,6 @@ import 'package:hdrezka_app/data/datasources/local/enums/content_filter.dart';
 import 'package:hdrezka_app/data/datasources/local/enums/content_type.dart';
 
 part 'content_filter_wrapper.freezed.dart';
-part 'content_filter_wrapper.g.dart';
 
 @freezed
 class ContentFilterWrapper with _$ContentFilterWrapper {
@@ -16,7 +15,4 @@ class ContentFilterWrapper with _$ContentFilterWrapper {
         filter: ContentFilter.watching,
         type: ContentType.all,
       );
-
-  factory ContentFilterWrapper.fromJson(Map<String, dynamic> json) =>
-      _$ContentFilterWrapperFromJson(json);
 }

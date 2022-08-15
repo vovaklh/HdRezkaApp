@@ -34,6 +34,9 @@ class _SearchPageState extends State<SearchPage>
       } else if (event is RawKeyUpEvent &&
           event.logicalKey == LogicalKeyboardKey.arrowRight) {
         node.focusInDirection(TraversalDirection.right);
+      } else if (event is RawKeyUpEvent &&
+          event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+        node.focusInDirection(TraversalDirection.left);
       }
       return KeyEventResult.handled;
     },

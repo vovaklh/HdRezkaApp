@@ -35,24 +35,26 @@ import '../../domain/entities/seasons_wrapper.dart' as _i20;
 import '../../domain/repositories/content_repository.dart' as _i25;
 import '../../domain/repositories/favorites_repository.dart' as _i10;
 import '../../domain/repositories/history_repository.dart' as _i12;
-import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i30;
+import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i31;
 import '../../presentation/blocs/movie_bloc/movie_bloc.dart' as _i26;
 import '../../presentation/blocs/search_bloc.dart/search_bloc.dart' as _i27;
 import '../../presentation/blocs/series_bloc/tv_series_bloc.dart' as _i28;
 import '../../presentation/blocs/video_bloc/video_bloc.dart' as _i29;
+import '../../presentation/cubits/categories_cubit/categories_cubit.dart'
+    as _i30;
 import '../../presentation/cubits/content_details_cubit/content_details_cubit.dart'
-    as _i31;
+    as _i32;
 import '../../presentation/cubits/favorites_cubit.dart/favorites_cubit.dart'
     as _i23;
 import '../../presentation/cubits/history_cubit/history_cubit.dart' as _i24;
-import 'modules/api_module.dart' as _i34;
-import 'modules/bloc_module.dart' as _i38;
-import 'modules/converter_module.dart' as _i33;
-import 'modules/cubit_module.dart' as _i37;
-import 'modules/db_module.dart' as _i32;
-import 'modules/repository_module.dart' as _i35;
+import 'modules/api_module.dart' as _i35;
+import 'modules/bloc_module.dart' as _i39;
+import 'modules/converter_module.dart' as _i34;
+import 'modules/cubit_module.dart' as _i38;
+import 'modules/db_module.dart' as _i33;
+import 'modules/repository_module.dart' as _i36;
 import 'modules/storage_module.dart'
-    as _i36; // ignore_for_file: unnecessary_lambdas
+    as _i37; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -124,25 +126,27 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
       () => blocModule.tvSeriesBloc(get<_i25.ContentRepository>()));
   gh.factory<_i29.VideoBloc>(
       () => blocModule.videoBloc(get<_i25.ContentRepository>()));
-  gh.factory<_i30.ContentBloc>(
+  gh.factory<_i30.CategoriesCubit>(
+      () => cubitModule.categoriesCubit(get<_i25.ContentRepository>()));
+  gh.factory<_i31.ContentBloc>(
       () => blocModule.contentBloc(get<_i25.ContentRepository>()));
-  gh.factory<_i31.ContentDetailsCubit>(() => cubitModule.contentDetailsCubit(
+  gh.factory<_i32.ContentDetailsCubit>(() => cubitModule.contentDetailsCubit(
       get<_i25.ContentRepository>(),
       get<_i12.HistoryRepository>(),
       get<_i10.FavoritesRepository>()));
   return get;
 }
 
-class _$DbModule extends _i32.DbModule {}
+class _$DbModule extends _i33.DbModule {}
 
-class _$ConverterModule extends _i33.ConverterModule {}
+class _$ConverterModule extends _i34.ConverterModule {}
 
-class _$ApiModule extends _i34.ApiModule {}
+class _$ApiModule extends _i35.ApiModule {}
 
-class _$RepositoryModule extends _i35.RepositoryModule {}
+class _$RepositoryModule extends _i36.RepositoryModule {}
 
-class _$StorageModule extends _i36.StorageModule {}
+class _$StorageModule extends _i37.StorageModule {}
 
-class _$CubitModule extends _i37.CubitModule {}
+class _$CubitModule extends _i38.CubitModule {}
 
-class _$BlocModule extends _i38.BlocModule {}
+class _$BlocModule extends _i39.BlocModule {}

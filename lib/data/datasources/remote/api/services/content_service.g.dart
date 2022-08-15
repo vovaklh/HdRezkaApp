@@ -6,7 +6,7 @@ part of 'content_service.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _ContentService implements ContentService {
   _ContentService(this._dio, {this.baseUrl});
@@ -16,18 +16,39 @@ class _ContentService implements ContentService {
   String? baseUrl;
 
   @override
-  Future<List<ContentModel>> getContent(page, filter, genre) async {
+  Future<List<ContentModel>> getContent(page, filter, type) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'filter': filter,
-      r'genre': genre
-    };
+    final queryParameters = <String, dynamic>{r'filter': filter, r'type': type};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<ContentModel>>(
             Options(method: 'GET', headers: _headers, extra: _extra)
                 .compose(_dio.options, 'content/page/${page}',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => ContentModel.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<List<ContentModel>> getContentByCategory(
+      page, type, genre, year) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'genre': genre,
+      r'year': year
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<ContentModel>>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'content/category/page/${page}',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!

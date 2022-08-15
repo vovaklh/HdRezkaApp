@@ -26,6 +26,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle searchInput;
   final TextStyle historySubtitle;
   final TextStyle favoriteSubtitle;
+  final TextStyle categoriesButton;
+  final TextStyle categoriesDialogMenuItem;
 
   ThemeTextStyles({
     required this.test,
@@ -53,6 +55,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.searchInput,
     required this.historySubtitle,
     required this.favoriteSubtitle,
+    required this.categoriesButton,
+    required this.categoriesDialogMenuItem,
   });
 
   @override
@@ -83,6 +87,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? searchInput,
     TextStyle? historySubtitle,
     TextStyle? favoriteSubtitle,
+    TextStyle? categoriesButton,
+    TextStyle? categoriesDialogMenuItem,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -116,6 +122,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       searchInput: searchInput ?? this.searchInput,
       historySubtitle: historySubtitle ?? this.historySubtitle,
       favoriteSubtitle: favoriteSubtitle ?? this.favoriteSubtitle,
+      categoriesButton: categoriesButton ?? this.categoriesButton,
+      categoriesDialogMenuItem:
+          categoriesDialogMenuItem ?? this.categoriesDialogMenuItem,
     );
   }
 
@@ -173,6 +182,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(historySubtitle, other.historySubtitle, t)!,
       favoriteSubtitle:
           TextStyle.lerp(favoriteSubtitle, other.favoriteSubtitle, t)!,
+      categoriesButton:
+          TextStyle.lerp(categoriesButton, other.categoriesButton, t)!,
+      categoriesDialogMenuItem: TextStyle.lerp(
+          categoriesDialogMenuItem, other.categoriesDialogMenuItem, t)!,
     );
   }
 
@@ -278,6 +291,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        categoriesButton: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        categoriesDialogMenuItem: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -370,6 +391,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         favoriteSubtitle: headline2.copyWith(
+          color: AppColors.white,
+        ),
+        categoriesButton: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w500,
+        ),
+        categoriesDialogMenuItem: headline2.copyWith(
           color: AppColors.white,
         ),
       );

@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ContentFilterWrapper _$ContentFilterWrapperFromJson(Map<String, dynamic> json) {
-  return _ContentFilterWrapper.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ContentFilterWrapper {
   ContentFilter get filter => throw _privateConstructorUsedError;
   ContentType get type => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ContentFilterWrapperCopyWith<ContentFilterWrapper> get copyWith =>
       throw _privateConstructorUsedError;
@@ -104,12 +99,9 @@ class __$$_ContentFilterWrapperCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_ContentFilterWrapper implements _ContentFilterWrapper {
   const _$_ContentFilterWrapper({required this.filter, required this.type});
-
-  factory _$_ContentFilterWrapper.fromJson(Map<String, dynamic> json) =>
-      _$$_ContentFilterWrapperFromJson(json);
 
   @override
   final ContentFilter filter;
@@ -130,7 +122,6 @@ class _$_ContentFilterWrapper implements _ContentFilterWrapper {
             const DeepCollectionEquality().equals(other.type, type));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -142,22 +133,12 @@ class _$_ContentFilterWrapper implements _ContentFilterWrapper {
   _$$_ContentFilterWrapperCopyWith<_$_ContentFilterWrapper> get copyWith =>
       __$$_ContentFilterWrapperCopyWithImpl<_$_ContentFilterWrapper>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ContentFilterWrapperToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ContentFilterWrapper implements ContentFilterWrapper {
   const factory _ContentFilterWrapper(
       {required final ContentFilter filter,
       required final ContentType type}) = _$_ContentFilterWrapper;
-
-  factory _ContentFilterWrapper.fromJson(Map<String, dynamic> json) =
-      _$_ContentFilterWrapper.fromJson;
 
   @override
   ContentFilter get filter;

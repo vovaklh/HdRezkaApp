@@ -15,7 +15,15 @@ abstract class ContentService {
   Future<List<ContentModel>> getContent(
     @Path('page') int page,
     @Query('filter') String filter,
+    @Query('type') String type,
+  );
+
+  @GET(ApiString.contentByCategory)
+  Future<List<ContentModel>> getContentByCategory(
+    @Path('page') int page,
+    @Query('type') String type,
     @Query('genre') String genre,
+    @Query('year') int? year,
   );
 
   @GET(ApiString.contentDetails)

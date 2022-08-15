@@ -1,4 +1,5 @@
 import 'package:hdrezka_app/data/datasources/local/enums/content_filter.dart';
+import 'package:hdrezka_app/data/datasources/local/enums/content_genre.dart';
 import 'package:hdrezka_app/data/datasources/local/enums/content_type.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_details_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dart';
@@ -33,6 +34,25 @@ class ContentRepositoryImp extends ContentRepository {
   ) async {
     final response =
         await contentService.getContent(page, filter.name, type.name);
+
+    return response
+        .map((model) => contentConverter.modelToEntity(model))
+        .toList();
+  }
+
+  @override
+  Future<List<Content>> getContentByCategory(
+    int page,
+    ContentType type,
+    ContentGenre genre,
+    int? year,
+  ) async {
+    final response = await contentService.getContentByCategory(
+      page,
+      type.toPlural(),
+      genre.name,
+      year,
+    );
 
     return response
         .map((model) => contentConverter.modelToEntity(model))
