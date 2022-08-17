@@ -6,55 +6,57 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i8;
+import 'package:firebase_core/firebase_core.dart' as _i11;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../data/datasources/local/database/app_database.dart' as _i3;
 import '../../data/datasources/local/database/daos/favorites_dao.dart' as _i9;
-import '../../data/datasources/local/database/daos/history_dao.dart' as _i11;
+import '../../data/datasources/local/database/daos/history_dao.dart' as _i12;
 import '../../data/datasources/local/database/db_models/content_favorite_db_model.dart'
     as _i7;
 import '../../data/datasources/local/database/db_models/content_history_db_model.dart'
     as _i5;
-import '../../data/datasources/local/shared_prefs.dart' as _i21;
+import '../../data/datasources/local/shared_prefs.dart' as _i22;
 import '../../data/datasources/remote/api/models/content_data_model.dart'
-    as _i15;
+    as _i16;
 import '../../data/datasources/remote/api/models/content_details_model.dart'
-    as _i17;
-import '../../data/datasources/remote/api/models/content_model.dart' as _i14;
+    as _i18;
+import '../../data/datasources/remote/api/models/content_model.dart' as _i15;
 import '../../data/datasources/remote/api/models/seasons_wrapper_model.dart'
-    as _i19;
+    as _i20;
 import '../../data/datasources/remote/api/services/content_service.dart'
-    as _i22;
-import '../../domain/converters/db_converter.dart' as _i4;
-import '../../domain/converters/model_converter.dart' as _i13;
-import '../../domain/entities/content.dart' as _i6;
-import '../../domain/entities/content_data.dart' as _i16;
-import '../../domain/entities/content_details.dart' as _i18;
-import '../../domain/entities/seasons_wrapper.dart' as _i20;
-import '../../domain/repositories/content_repository.dart' as _i25;
-import '../../domain/repositories/favorites_repository.dart' as _i10;
-import '../../domain/repositories/history_repository.dart' as _i12;
-import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i31;
-import '../../presentation/blocs/movie_bloc/movie_bloc.dart' as _i26;
-import '../../presentation/blocs/search_bloc.dart/search_bloc.dart' as _i27;
-import '../../presentation/blocs/series_bloc/tv_series_bloc.dart' as _i28;
-import '../../presentation/blocs/video_bloc/video_bloc.dart' as _i29;
-import '../../presentation/cubits/categories_cubit/categories_cubit.dart'
-    as _i30;
-import '../../presentation/cubits/content_details_cubit/content_details_cubit.dart'
-    as _i32;
-import '../../presentation/cubits/favorites_cubit.dart/favorites_cubit.dart'
     as _i23;
-import '../../presentation/cubits/history_cubit/history_cubit.dart' as _i24;
-import 'modules/api_module.dart' as _i35;
-import 'modules/bloc_module.dart' as _i39;
-import 'modules/converter_module.dart' as _i34;
-import 'modules/cubit_module.dart' as _i38;
-import 'modules/db_module.dart' as _i33;
-import 'modules/repository_module.dart' as _i36;
+import '../../domain/converters/db_converter.dart' as _i4;
+import '../../domain/converters/model_converter.dart' as _i14;
+import '../../domain/entities/content.dart' as _i6;
+import '../../domain/entities/content_data.dart' as _i17;
+import '../../domain/entities/content_details.dart' as _i19;
+import '../../domain/entities/seasons_wrapper.dart' as _i21;
+import '../../domain/repositories/content_repository.dart' as _i26;
+import '../../domain/repositories/favorites_repository.dart' as _i10;
+import '../../domain/repositories/history_repository.dart' as _i13;
+import '../../presentation/blocs/content_bloc/content_bloc.dart' as _i32;
+import '../../presentation/blocs/movie_bloc/movie_bloc.dart' as _i27;
+import '../../presentation/blocs/search_bloc.dart/search_bloc.dart' as _i28;
+import '../../presentation/blocs/series_bloc/tv_series_bloc.dart' as _i29;
+import '../../presentation/blocs/video_bloc/video_bloc.dart' as _i30;
+import '../../presentation/cubits/categories_cubit/categories_cubit.dart'
+    as _i31;
+import '../../presentation/cubits/content_details_cubit/content_details_cubit.dart'
+    as _i33;
+import '../../presentation/cubits/favorites_cubit.dart/favorites_cubit.dart'
+    as _i24;
+import '../../presentation/cubits/history_cubit/history_cubit.dart' as _i25;
+import 'modules/api_module.dart' as _i36;
+import 'modules/bloc_module.dart' as _i41;
+import 'modules/converter_module.dart' as _i35;
+import 'modules/cubit_module.dart' as _i40;
+import 'modules/db_module.dart' as _i34;
+import 'modules/firebase_module.dart' as _i38;
+import 'modules/repository_module.dart' as _i37;
 import 'modules/storage_module.dart'
-    as _i37; // ignore_for_file: unnecessary_lambdas
+    as _i39; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -65,6 +67,7 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
   final converterModule = _$ConverterModule();
   final apiModule = _$ApiModule();
   final repositoryModule = _$RepositoryModule();
+  final firebaseModule = _$FirebaseModule();
   final storageModule = _$StorageModule();
   final cubitModule = _$CubitModule();
   final blocModule = _$BlocModule();
@@ -81,72 +84,77 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
       repositoryModule.favoritesRepository(
           get<_i4.DbConverter<_i7.ContentFavoriteDbModel, _i6.Content>>(),
           get<_i9.FavoritesDao>()));
-  gh.lazySingleton<_i11.HistoryDao>(
+  await gh.lazySingletonAsync<_i11.FirebaseApp>(
+      () => firebaseModule.firebaseApp(),
+      preResolve: true);
+  gh.lazySingleton<_i12.HistoryDao>(
       () => dbModule.historyDao(get<_i3.AppDatabase>()));
-  gh.lazySingleton<_i12.HistoryRepository>(() =>
+  gh.lazySingleton<_i13.HistoryRepository>(() =>
       repositoryModule.historyRepository(
           get<_i4.DbConverter<_i5.ContentHistoryDbModel, _i6.Content>>(),
-          get<_i11.HistoryDao>()));
-  gh.lazySingleton<_i13.ModelConverter<_i14.ContentModel, _i6.Content>>(
+          get<_i12.HistoryDao>()));
+  gh.lazySingleton<_i14.ModelConverter<_i15.ContentModel, _i6.Content>>(
       () => converterModule.contentConveter());
   gh.lazySingleton<
-          _i13.ModelConverter<_i15.ContentDataModel, _i16.ContentData>>(
+          _i14.ModelConverter<_i16.ContentDataModel, _i17.ContentData>>(
       () => converterModule.contentDataConveter());
   gh.lazySingleton<
-          _i13.ModelConverter<_i17.ContentDetailsModel, _i18.ContentDetails>>(
+          _i14.ModelConverter<_i18.ContentDetailsModel, _i19.ContentDetails>>(
       () => converterModule.contentDetailsConveter(
-          get<_i13.ModelConverter<_i15.ContentDataModel, _i16.ContentData>>()));
+          get<_i14.ModelConverter<_i16.ContentDataModel, _i17.ContentData>>()));
   gh.lazySingleton<
-          _i13.ModelConverter<_i19.SeasonsWrapperModel, _i20.SeasonsWrapper>>(
+          _i14.ModelConverter<_i20.SeasonsWrapperModel, _i21.SeasonsWrapper>>(
       () => converterModule.seasonsWrapperConverter());
-  await gh.lazySingletonAsync<_i21.SharedPrefs>(
+  await gh.lazySingletonAsync<_i22.SharedPrefs>(
       () => storageModule.sharedPrefs(),
       preResolve: true);
   gh.factory<String>(() => apiModule.baseDevUrl, instanceName: 'BaseUrl');
-  gh.lazySingleton<_i22.ContentService>(() => apiModule.contentService(
+  gh.lazySingleton<_i23.ContentService>(() => apiModule.contentService(
       get<_i8.Dio>(), get<String>(instanceName: 'BaseUrl')));
-  gh.factory<_i23.FavoritesCubit>(
+  gh.factory<_i24.FavoritesCubit>(
       () => cubitModule.favoritesCubit(get<_i10.FavoritesRepository>()));
-  gh.factory<_i24.HistoryCubit>(
-      () => cubitModule.historyCybit(get<_i12.HistoryRepository>()));
+  gh.factory<_i25.HistoryCubit>(
+      () => cubitModule.historyCybit(get<_i13.HistoryRepository>()));
   gh.lazySingleton<
-      _i25
+      _i26
           .ContentRepository>(() => repositoryModule.contentRepository(
-      get<_i22.ContentService>(),
-      get<_i13.ModelConverter<_i14.ContentModel, _i6.Content>>(),
-      get<_i13.ModelConverter<_i17.ContentDetailsModel, _i18.ContentDetails>>(),
+      get<_i23.ContentService>(),
+      get<_i14.ModelConverter<_i15.ContentModel, _i6.Content>>(),
+      get<_i14.ModelConverter<_i18.ContentDetailsModel, _i19.ContentDetails>>(),
       get<
-          _i13.ModelConverter<_i19.SeasonsWrapperModel,
-              _i20.SeasonsWrapper>>()));
-  gh.factory<_i26.MovieBloc>(
-      () => blocModule.movieBloc(get<_i25.ContentRepository>()));
-  gh.factory<_i27.SearchBloc>(
-      () => blocModule.searchBloc(get<_i25.ContentRepository>()));
-  gh.factory<_i28.TvSeriesBloc>(
-      () => blocModule.tvSeriesBloc(get<_i25.ContentRepository>()));
-  gh.factory<_i29.VideoBloc>(
-      () => blocModule.videoBloc(get<_i25.ContentRepository>()));
-  gh.factory<_i30.CategoriesCubit>(
-      () => cubitModule.categoriesCubit(get<_i25.ContentRepository>()));
-  gh.factory<_i31.ContentBloc>(
-      () => blocModule.contentBloc(get<_i25.ContentRepository>()));
-  gh.factory<_i32.ContentDetailsCubit>(() => cubitModule.contentDetailsCubit(
-      get<_i25.ContentRepository>(),
-      get<_i12.HistoryRepository>(),
+          _i14.ModelConverter<_i20.SeasonsWrapperModel,
+              _i21.SeasonsWrapper>>()));
+  gh.factory<_i27.MovieBloc>(
+      () => blocModule.movieBloc(get<_i26.ContentRepository>()));
+  gh.factory<_i28.SearchBloc>(
+      () => blocModule.searchBloc(get<_i26.ContentRepository>()));
+  gh.factory<_i29.TvSeriesBloc>(
+      () => blocModule.tvSeriesBloc(get<_i26.ContentRepository>()));
+  gh.factory<_i30.VideoBloc>(
+      () => blocModule.videoBloc(get<_i26.ContentRepository>()));
+  gh.factory<_i31.CategoriesCubit>(
+      () => cubitModule.categoriesCubit(get<_i26.ContentRepository>()));
+  gh.factory<_i32.ContentBloc>(
+      () => blocModule.contentBloc(get<_i26.ContentRepository>()));
+  gh.factory<_i33.ContentDetailsCubit>(() => cubitModule.contentDetailsCubit(
+      get<_i26.ContentRepository>(),
+      get<_i13.HistoryRepository>(),
       get<_i10.FavoritesRepository>()));
   return get;
 }
 
-class _$DbModule extends _i33.DbModule {}
+class _$DbModule extends _i34.DbModule {}
 
-class _$ConverterModule extends _i34.ConverterModule {}
+class _$ConverterModule extends _i35.ConverterModule {}
 
-class _$ApiModule extends _i35.ApiModule {}
+class _$ApiModule extends _i36.ApiModule {}
 
-class _$RepositoryModule extends _i36.RepositoryModule {}
+class _$RepositoryModule extends _i37.RepositoryModule {}
 
-class _$StorageModule extends _i37.StorageModule {}
+class _$FirebaseModule extends _i38.FirebaseModule {}
 
-class _$CubitModule extends _i38.CubitModule {}
+class _$StorageModule extends _i39.StorageModule {}
 
-class _$BlocModule extends _i39.BlocModule {}
+class _$CubitModule extends _i40.CubitModule {}
+
+class _$BlocModule extends _i41.BlocModule {}
