@@ -1,10 +1,12 @@
 import 'package:hdrezka_app/domain/repositories/content_repository.dart';
 import 'package:hdrezka_app/domain/repositories/favorites_repository.dart';
 import 'package:hdrezka_app/domain/repositories/history_repository.dart';
+import 'package:hdrezka_app/domain/repositories/settings_repository.dart';
 import 'package:hdrezka_app/presentation/cubits/categories_cubit/categories_cubit.dart';
 import 'package:hdrezka_app/presentation/cubits/content_details_cubit/content_details_cubit.dart';
 import 'package:hdrezka_app/presentation/cubits/favorites_cubit.dart/favorites_cubit.dart';
 import 'package:hdrezka_app/presentation/cubits/history_cubit/history_cubit.dart';
+import 'package:hdrezka_app/presentation/cubits/settings_cubit.dart/settings_cubit.dart';
 import 'package:injectable/injectable.dart';
 
 @module
@@ -39,5 +41,10 @@ abstract class CubitModule {
   @factoryMethod
   CategoriesCubit categoriesCubit(ContentRepository contentRepository) {
     return CategoriesCubit(contentRepository: contentRepository);
+  }
+
+  @factoryMethod
+  SettingsCubit settingsCubit(SettingsRepository settingsRepository) {
+    return SettingsCubit(settingsRepository: settingsRepository);
   }
 }

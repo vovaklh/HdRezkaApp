@@ -18,7 +18,8 @@ class CategoriesPage extends StatefulWidget {
   State<CategoriesPage> createState() => _CategoriesPageState();
 }
 
-class _CategoriesPageState extends State<CategoriesPage> {
+class _CategoriesPageState extends State<CategoriesPage>
+    with AutomaticKeepAliveClientMixin {
   static const _minYear = 1927;
 
   final _cubit = locator<CategoriesCubit>();
@@ -80,6 +81,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   void initState() {
     super.initState();
     _pagingController.addPageRequestListener((pageKey) {
@@ -100,6 +104,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: SafeArea(
         child: BlocListener<CategoriesCubit, CategoriesState>(

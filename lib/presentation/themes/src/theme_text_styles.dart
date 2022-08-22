@@ -28,6 +28,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle favoriteSubtitle;
   final TextStyle categoriesButton;
   final TextStyle categoriesDialogMenuItem;
+  final TextStyle settingsContainerTitle;
+  final TextStyle settingsContainerItem;
+  final TextStyle formFieldLabel;
+  final TextStyle formFieldText;
 
   ThemeTextStyles({
     required this.test,
@@ -57,6 +61,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.favoriteSubtitle,
     required this.categoriesButton,
     required this.categoriesDialogMenuItem,
+    required this.settingsContainerTitle,
+    required this.settingsContainerItem,
+    required this.formFieldLabel,
+    required this.formFieldText,
   });
 
   @override
@@ -89,6 +97,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? favoriteSubtitle,
     TextStyle? categoriesButton,
     TextStyle? categoriesDialogMenuItem,
+    TextStyle? settingsContainerTitle,
+    TextStyle? settingsContainerItem,
+    TextStyle? formFieldLabel,
+    TextStyle? formFieldText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -125,6 +137,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       categoriesButton: categoriesButton ?? this.categoriesButton,
       categoriesDialogMenuItem:
           categoriesDialogMenuItem ?? this.categoriesDialogMenuItem,
+      settingsContainerTitle:
+          settingsContainerTitle ?? this.settingsContainerTitle,
+      settingsContainerItem:
+          settingsContainerItem ?? this.settingsContainerItem,
+      formFieldLabel: formFieldLabel ?? this.formFieldLabel,
+      formFieldText: formFieldText ?? this.formFieldText,
     );
   }
 
@@ -186,6 +204,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(categoriesButton, other.categoriesButton, t)!,
       categoriesDialogMenuItem: TextStyle.lerp(
           categoriesDialogMenuItem, other.categoriesDialogMenuItem, t)!,
+      settingsContainerTitle: TextStyle.lerp(
+          settingsContainerTitle, other.settingsContainerTitle, t)!,
+      settingsContainerItem: TextStyle.lerp(
+          settingsContainerItem, other.settingsContainerItem, t)!,
+      formFieldLabel: TextStyle.lerp(formFieldLabel, other.formFieldLabel, t)!,
+      formFieldText: TextStyle.lerp(formFieldText, other.formFieldText, t)!,
     );
   }
 
@@ -299,6 +323,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        settingsContainerTitle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        settingsContainerItem: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        formFieldLabel: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        formFieldText: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -398,6 +438,18 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w500,
         ),
         categoriesDialogMenuItem: headline2.copyWith(
+          color: AppColors.white,
+        ),
+        settingsContainerTitle: headline1.copyWith(
+          color: AppColors.red,
+        ),
+        settingsContainerItem: headline2.copyWith(
+          color: AppColors.white,
+        ),
+        formFieldLabel: headline1.copyWith(
+          color: AppColors.grey,
+        ),
+        formFieldText: headline1.copyWith(
           color: AppColors.white,
         ),
       );

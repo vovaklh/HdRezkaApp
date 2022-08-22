@@ -23,6 +23,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color categoriesButtonFillColor;
   final Color categoriesButtonFocusColor;
   final Color categoriesDialogDropdownColor;
+  final Color settingsItemIcon;
+  final Color formFieldBorder;
 
   const ThemeColors({
     required this.test,
@@ -47,6 +49,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.categoriesButtonFillColor,
     required this.categoriesButtonFocusColor,
     required this.categoriesDialogDropdownColor,
+    required this.settingsItemIcon,
+    required this.formFieldBorder,
   });
 
   @override
@@ -74,6 +78,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? categoriesButtonFillColor,
     Color? categoriesButtonFocusColor,
     Color? categoriesDialogDropdownColor,
+    Color? settingsItemIcon,
+    Color? formFieldBorder,
   }) {
     return ThemeColors(
       test: test ?? this.test,
@@ -117,6 +123,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           categoriesButtonFocusColor ?? this.categoriesButtonFocusColor,
       categoriesDialogDropdownColor:
           categoriesDialogDropdownColor ?? this.categoriesDialogDropdownColor,
+      settingsItemIcon: settingsItemIcon ?? this.settingsItemIcon,
+      formFieldBorder: formFieldBorder ?? this.formFieldBorder,
     );
   }
 
@@ -183,6 +191,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           categoriesButtonFocusColor, other.categoriesButtonFocusColor, t)!,
       categoriesDialogDropdownColor: Color.lerp(categoriesDialogDropdownColor,
           other.categoriesDialogDropdownColor, t)!,
+      settingsItemIcon:
+          Color.lerp(settingsItemIcon, other.settingsItemIcon, t)!,
+      formFieldBorder: Color.lerp(formFieldBorder, other.formFieldBorder, t)!,
     );
   }
 
@@ -209,6 +220,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         categoriesButtonFillColor: AppColors.grey,
         categoriesButtonFocusColor: AppColors.red,
         categoriesDialogDropdownColor: AppColors.white,
+        settingsItemIcon: AppColors.grey,
+        formFieldBorder: AppColors.grey,
       );
 
   static get dark => ThemeColors(
@@ -234,5 +247,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         categoriesButtonFillColor: AppColors.grey,
         categoriesButtonFocusColor: AppColors.red,
         categoriesDialogDropdownColor: AppColors.lighterDark,
+        settingsItemIcon: AppColors.white,
+        formFieldBorder: AppColors.white,
       );
 }

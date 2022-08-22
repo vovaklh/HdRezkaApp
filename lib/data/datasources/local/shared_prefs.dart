@@ -33,5 +33,6 @@ class SharedPrefs {
 
   Future<bool> setMirror(String mirror) async =>
       _preferences.setString(_mirrorKey, mirror);
-  String? getMirror() => _preferences.getString(_mirrorKey);
+  String getMirror() =>
+      _preferences.getString(_mirrorKey) ?? "https://hdrezka.ag/";
 }
