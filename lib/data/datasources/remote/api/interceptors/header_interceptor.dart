@@ -10,7 +10,7 @@ class HeaderInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    String mirror = _sharedPrefs.getMirror() ?? "https://hdrezka.ag/";
+    String mirror = _sharedPrefs.getMirror();
     options.headers["mirror"] = mirror;
 
     handler.next(options);

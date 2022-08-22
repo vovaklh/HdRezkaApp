@@ -1,5 +1,7 @@
 {
     "error": "Ошибка",
+    "email": "Имейл",
+    "password": "Пароль",
     "duringAllTime": "За все время",
     "filters": "Фильтры",
     "cancel": "Отменить",
@@ -59,5 +61,27 @@
     "arthouse": "Артхаус",
     "@_CATEGORIES_DIALOG": {},
     "selectGenre": "Выберите жанр",
-    "selectYear": "Выберите год"
+    "selectYear": "Выберите год",
+    "@_SETTINGS_PAGE": {},
+    "account": "Аккаунт",
+    "signIn": "Войти",
+    "signOut": "Выйти",
+    "signUp": "Зарегистрироваться",
+    "@_ERRORS": {},
+    "incorrectEmail": "Некорректный Email",
+    "incorrectPassword": "Некорректный пароль",
+    "emailMustNotBeEmpty": "Email не должен быть пустым",
+    "passwordMustNotBeEmpty": "Пароль не должен быть пустым",
+    "userNotFound": "Пользователь не найден",
+    "accountAlreadyExists": "Аккаунт уже существует",
+    "noInternetConnection": "Нет подключения к сети",
+    "passwordMustBeLonger": "Пароль должен содержать минимум {number} символов",
+    "@passwordMustBeLonger": {
+        "placeholders": {
+            "number": {
+                "type": "int",
+                "format": "compactLong"
+            }
+        }
+    }
 }
