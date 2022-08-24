@@ -36,6 +36,7 @@ class MovieDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+      scrollable: true,
       titlePadding: const EdgeInsets.all(8),
       title: Text(
         context.localizations.voiceActing,

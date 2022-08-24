@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hdrezka_app/core/exceptions/local_exception.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 
 abstract class ErrorHandler {
   static String processError(BuildContext context, Object exception) {
     if (exception is FirebaseAuthException) {
       return _processFirebaseAuthException(exception, context);
+    } else if (exception is LocalException) {
+      return exception.error.toText(context);
     } else {
       return context.localizations.error;
     }

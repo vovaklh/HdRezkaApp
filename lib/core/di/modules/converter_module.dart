@@ -10,7 +10,10 @@ import 'package:hdrezka_app/data/datasources/remote/api/models/content_data_mode
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_details_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/seasons_wrapper_model.dart';
+import 'package:hdrezka_app/data/datasources/remote/firebase/converters/content_fb_converter.dart';
+import 'package:hdrezka_app/data/datasources/remote/firebase/models/content_fb_model.dart';
 import 'package:hdrezka_app/domain/converters/db_converter.dart';
+import 'package:hdrezka_app/domain/converters/fb_converter.dart';
 import 'package:hdrezka_app/domain/converters/model_converter.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/domain/entities/content_data.dart';
@@ -52,5 +55,11 @@ abstract class ConverterModule {
   @lazySingleton
   DbConverter<ContentFavoriteDbModel, Content> contentFavoriteConveter() {
     return ContentFavoriteConverter();
+  }
+
+  // Fb converters
+  @lazySingleton
+  FbConverter<ContentFbModel, Content> contentFbConverter() {
+    return ContentFbConverter();
   }
 }

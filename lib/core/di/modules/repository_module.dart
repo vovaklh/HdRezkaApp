@@ -1,7 +1,5 @@
 import 'package:hdrezka_app/data/datasources/local/database/daos/favorites_dao.dart';
-import 'package:hdrezka_app/data/datasources/local/database/daos/history_dao.dart';
 import 'package:hdrezka_app/data/datasources/local/database/db_models/content_favorite_db_model.dart';
-import 'package:hdrezka_app/data/datasources/local/database/db_models/content_history_db_model.dart';
 import 'package:hdrezka_app/data/datasources/local/shared_prefs.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_details_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dart';
@@ -21,6 +19,7 @@ import 'package:hdrezka_app/domain/repositories/favorites_repository.dart';
 import 'package:hdrezka_app/domain/repositories/history_repository.dart';
 import 'package:hdrezka_app/domain/repositories/settings_repository.dart';
 import 'package:hdrezka_app/domain/services/auth_service.dart';
+import 'package:hdrezka_app/domain/services/history_service.dart';
 import 'package:injectable/injectable.dart';
 
 @module
@@ -41,14 +40,8 @@ abstract class RepositoryModule {
   }
 
   @lazySingleton
-  HistoryRepository historyRepository(
-    DbConverter<ContentHistoryDbModel, Content> contentHistoryConverter,
-    HistoryDao historyDao,
-  ) {
-    return HistoryRepositoryImp(
-      contentHistoryConverter: contentHistoryConverter,
-      historyDao: historyDao,
-    );
+  HistoryRepository historyRepository(HistoryService historyService) {
+    return HistoryRepositoryImp(historyService: historyService);
   }
 
   @lazySingleton

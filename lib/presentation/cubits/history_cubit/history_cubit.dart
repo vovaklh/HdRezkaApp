@@ -11,8 +11,18 @@ class HistoryCubit extends Cubit<HistoryState> {
 
   HistoryCubit({required this.historyRepository})
       : super(const HistoryState.initial()) {
-    historyRepository.historyStream.listen((content) {
-      emit(HistoryState.success(content));
-    });
+    historyRepository.historyStream.listen(
+      (content) {
+        final sortedContent = content
+            .where((item) => item.addedToHistoryAt != null)
+            .toList()
+          ..sort((first, second) =>
+              second.addedToHistoryAt!.compareTo(first.addedToHistoryAt!));
+        emit(HistoryState.success(sortedContent));
+      },
+      onError: (error) {
+        emit(HistoryState.error(error));
+      },
+    );
   }
 }

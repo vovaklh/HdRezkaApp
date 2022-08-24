@@ -69,6 +69,7 @@
     "signUp": "Зарегистрироваться",
     "@_ERRORS": {},
     "incorrectEmail": "Некорректный Email",
+    "signInToSeeHistory": "Войдите в аккаунт, чтобы видеть историю",
     "incorrectPassword": "Некорректный пароль",
     "emailMustNotBeEmpty": "Email не должен быть пустым",
     "passwordMustNotBeEmpty": "Пароль не должен быть пустым",

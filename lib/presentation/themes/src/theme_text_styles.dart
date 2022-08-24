@@ -32,6 +32,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle settingsContainerItem;
   final TextStyle formFieldLabel;
   final TextStyle formFieldText;
+  final TextStyle generalError;
 
   ThemeTextStyles({
     required this.test,
@@ -65,6 +66,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.settingsContainerItem,
     required this.formFieldLabel,
     required this.formFieldText,
+    required this.generalError,
   });
 
   @override
@@ -101,6 +103,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? settingsContainerItem,
     TextStyle? formFieldLabel,
     TextStyle? formFieldText,
+    TextStyle? generalError,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -143,6 +146,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           settingsContainerItem ?? this.settingsContainerItem,
       formFieldLabel: formFieldLabel ?? this.formFieldLabel,
       formFieldText: formFieldText ?? this.formFieldText,
+      generalError: generalError ?? this.generalError,
     );
   }
 
@@ -210,6 +214,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           settingsContainerItem, other.settingsContainerItem, t)!,
       formFieldLabel: TextStyle.lerp(formFieldLabel, other.formFieldLabel, t)!,
       formFieldText: TextStyle.lerp(formFieldText, other.formFieldText, t)!,
+      generalError: TextStyle.lerp(generalError, other.generalError, t)!,
     );
   }
 
@@ -339,6 +344,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        generalError: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -450,6 +459,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.grey,
         ),
         formFieldText: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        generalError: headline1.copyWith(
           color: AppColors.white,
         ),
       );

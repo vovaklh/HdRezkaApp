@@ -37,7 +37,9 @@ class ContentDetailsCubit extends Cubit<ContentDetailsState> {
   }
 
   Future<void> addToHistory(Content content) async {
-    await historyRepository.addToHistory(content);
+    await historyRepository.addToHistory(content.copyWith(
+      addedToHistoryAt: DateTime.now().toUtc(),
+    ));
   }
 
   Future<void> addToFavorites(Content content) async {
