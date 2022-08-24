@@ -9,7 +9,6 @@ analyzer:
     - lib/**/**.freezed.dart
     - test/**
     - lib/presentation/themes/**
-    - lib/data/repositories/history_repository_imp.dart
     - lib/data/datasources/local/database/app_database.dart
     - lib/firebase_options.dart
   errors:
@@ -42,8 +41,6 @@ dart_code_metrics:
     - avoid-nested-conditional-expressions:
         severity: warning
         acceptable-level: 2
-    - avoid-non-null-assertion:
-        severity: warning
     - avoid-missing-enum-constant-in-map:
         severity: warning
     - avoid-unnecessary-type-assertions:

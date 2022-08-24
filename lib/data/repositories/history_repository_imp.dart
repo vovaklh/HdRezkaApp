@@ -1,35 +1,19 @@
-import 'package:hdrezka_app/data/datasources/local/database/daos/history_dao.dart';
-import 'package:hdrezka_app/data/datasources/local/database/db_models/content_history_db_model.dart';
-import 'package:hdrezka_app/domain/converters/db_converter.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/domain/repositories/history_repository.dart';
+import 'package:hdrezka_app/domain/services/history_service.dart';
 
 class HistoryRepositoryImp implements HistoryRepository {
-  final DbConverter<ContentHistoryDbModel, Content> contentHistoryConverter;
-  final HistoryDao historyDao;
+  final HistoryService historyService;
 
   HistoryRepositoryImp({
-    required this.contentHistoryConverter,
-    required this.historyDao,
+    required this.historyService,
   });
 
   @override
-  Future<void> addToHistory(Content content) async {
-    await historyDao.add(
-      contentHistoryConverter.entityToDbModel(content),
-    );
-  }
+  Stream<List<Content>> get historyStream => historyService.historyStream;
 
   @override
-  Stream<List<Content>> get historyStream => historyDao.getAllStream().map(
-        (list) => list
-            .map(
-              (content) => contentHistoryConverter.dbModelToEntity(content),
-            )
-            .toList()
-          ..sort(
-            ((firstContent, secondContent) => secondContent.addedToHistoryAt!
-                .compareTo(firstContent.addedToHistoryAt!)),
-          ),
-      );
+  Future<void> addToHistory(Content content) async {
+    await historyService.addToHistory(content);
+  }
 }
