@@ -8,7 +8,10 @@ class LocalException implements Exception {
 }
 
 enum LocalError {
-  signInToSeeHistory;
+  signInToSeeHistory,
+  signInToSeeFavorites,
+  signInToAddToFavorites,
+  signInToDeleteFromFavorites;
 
   const LocalError();
 
@@ -16,6 +19,12 @@ enum LocalError {
     switch (this) {
       case signInToSeeHistory:
         return buildContext.localizations.signInToSeeHistory;
+      case LocalError.signInToSeeFavorites:
+        return buildContext.localizations.signInToSeeFavorites;
+      case LocalError.signInToAddToFavorites:
+        return buildContext.localizations.signInToAddToFavorites;
+      case LocalError.signInToDeleteFromFavorites:
+        return buildContext.localizations.signInToDeleteFromFavorites;
     }
   }
 }

@@ -43,32 +43,42 @@ class ContentDetailsCubit extends Cubit<ContentDetailsState> {
   }
 
   Future<void> addToFavorites(Content content) async {
-    await favoritesRepository.addToFavorites(content);
+    try {
+      await favoritesRepository.addToFavorites(content.copyWith(
+        addedToFavoritesAt: DateTime.now().toUtc(),
+      ));
 
-    final contentDetails = state.maybeMap(
-      success: (value) => value.contentDetails,
-      orElse: () => null,
-    );
+      final contentDetails = state.maybeMap(
+        success: (value) => value.contentDetails,
+        orElse: () => null,
+      );
 
-    if (contentDetails != null) {
-      emit(ContentDetailsState.success(contentDetails.copyWith(
-        isFavorite: true,
-      )));
+      if (contentDetails != null) {
+        emit(ContentDetailsState.success(contentDetails.copyWith(
+          isFavorite: true,
+        )));
+      }
+    } catch (exception) {
+      emit(ContentDetailsState.error(exception));
     }
   }
 
   Future<void> deleteFromFavorites(Content content) async {
-    await favoritesRepository.deleteFromFavorites(content);
+    try {
+      await favoritesRepository.deleteFromFavorites(content);
 
-    final contentDetails = state.maybeMap(
-      success: (value) => value.contentDetails,
-      orElse: () => null,
-    );
+      final contentDetails = state.maybeMap(
+        success: (value) => value.contentDetails,
+        orElse: () => null,
+      );
 
-    if (contentDetails != null) {
-      emit(ContentDetailsState.success(contentDetails.copyWith(
-        isFavorite: false,
-      )));
+      if (contentDetails != null) {
+        emit(ContentDetailsState.success(contentDetails.copyWith(
+          isFavorite: false,
+        )));
+      }
+    } catch (exception) {
+      emit(ContentDetailsState.error(exception));
     }
   }
 }

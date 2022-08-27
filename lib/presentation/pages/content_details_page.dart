@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
+import 'package:hdrezka_app/core/utils/error_handler.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
+import 'package:hdrezka_app/core/utils/mixins/error_provider.dart';
 import 'package:hdrezka_app/data/datasources/local/enums/content_affilation.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/domain/entities/content_details.dart';
@@ -23,7 +25,8 @@ class ContentDetailsPage extends StatefulWidget {
   State<ContentDetailsPage> createState() => _ContentDetailsPageState();
 }
 
-class _ContentDetailsPageState extends State<ContentDetailsPage> {
+class _ContentDetailsPageState extends State<ContentDetailsPage>
+    with ErrorProvider {
   final _cubit = locator<ContentDetailsCubit>();
 
   void _addToHistory() async {
@@ -61,6 +64,14 @@ class _ContentDetailsPageState extends State<ContentDetailsPage> {
         : _cubit.addToFavorites(widget.content);
   }
 
+  void _blocListener(_, ContentDetailsState state) {
+    state.maybeWhen(
+      error: (error) =>
+          showError(ErrorHandler.processError(context, error), context),
+      orElse: () {},
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -71,9 +82,12 @@ class _ContentDetailsPageState extends State<ContentDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<ContentDetailsCubit, ContentDetailsState>(
+        child: BlocConsumer<ContentDetailsCubit, ContentDetailsState>(
           bloc: _cubit,
+          listener: _blocListener,
           builder: _blocBuilder,
+          buildWhen: ((previous, current) =>
+              current.maybeMap(error: (value) => false, orElse: () => true)),
         ),
       ),
     );

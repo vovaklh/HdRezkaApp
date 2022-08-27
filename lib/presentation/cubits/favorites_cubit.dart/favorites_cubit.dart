@@ -11,8 +11,18 @@ class FavoritesCubit extends Cubit<FavoritesState> {
 
   FavoritesCubit({required this.favoritesRepository})
       : super(const FavoritesState.initial()) {
-    favoritesRepository.favoritesStream.listen((content) {
-      emit(FavoritesState.success(content));
-    });
+    favoritesRepository.favoritesStream.listen(
+      (content) {
+        final sortedContent = content
+            .where((item) => item.addedToFavoritesAt != null)
+            .toList()
+          ..sort((first, second) =>
+              second.addedToFavoritesAt!.compareTo(first.addedToFavoritesAt!));
+        emit(FavoritesState.success(sortedContent));
+      },
+      onError: (error) {
+        emit(FavoritesState.error(error));
+      },
+    );
   }
 }
