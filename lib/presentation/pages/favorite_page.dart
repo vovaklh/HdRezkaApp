@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
+import 'package:hdrezka_app/core/utils/error_handler.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/presentation/cubits/favorites_cubit.dart/favorites_cubit.dart';
 import 'package:hdrezka_app/presentation/pages/content_details_page.dart';
 import 'package:hdrezka_app/presentation/widgets/content_widget.dart';
+import 'package:hdrezka_app/presentation/widgets/my_error_widget.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -47,6 +49,8 @@ class _FavoritePageState extends State<FavoritePage>
   Widget _blocBuilder(_, FavoritesState state) {
     return state.maybeWhen(
       success: _buildContent,
+      error: (error) =>
+          MyErrorWidget(ErrorHandler.processError(context, error)),
       orElse: _buildEmptyContent,
     );
   }
