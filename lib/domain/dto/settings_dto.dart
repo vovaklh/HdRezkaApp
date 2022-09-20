@@ -7,6 +7,6 @@ class SettingsDto with _$SettingsDto {
   const factory SettingsDto({
     required bool isLoggedIn,
     required bool isDarkMode,
-    required String mirrorUrl,
+    required String mirror,
   }) = _SettingsDto;
 }

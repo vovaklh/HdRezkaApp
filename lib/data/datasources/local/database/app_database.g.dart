@@ -65,8 +65,11 @@ class _$AppDatabase extends AppDatabase {
 
   FavoritesDao? _favoritesDaoInstance;
 
-  Future<sqflite.Database> open(String path, List<Migration> migrations,
-      [Callback? callback]) async {
+  Future<sqflite.Database> open(
+    String path,
+    List<Migration> migrations, [
+    Callback? callback,
+  ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
       version: 1,
       onConfigure: (database) async {
@@ -106,8 +109,10 @@ class _$AppDatabase extends AppDatabase {
 }
 
 class _$HistoryDao extends HistoryDao {
-  _$HistoryDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
+  _$HistoryDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
         _contentHistoryDbModelInsertionAdapter = InsertionAdapter(
             database,
             'History',
@@ -156,8 +161,10 @@ class _$HistoryDao extends HistoryDao {
 }
 
 class _$FavoritesDao extends FavoritesDao {
-  _$FavoritesDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
+  _$FavoritesDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
         _contentFavoriteDbModelInsertionAdapter = InsertionAdapter(
             database,
             'Favorites',

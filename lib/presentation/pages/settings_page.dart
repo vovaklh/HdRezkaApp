@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
 import 'package:hdrezka_app/core/utils/error_handler.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 import 'package:hdrezka_app/core/utils/mixins/error_provider.dart';
+import 'package:hdrezka_app/data/datasources/local/app_constants.dart';
 import 'package:hdrezka_app/domain/dto/settings_dto.dart';
 import 'package:hdrezka_app/presentation/cubits/settings_cubit.dart/settings_cubit.dart';
 import 'package:hdrezka_app/presentation/dialogs/input_dialog.dart';
+import 'package:hdrezka_app/presentation/dialogs/mirror_dialog.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -23,13 +26,39 @@ class _SettingsPageState extends State<SettingsPage>
   void _showInputDialog(Function(String, String) callback) async {
     final Pair<String, String>? data = await showDialog(
       context: context,
-      builder: (context) => const InputDialog(),
+      builder: (_) => const InputDialog(),
     );
     final email = data?.first;
     final password = data?.second;
 
     if (email != null && password != null) {
       callback(email, password);
+    }
+  }
+
+  void _showMirrorDialog() async {
+    final SettingsDto? settingsDto = _cubit.state.maybeMap(
+      success: (value) => value.settingsDto,
+      orElse: () => null,
+    );
+    final String? mirror = await showDialog<String?>(
+      context: context,
+      builder: (_) => MirrorDialog(
+        currentMirror: settingsDto?.mirror ?? AppConstants.mirrors.first,
+        mirrors: AppConstants.mirrors,
+      ),
+    );
+    if (mirror != null) {
+      _cubit.setMirror(mirror);
+      Fluttertoast.showToast(
+        msg: context.localizations.reloadAppToApplyChanges,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 3,
+        backgroundColor: context.color.toastBackgroundColor,
+        textColor: context.color.toastTextColor,
+        fontSize: 16.0,
+      );
     }
   }
 
@@ -70,6 +99,16 @@ class _SettingsPageState extends State<SettingsPage>
             SettingsContainer(
               title: context.localizations.account,
               settingItems: _getAuthSettingItems(dto),
+            ),
+            SettingsContainer(
+              title: context.localizations.app,
+              settingItems: [
+                IconedSettingsItem(
+                  onTap: _showMirrorDialog,
+                  text: context.localizations.mirror,
+                  icon: Icons.follow_the_signs_rounded,
+                ),
+              ],
             ),
           ],
         );

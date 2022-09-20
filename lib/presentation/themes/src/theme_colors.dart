@@ -1,7 +1,8 @@
 part of '../theme.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
-  final Color test;
+  final Color toastTextColor;
+  final Color toastBackgroundColor;
   final Color contentStatusBackground;
   final Color filterDialogDropdownColor;
   final Color filterButtonFillColor;
@@ -27,7 +28,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color formFieldBorder;
 
   const ThemeColors({
-    required this.test,
+    required this.toastTextColor,
+    required this.toastBackgroundColor,
     required this.contentStatusBackground,
     required this.filterDialogDropdownColor,
     required this.filterButtonFillColor,
@@ -55,7 +57,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
 
   @override
   ThemeExtension<ThemeColors> copyWith({
-    Color? test,
+    Color? toastTextColor,
+    Color? toastBackgroundColor,
     Color? contentStatusBackground,
     Color? filterDialogDropdownColor,
     Color? filterButtonFillColor,
@@ -82,7 +85,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? formFieldBorder,
   }) {
     return ThemeColors(
-      test: test ?? this.test,
+      toastTextColor: toastTextColor ?? this.toastTextColor,
+      toastBackgroundColor: toastBackgroundColor ?? this.toastBackgroundColor,
       contentStatusBackground:
           contentStatusBackground ?? this.contentStatusBackground,
       filterDialogDropdownColor:
@@ -138,7 +142,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     }
 
     return ThemeColors(
-      test: Color.lerp(test, other.test, t)!,
+      toastTextColor: Color.lerp(toastTextColor, other.toastTextColor, t)!,
+      toastBackgroundColor:
+          Color.lerp(toastBackgroundColor, other.toastBackgroundColor, t)!,
       contentStatusBackground: Color.lerp(
           contentStatusBackground, other.contentStatusBackground, t)!,
       filterDialogDropdownColor: Color.lerp(
@@ -198,7 +204,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   }
 
   static get light => ThemeColors(
-        test: AppColors.white,
+        toastTextColor: AppColors.white,
+        toastBackgroundColor: AppColors.black,
         contentStatusBackground: AppColors.black,
         filterDialogDropdownColor: AppColors.white,
         filterButtonFillColor: AppColors.grey,
@@ -225,7 +232,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       );
 
   static get dark => ThemeColors(
-        test: AppColors.white,
+        toastTextColor: AppColors.white,
+        toastBackgroundColor: AppColors.lighterDark,
         contentStatusBackground: AppColors.darkerRed,
         filterDialogDropdownColor: AppColors.lighterDark,
         filterButtonFillColor: AppColors.grey,

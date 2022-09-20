@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hdrezka_app/data/datasources/local/app_constants.dart';
 import 'package:hdrezka_app/l10n/app_locale.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,5 +35,5 @@ class SharedPrefs {
   Future<bool> setMirror(String mirror) async =>
       _preferences.setString(_mirrorKey, mirror);
   String getMirror() =>
-      _preferences.getString(_mirrorKey) ?? "https://hdrezka.ag/";
+      _preferences.getString(_mirrorKey) ?? AppConstants.mirrors.first;
 }
