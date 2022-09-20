@@ -33,6 +33,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle formFieldLabel;
   final TextStyle formFieldText;
   final TextStyle generalError;
+  final TextStyle mirrorDialogTitle;
+  final TextStyle mirrorDialogItem;
 
   ThemeTextStyles({
     required this.test,
@@ -67,6 +69,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.formFieldLabel,
     required this.formFieldText,
     required this.generalError,
+    required this.mirrorDialogTitle,
+    required this.mirrorDialogItem,
   });
 
   @override
@@ -104,6 +108,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? formFieldLabel,
     TextStyle? formFieldText,
     TextStyle? generalError,
+    TextStyle? mirrorDialogTitle,
+    TextStyle? mirrorDialogItem,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -147,6 +153,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       formFieldLabel: formFieldLabel ?? this.formFieldLabel,
       formFieldText: formFieldText ?? this.formFieldText,
       generalError: generalError ?? this.generalError,
+      mirrorDialogTitle: mirrorDialogTitle ?? this.mirrorDialogTitle,
+      mirrorDialogItem: mirrorDialogItem ?? this.mirrorDialogItem,
     );
   }
 
@@ -215,6 +223,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       formFieldLabel: TextStyle.lerp(formFieldLabel, other.formFieldLabel, t)!,
       formFieldText: TextStyle.lerp(formFieldText, other.formFieldText, t)!,
       generalError: TextStyle.lerp(generalError, other.generalError, t)!,
+      mirrorDialogTitle:
+          TextStyle.lerp(mirrorDialogTitle, other.mirrorDialogTitle, t)!,
+      mirrorDialogItem:
+          TextStyle.lerp(mirrorDialogItem, other.mirrorDialogItem, t)!,
     );
   }
 
@@ -348,6 +360,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
+        mirrorDialogTitle: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        mirrorDialogItem: headline2.copyWith(
+          color: AppColors.white,
+          fontWeight: FontWeight.w700,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -462,6 +482,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         generalError: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        mirrorDialogTitle: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.white,
+          fontWeight: FontWeight.bold,
+        ),
+        mirrorDialogItem: headline1.copyWith(
           color: AppColors.white,
         ),
       );

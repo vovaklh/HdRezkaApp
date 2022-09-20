@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SettingsDto {
   bool get isLoggedIn => throw _privateConstructorUsedError;
   bool get isDarkMode => throw _privateConstructorUsedError;
-  String get mirrorUrl => throw _privateConstructorUsedError;
+  String get mirror => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsDtoCopyWith<SettingsDto> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $SettingsDtoCopyWith<$Res> {
   factory $SettingsDtoCopyWith(
           SettingsDto value, $Res Function(SettingsDto) then) =
       _$SettingsDtoCopyWithImpl<$Res>;
-  $Res call({bool isLoggedIn, bool isDarkMode, String mirrorUrl});
+  $Res call({bool isLoggedIn, bool isDarkMode, String mirror});
 }
 
 /// @nodoc
@@ -45,7 +45,7 @@ class _$SettingsDtoCopyWithImpl<$Res> implements $SettingsDtoCopyWith<$Res> {
   $Res call({
     Object? isLoggedIn = freezed,
     Object? isDarkMode = freezed,
-    Object? mirrorUrl = freezed,
+    Object? mirror = freezed,
   }) {
     return _then(_value.copyWith(
       isLoggedIn: isLoggedIn == freezed
@@ -56,9 +56,9 @@ class _$SettingsDtoCopyWithImpl<$Res> implements $SettingsDtoCopyWith<$Res> {
           ? _value.isDarkMode
           : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
-      mirrorUrl: mirrorUrl == freezed
-          ? _value.mirrorUrl
-          : mirrorUrl // ignore: cast_nullable_to_non_nullable
+      mirror: mirror == freezed
+          ? _value.mirror
+          : mirror // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -71,7 +71,7 @@ abstract class _$$_SettingsDtoCopyWith<$Res>
           _$_SettingsDto value, $Res Function(_$_SettingsDto) then) =
       __$$_SettingsDtoCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoggedIn, bool isDarkMode, String mirrorUrl});
+  $Res call({bool isLoggedIn, bool isDarkMode, String mirror});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class __$$_SettingsDtoCopyWithImpl<$Res> extends _$SettingsDtoCopyWithImpl<$Res>
   $Res call({
     Object? isLoggedIn = freezed,
     Object? isDarkMode = freezed,
-    Object? mirrorUrl = freezed,
+    Object? mirror = freezed,
   }) {
     return _then(_$_SettingsDto(
       isLoggedIn: isLoggedIn == freezed
@@ -99,9 +99,9 @@ class __$$_SettingsDtoCopyWithImpl<$Res> extends _$SettingsDtoCopyWithImpl<$Res>
           ? _value.isDarkMode
           : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
-      mirrorUrl: mirrorUrl == freezed
-          ? _value.mirrorUrl
-          : mirrorUrl // ignore: cast_nullable_to_non_nullable
+      mirror: mirror == freezed
+          ? _value.mirror
+          : mirror // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -113,18 +113,18 @@ class _$_SettingsDto implements _SettingsDto {
   const _$_SettingsDto(
       {required this.isLoggedIn,
       required this.isDarkMode,
-      required this.mirrorUrl});
+      required this.mirror});
 
   @override
   final bool isLoggedIn;
   @override
   final bool isDarkMode;
   @override
-  final String mirrorUrl;
+  final String mirror;
 
   @override
   String toString() {
-    return 'SettingsDto(isLoggedIn: $isLoggedIn, isDarkMode: $isDarkMode, mirrorUrl: $mirrorUrl)';
+    return 'SettingsDto(isLoggedIn: $isLoggedIn, isDarkMode: $isDarkMode, mirror: $mirror)';
   }
 
   @override
@@ -136,7 +136,7 @@ class _$_SettingsDto implements _SettingsDto {
                 .equals(other.isLoggedIn, isLoggedIn) &&
             const DeepCollectionEquality()
                 .equals(other.isDarkMode, isDarkMode) &&
-            const DeepCollectionEquality().equals(other.mirrorUrl, mirrorUrl));
+            const DeepCollectionEquality().equals(other.mirror, mirror));
   }
 
   @override
@@ -144,7 +144,7 @@ class _$_SettingsDto implements _SettingsDto {
       runtimeType,
       const DeepCollectionEquality().hash(isLoggedIn),
       const DeepCollectionEquality().hash(isDarkMode),
-      const DeepCollectionEquality().hash(mirrorUrl));
+      const DeepCollectionEquality().hash(mirror));
 
   @JsonKey(ignore: true)
   @override
@@ -156,14 +156,14 @@ abstract class _SettingsDto implements SettingsDto {
   const factory _SettingsDto(
       {required final bool isLoggedIn,
       required final bool isDarkMode,
-      required final String mirrorUrl}) = _$_SettingsDto;
+      required final String mirror}) = _$_SettingsDto;
 
   @override
   bool get isLoggedIn;
   @override
   bool get isDarkMode;
   @override
-  String get mirrorUrl;
+  String get mirror;
   @override
   @JsonKey(ignore: true)
   _$$_SettingsDtoCopyWith<_$_SettingsDto> get copyWith =>

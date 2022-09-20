@@ -39,4 +39,12 @@ class SettingsCubit extends Cubit<SettingsState> {
       emit(SettingsState.error(exception));
     }
   }
+
+  Future<void> setMirror(String mirror) async {
+    try {
+      await settingsRepository.setMirror(mirror);
+    } catch (exception) {
+      emit(SettingsState.error(exception));
+    }
+  }
 }

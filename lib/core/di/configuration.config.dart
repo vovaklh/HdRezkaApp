@@ -72,9 +72,16 @@ import 'modules/storage_module.dart'
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
-Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
-    {String? environment, _i2.EnvironmentFilter? environmentFilter}) async {
-  final gh = _i2.GetItHelper(get, environment, environmentFilter);
+Future<_i1.GetIt> $configureDependencies(
+  _i1.GetIt get, {
+  String? environment,
+  _i2.EnvironmentFilter? environmentFilter,
+}) async {
+  final gh = _i2.GetItHelper(
+    get,
+    environment,
+    environmentFilter,
+  );
   final dbModule = _$DbModule();
   final converterModule = _$ConverterModule();
   final apiModule = _$ApiModule();
@@ -84,8 +91,10 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
   final repositoryModule = _$RepositoryModule();
   final blocModule = _$BlocModule();
   final cubitModule = _$CubitModule();
-  await gh.lazySingletonAsync<_i3.AppDatabase>(() => dbModule.database(),
-      preResolve: true);
+  await gh.lazySingletonAsync<_i3.AppDatabase>(
+    () => dbModule.database(),
+    preResolve: true,
+  );
   gh.lazySingleton<_i4.DbConverter<_i5.ContentHistoryDbModel, _i6.Content>>(
       () => converterModule.contentHistoryConveter());
   gh.lazySingleton<_i4.DbConverter<_i7.ContentFavoriteDbModel, _i6.Content>>(
@@ -96,8 +105,9 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
   gh.lazySingleton<_i10.FbConverter<_i11.ContentFbModel, _i6.Content>>(
       () => converterModule.contentFbConverter());
   await gh.lazySingletonAsync<_i12.FirebaseApp>(
-      () => firebaseModule.firebaseApp(),
-      preResolve: true);
+    () => firebaseModule.firebaseApp(),
+    preResolve: true,
+  );
   gh.lazySingleton<_i13.FirebaseAuth>(
       () => firebaseModule.firebaseAuth(get<_i12.FirebaseApp>()));
   gh.lazySingleton<_i14.FirebaseFirestore>(
@@ -117,41 +127,59 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
           _i16.ModelConverter<_i22.SeasonsWrapperModel, _i23.SeasonsWrapper>>(
       () => converterModule.seasonsWrapperConverter());
   await gh.lazySingletonAsync<_i24.SharedPrefs>(
-      () => storageModule.sharedPrefs(),
-      preResolve: true);
-  gh.factory<String>(() => apiModule.baseDevUrl, instanceName: 'BaseUrl');
+    () => storageModule.sharedPrefs(),
+    preResolve: true,
+  );
+  gh.factory<String>(
+    () => apiModule.baseDevUrl,
+    instanceName: 'BaseUrl',
+  );
   await gh.lazySingletonAsync<_i25.AuthService>(
-      () => servicesModule.authService(
-          get<_i13.FirebaseAuth>(), get<_i14.FirebaseFirestore>()),
-      preResolve: true,
-      dispose: _i26.disposeAuthService);
+    () => servicesModule.authService(
+      get<_i13.FirebaseAuth>(),
+      get<_i14.FirebaseFirestore>(),
+    ),
+    preResolve: true,
+    dispose: _i26.disposeAuthService,
+  );
   gh.lazySingleton<_i27.ContentService>(() => apiModule.contentService(
-      get<_i8.Dio>(), get<String>(instanceName: 'BaseUrl')));
+        get<_i8.Dio>(),
+        get<String>(instanceName: 'BaseUrl'),
+      ));
   gh.lazySingleton<_i28.FavoritesService>(
-      () => servicesModule.favoritesService(
-          get<_i14.FirebaseFirestore>(),
-          get<_i25.AuthService>(),
-          get<_i10.FbConverter<_i11.ContentFbModel, _i6.Content>>()),
-      dispose: _i26.disposeFavoritesService);
+    () => servicesModule.favoritesService(
+      get<_i14.FirebaseFirestore>(),
+      get<_i25.AuthService>(),
+      get<_i10.FbConverter<_i11.ContentFbModel, _i6.Content>>(),
+    ),
+    dispose: _i26.disposeFavoritesService,
+  );
   gh.lazySingleton<_i29.HistoryService>(
-      () => servicesModule.historyService(
-          get<_i14.FirebaseFirestore>(),
-          get<_i25.AuthService>(),
-          get<_i10.FbConverter<_i11.ContentFbModel, _i6.Content>>()),
-      dispose: _i26.disposeHistoryService);
+    () => servicesModule.historyService(
+      get<_i14.FirebaseFirestore>(),
+      get<_i25.AuthService>(),
+      get<_i10.FbConverter<_i11.ContentFbModel, _i6.Content>>(),
+    ),
+    dispose: _i26.disposeHistoryService,
+  );
   await gh.lazySingletonAsync<_i30.SettingsRepository>(
-      () => repositoryModule.settingsRepository(
-          get<_i25.AuthService>(), get<_i24.SharedPrefs>()),
-      preResolve: true);
-  gh.lazySingleton<
-      _i31
-          .ContentRepository>(() => repositoryModule.contentRepository(
-      get<_i27.ContentService>(),
-      get<_i16.ModelConverter<_i17.ContentModel, _i6.Content>>(),
-      get<_i16.ModelConverter<_i20.ContentDetailsModel, _i21.ContentDetails>>(),
-      get<
-          _i16.ModelConverter<_i22.SeasonsWrapperModel,
-              _i23.SeasonsWrapper>>()));
+    () => repositoryModule.settingsRepository(
+      get<_i25.AuthService>(),
+      get<_i24.SharedPrefs>(),
+    ),
+    preResolve: true,
+  );
+  gh.lazySingleton<_i31.ContentRepository>(
+      () => repositoryModule.contentRepository(
+            get<_i27.ContentService>(),
+            get<_i16.ModelConverter<_i17.ContentModel, _i6.Content>>(),
+            get<
+                _i16.ModelConverter<_i20.ContentDetailsModel,
+                    _i21.ContentDetails>>(),
+            get<
+                _i16.ModelConverter<_i22.SeasonsWrapperModel,
+                    _i23.SeasonsWrapper>>(),
+          ));
   gh.lazySingleton<_i32.FavoritesRepository>(
       () => repositoryModule.favoritesRepository(get<_i28.FavoritesService>()));
   gh.lazySingleton<_i33.HistoryRepository>(
@@ -171,9 +199,10 @@ Future<_i1.GetIt> $configureDependencies(_i1.GetIt get,
   gh.factory<_i40.ContentBloc>(
       () => blocModule.contentBloc(get<_i31.ContentRepository>()));
   gh.factory<_i41.ContentDetailsCubit>(() => cubitModule.contentDetailsCubit(
-      get<_i31.ContentRepository>(),
-      get<_i33.HistoryRepository>(),
-      get<_i32.FavoritesRepository>()));
+        get<_i31.ContentRepository>(),
+        get<_i33.HistoryRepository>(),
+        get<_i32.FavoritesRepository>(),
+      ));
   gh.factory<_i42.FavoritesCubit>(
       () => cubitModule.favoritesCubit(get<_i32.FavoritesRepository>()));
   gh.factory<_i43.HistoryCubit>(

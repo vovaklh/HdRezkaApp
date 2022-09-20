@@ -23,11 +23,11 @@ class SettingsRepositoryImp implements SettingsRepository {
   Future<void> loadSettings() async {
     final themeMode = sharedPrefs.getThemeMode();
     final isDarkMode = themeMode != null ? themeMode == ThemeMode.dark : true;
-    final mirrorUrl = sharedPrefs.getMirror();
+    final mirror = sharedPrefs.getMirror();
     final settingsDto = SettingsDto(
       isLoggedIn: authService.isLoggedIn,
       isDarkMode: isDarkMode,
-      mirrorUrl: mirrorUrl,
+      mirror: mirror,
     );
     _settingsSubject.add(settingsDto);
   }
@@ -53,6 +53,14 @@ class SettingsRepositoryImp implements SettingsRepository {
     await authService.signUp(email, password);
     _settingsSubject.add(_settingsSubject.value.copyWith(
       isLoggedIn: true,
+    ));
+  }
+
+  @override
+  Future<void> setMirror(String mirror) async {
+    await sharedPrefs.setMirror(mirror);
+    _settingsSubject.add(_settingsSubject.value.copyWith(
+      mirror: mirror,
     ));
   }
 }
