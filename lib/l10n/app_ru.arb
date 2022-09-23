@@ -70,6 +70,8 @@
     "reloadAppToApplyChanges": "Перезапустите приложение, чтобы применить изменения",
     "mirror": "Зеркало",
     "app": "Приложение",
+    "interface": "Интерфейс",
+    "enableDarkMode": "Включить темный режим",
     "@_ERRORS": {},
     "incorrectEmail": "Некорректный Email",
     "signInToSeeHistory": "Войдите в аккаунт, чтобы видеть историю",

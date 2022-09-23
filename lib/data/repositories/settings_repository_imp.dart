@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hdrezka_app/data/datasources/local/shared_prefs.dart';
 import 'package:hdrezka_app/domain/dto/settings_dto.dart';
 import 'package:hdrezka_app/domain/repositories/settings_repository.dart';
@@ -21,12 +20,9 @@ class SettingsRepositoryImp implements SettingsRepository {
 
   @override
   Future<void> loadSettings() async {
-    final themeMode = sharedPrefs.getThemeMode();
-    final isDarkMode = themeMode != null ? themeMode == ThemeMode.dark : true;
     final mirror = sharedPrefs.getMirror();
     final settingsDto = SettingsDto(
       isLoggedIn: authService.isLoggedIn,
-      isDarkMode: isDarkMode,
       mirror: mirror,
     );
     _settingsSubject.add(settingsDto);

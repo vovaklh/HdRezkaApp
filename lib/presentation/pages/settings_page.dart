@@ -10,6 +10,7 @@ import 'package:hdrezka_app/domain/dto/settings_dto.dart';
 import 'package:hdrezka_app/presentation/cubits/settings_cubit.dart/settings_cubit.dart';
 import 'package:hdrezka_app/presentation/dialogs/input_dialog.dart';
 import 'package:hdrezka_app/presentation/dialogs/mirror_dialog.dart';
+import 'package:hdrezka_app/presentation/themes/theme_manager.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -110,6 +111,16 @@ class _SettingsPageState extends State<SettingsPage>
                 ),
               ],
             ),
+            SettingsContainer(
+              title: context.localizations.interface,
+              settingItems: [
+                CheckBoxSettingsItem(
+                  isChecked: context.isDarkMode,
+                  text: context.localizations.enableDarkMode,
+                  onTap: () => ThemeManager.switchTheme(context),
+                ),
+              ],
+            ),
           ],
         );
       },
@@ -191,6 +202,46 @@ class IconedSettingsItem extends StatelessWidget {
             Icon(
               icon,
               color: context.color.settingsItemIcon,
+            ),
+            const SizedBox(width: 10),
+            Text(text, style: context.text.settingsContainerItem),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CheckBoxSettingsItem extends StatelessWidget {
+  final bool isChecked;
+  final String text;
+  final VoidCallback onTap;
+
+  const CheckBoxSettingsItem({
+    required this.isChecked,
+    required this.text,
+    required this.onTap,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: 60,
+        child: Row(
+          children: [
+            Checkbox(
+              value: isChecked,
+              onChanged: null,
+              checkColor: context.color.settingsCheckBoxCheckColor,
+              side: MaterialStateBorderSide.resolveWith(
+                (states) => BorderSide(
+                  width: 1.0,
+                  color: context.color.settingsCheckBoxBorder,
+                ),
+              ),
             ),
             const SizedBox(width: 10),
             Text(text, style: context.text.settingsContainerItem),

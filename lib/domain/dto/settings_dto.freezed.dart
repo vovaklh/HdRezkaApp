@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SettingsDto {
   bool get isLoggedIn => throw _privateConstructorUsedError;
-  bool get isDarkMode => throw _privateConstructorUsedError;
   String get mirror => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +29,7 @@ abstract class $SettingsDtoCopyWith<$Res> {
   factory $SettingsDtoCopyWith(
           SettingsDto value, $Res Function(SettingsDto) then) =
       _$SettingsDtoCopyWithImpl<$Res>;
-  $Res call({bool isLoggedIn, bool isDarkMode, String mirror});
+  $Res call({bool isLoggedIn, String mirror});
 }
 
 /// @nodoc
@@ -44,17 +43,12 @@ class _$SettingsDtoCopyWithImpl<$Res> implements $SettingsDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? isLoggedIn = freezed,
-    Object? isDarkMode = freezed,
     Object? mirror = freezed,
   }) {
     return _then(_value.copyWith(
       isLoggedIn: isLoggedIn == freezed
           ? _value.isLoggedIn
           : isLoggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDarkMode: isDarkMode == freezed
-          ? _value.isDarkMode
-          : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
       mirror: mirror == freezed
           ? _value.mirror
@@ -71,7 +65,7 @@ abstract class _$$_SettingsDtoCopyWith<$Res>
           _$_SettingsDto value, $Res Function(_$_SettingsDto) then) =
       __$$_SettingsDtoCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoggedIn, bool isDarkMode, String mirror});
+  $Res call({bool isLoggedIn, String mirror});
 }
 
 /// @nodoc
@@ -87,17 +81,12 @@ class __$$_SettingsDtoCopyWithImpl<$Res> extends _$SettingsDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoggedIn = freezed,
-    Object? isDarkMode = freezed,
     Object? mirror = freezed,
   }) {
     return _then(_$_SettingsDto(
       isLoggedIn: isLoggedIn == freezed
           ? _value.isLoggedIn
           : isLoggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDarkMode: isDarkMode == freezed
-          ? _value.isDarkMode
-          : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
       mirror: mirror == freezed
           ? _value.mirror
@@ -110,21 +99,16 @@ class __$$_SettingsDtoCopyWithImpl<$Res> extends _$SettingsDtoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SettingsDto implements _SettingsDto {
-  const _$_SettingsDto(
-      {required this.isLoggedIn,
-      required this.isDarkMode,
-      required this.mirror});
+  const _$_SettingsDto({required this.isLoggedIn, required this.mirror});
 
   @override
   final bool isLoggedIn;
-  @override
-  final bool isDarkMode;
   @override
   final String mirror;
 
   @override
   String toString() {
-    return 'SettingsDto(isLoggedIn: $isLoggedIn, isDarkMode: $isDarkMode, mirror: $mirror)';
+    return 'SettingsDto(isLoggedIn: $isLoggedIn, mirror: $mirror)';
   }
 
   @override
@@ -134,8 +118,6 @@ class _$_SettingsDto implements _SettingsDto {
             other is _$_SettingsDto &&
             const DeepCollectionEquality()
                 .equals(other.isLoggedIn, isLoggedIn) &&
-            const DeepCollectionEquality()
-                .equals(other.isDarkMode, isDarkMode) &&
             const DeepCollectionEquality().equals(other.mirror, mirror));
   }
 
@@ -143,7 +125,6 @@ class _$_SettingsDto implements _SettingsDto {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isLoggedIn),
-      const DeepCollectionEquality().hash(isDarkMode),
       const DeepCollectionEquality().hash(mirror));
 
   @JsonKey(ignore: true)
@@ -155,13 +136,10 @@ class _$_SettingsDto implements _SettingsDto {
 abstract class _SettingsDto implements SettingsDto {
   const factory _SettingsDto(
       {required final bool isLoggedIn,
-      required final bool isDarkMode,
       required final String mirror}) = _$_SettingsDto;
 
   @override
   bool get isLoggedIn;
-  @override
-  bool get isDarkMode;
   @override
   String get mirror;
   @override
