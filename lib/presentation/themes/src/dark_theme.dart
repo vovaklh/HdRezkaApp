@@ -4,6 +4,7 @@ ThemeData createDarkTheme() {
   return ThemeData(
     textTheme: createTextTheme(),
     scaffoldBackgroundColor: AppColors.black,
+    brightness: Brightness.dark,
     extensions: <ThemeExtension<dynamic>>[
       ThemeColors.dark,
       ThemeTextStyles.dark,

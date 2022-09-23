@@ -26,6 +26,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color categoriesDialogDropdownColor;
   final Color settingsItemIcon;
   final Color formFieldBorder;
+  final Color settingsCheckBoxCheckColor;
+  final Color settingsCheckBoxBorder;
 
   const ThemeColors({
     required this.toastTextColor,
@@ -53,6 +55,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.categoriesDialogDropdownColor,
     required this.settingsItemIcon,
     required this.formFieldBorder,
+    required this.settingsCheckBoxCheckColor,
+    required this.settingsCheckBoxBorder,
   });
 
   @override
@@ -83,6 +87,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? categoriesDialogDropdownColor,
     Color? settingsItemIcon,
     Color? formFieldBorder,
+    Color? settingsCheckBoxCheckColor,
+    Color? settingsCheckBoxBorder,
   }) {
     return ThemeColors(
       toastTextColor: toastTextColor ?? this.toastTextColor,
@@ -129,6 +135,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           categoriesDialogDropdownColor ?? this.categoriesDialogDropdownColor,
       settingsItemIcon: settingsItemIcon ?? this.settingsItemIcon,
       formFieldBorder: formFieldBorder ?? this.formFieldBorder,
+      settingsCheckBoxCheckColor:
+          settingsCheckBoxCheckColor ?? this.settingsCheckBoxCheckColor,
+      settingsCheckBoxBorder:
+          settingsCheckBoxBorder ?? this.settingsCheckBoxBorder,
     );
   }
 
@@ -200,35 +210,42 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       settingsItemIcon:
           Color.lerp(settingsItemIcon, other.settingsItemIcon, t)!,
       formFieldBorder: Color.lerp(formFieldBorder, other.formFieldBorder, t)!,
+      settingsCheckBoxCheckColor: Color.lerp(
+          settingsCheckBoxCheckColor, other.settingsCheckBoxCheckColor, t)!,
+      settingsCheckBoxBorder:
+          Color.lerp(settingsCheckBoxBorder, other.settingsCheckBoxBorder, t)!,
     );
   }
 
+  // TODO: implement colors for light theme
   static get light => ThemeColors(
         toastTextColor: AppColors.white,
-        toastBackgroundColor: AppColors.black,
-        contentStatusBackground: AppColors.black,
-        filterDialogDropdownColor: AppColors.white,
+        toastBackgroundColor: AppColors.lighterDark,
+        contentStatusBackground: AppColors.darkerRed,
+        filterDialogDropdownColor: AppColors.lighterDark,
         filterButtonFillColor: AppColors.grey,
         filterButtonFocusColor: AppColors.red,
-        refreshButtonIconColor: AppColors.grey,
-        playButtonIconColor: AppColors.grey,
-        playButtonFocusColor: AppColors.red,
-        favoriteButtonIconColor: AppColors.grey,
-        favoriteButtonFocusColor: AppColors.red,
-        tvSeriesDialogDropdownColor: AppColors.white,
+        refreshButtonIconColor: AppColors.purpleAccent,
+        playButtonIconColor: AppColors.blue,
+        playButtonFocusColor: AppColors.white.withOpacity(0.3),
+        favoriteButtonIconColor: AppColors.red,
+        favoriteButtonFocusColor: AppColors.white.withOpacity(0.3),
+        tvSeriesDialogDropdownColor: AppColors.lighterDark,
         navigationRailBackgroundColor: AppColors.black,
-        navigationRailSelectedIconColor: AppColors.white,
-        navigationRailUnselectedIconColor: AppColors.grey,
+        navigationRailSelectedIconColor: AppColors.red,
+        navigationRailUnselectedIconColor: AppColors.white,
         bottomNavigationBarBackgroundColor: AppColors.black,
-        bottomNavigationBarSelectedItemColor: AppColors.white,
-        bottomNavigationBarUnselectedItemColor: AppColors.grey,
-        searchFieldFillColor: AppColors.grey,
+        bottomNavigationBarSelectedItemColor: AppColors.red,
+        bottomNavigationBarUnselectedItemColor: AppColors.white,
+        searchFieldFillColor: AppColors.lighterDark,
         searchFieldIconColor: AppColors.white,
         categoriesButtonFillColor: AppColors.grey,
         categoriesButtonFocusColor: AppColors.red,
-        categoriesDialogDropdownColor: AppColors.white,
-        settingsItemIcon: AppColors.grey,
-        formFieldBorder: AppColors.grey,
+        categoriesDialogDropdownColor: AppColors.lighterDark,
+        settingsItemIcon: AppColors.white,
+        formFieldBorder: AppColors.white,
+        settingsCheckBoxCheckColor: AppColors.blue,
+        settingsCheckBoxBorder: AppColors.darkerGrey,
       );
 
   static get dark => ThemeColors(
@@ -257,5 +274,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         categoriesDialogDropdownColor: AppColors.lighterDark,
         settingsItemIcon: AppColors.white,
         formFieldBorder: AppColors.white,
+        settingsCheckBoxCheckColor: AppColors.blue,
+        settingsCheckBoxBorder: AppColors.darkerGrey,
       );
 }

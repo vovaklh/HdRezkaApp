@@ -9,7 +9,7 @@ abstract class SettingsRepository {
 
   Future<void> singUp(String email, String password);
 
-  Future<void> setMirror(String mirror);
-
   Future<void> signOut();
+
+  Future<void> setMirror(String mirror);
 }

@@ -10,4 +10,6 @@ extension BuildContextExt on BuildContext {
   ThemeColors get color => Theme.of(this).extension<ThemeColors>()!;
 
   ThemeGradients get gradient => Theme.of(this).extension<ThemeGradients>()!;
+
+  bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 }

@@ -6,7 +6,6 @@ part 'settings_dto.freezed.dart';
 class SettingsDto with _$SettingsDto {
   const factory SettingsDto({
     required bool isLoggedIn,
-    required bool isDarkMode,
     required String mirror,
   }) = _SettingsDto;
 }

@@ -230,7 +230,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     );
   }
 
-  // TODO: Refactor later
+  // TODO: implement text styles for light theme
   static get light => ThemeTextStyles(
         test: headline1.copyWith(
           color: AppColors.white,
@@ -238,19 +238,19 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         contentType: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w400,
         ),
         contentStatus: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w400,
         ),
         contentTitle: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w400,
         ),
         contentShortInfo: headline2.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          color: AppColors.lighterGrey,
+          fontWeight: FontWeight.w400,
         ),
         filterDialogMenuItem: headline2.copyWith(
           color: AppColors.white,
@@ -258,115 +258,100 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         filterButton: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w500,
         ),
         refreshButton: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
         contentDetailsTitle: headline2.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontSize: 24,
+          color: AppColors.red,
+          fontWeight: FontWeight.bold,
         ),
-        contentDetailsData: headline2.copyWith(
+        contentDetailsData: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w400,
         ),
-        contentDetailsPlot: headline2.copyWith(
+        contentDetailsPlot: headline1.copyWith(
+          fontSize: 20,
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.bold,
         ),
-        contentDetailsDescription: headline2.copyWith(
+        contentDetailsDescription: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        movieDialogTitle: headline2.copyWith(
+        movieDialogTitle: headline1.copyWith(
+          fontSize: 18,
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.bold,
         ),
-        movieDialogItem: headline2.copyWith(
+        movieDialogItem: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        videoDialogTitle: headline2.copyWith(
+        videoDialogTitle: headline1.copyWith(
+          fontSize: 18,
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.bold,
         ),
-        videoDialogItem: headline2.copyWith(
+        videoDialogItem: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        tvSeriesDialogExpansionTitle: headline2.copyWith(
+        tvSeriesDialogExpansionTitle: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
         tvSeriesDialogExpansionItem: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
         tvSeriesDialogMenuItem: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
         navigationRailSelectedStyle: headline2.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          color: AppColors.red,
         ),
         navigationRailUnselectedStyle: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        searchHint: headline2.copyWith(
+        searchHint: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        searchInput: headline2.copyWith(
+        searchInput: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
         historySubtitle: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
         favoriteSubtitle: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
         categoriesButton: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w500,
         ),
         categoriesDialogMenuItem: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        settingsContainerTitle: headline2.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.w700,
+        settingsContainerTitle: headline1.copyWith(
+          color: AppColors.red,
         ),
         settingsContainerItem: headline2.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        formFieldLabel: headline2.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.w700,
+        formFieldLabel: headline1.copyWith(
+          color: AppColors.grey,
         ),
-        formFieldText: headline2.copyWith(
+        formFieldText: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        generalError: headline2.copyWith(
+        generalError: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
-        mirrorDialogTitle: headline2.copyWith(
+        mirrorDialogTitle: headline1.copyWith(
+          fontSize: 18,
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.bold,
         ),
-        mirrorDialogItem: headline2.copyWith(
+        mirrorDialogItem: headline1.copyWith(
           color: AppColors.white,
-          fontWeight: FontWeight.w700,
         ),
       );
 
