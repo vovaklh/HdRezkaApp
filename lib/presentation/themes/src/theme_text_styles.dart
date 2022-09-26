@@ -1,7 +1,6 @@
 part of '../theme.dart';
 
 class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
-  final TextStyle test;
   final TextStyle contentType;
   final TextStyle contentStatus;
   final TextStyle contentTitle;
@@ -13,9 +12,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle contentDetailsData;
   final TextStyle contentDetailsPlot;
   final TextStyle contentDetailsDescription;
-  final TextStyle movieDialogTitle;
   final TextStyle movieDialogItem;
-  final TextStyle videoDialogTitle;
   final TextStyle videoDialogItem;
   final TextStyle tvSeriesDialogExpansionTitle;
   final TextStyle tvSeriesDialogExpansionItem;
@@ -33,11 +30,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle formFieldLabel;
   final TextStyle formFieldText;
   final TextStyle generalError;
-  final TextStyle mirrorDialogTitle;
   final TextStyle mirrorDialogItem;
 
   ThemeTextStyles({
-    required this.test,
     required this.contentType,
     required this.contentStatus,
     required this.contentTitle,
@@ -49,9 +44,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.contentDetailsData,
     required this.contentDetailsPlot,
     required this.contentDetailsDescription,
-    required this.movieDialogTitle,
     required this.movieDialogItem,
-    required this.videoDialogTitle,
     required this.videoDialogItem,
     required this.tvSeriesDialogExpansionTitle,
     required this.tvSeriesDialogExpansionItem,
@@ -69,13 +62,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.formFieldLabel,
     required this.formFieldText,
     required this.generalError,
-    required this.mirrorDialogTitle,
     required this.mirrorDialogItem,
   });
 
   @override
   ThemeExtension<ThemeTextStyles> copyWith({
-    TextStyle? test,
     TextStyle? contentType,
     TextStyle? contentStatus,
     TextStyle? contentTitle,
@@ -88,9 +79,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? contentDetailsData,
     TextStyle? contentDetailsPlot,
     TextStyle? contentDetailsDescription,
-    TextStyle? movieDialogTitle,
     TextStyle? movieDialogItem,
-    TextStyle? videoDialogTitle,
     TextStyle? videoDialogItem,
     TextStyle? tvSeriesDialogExpansionTitle,
     TextStyle? tvSeriesDialogExpansionItem,
@@ -108,11 +97,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? formFieldLabel,
     TextStyle? formFieldText,
     TextStyle? generalError,
-    TextStyle? mirrorDialogTitle,
     TextStyle? mirrorDialogItem,
   }) {
     return ThemeTextStyles(
-      test: test ?? this.test,
       contentType: contentType ?? this.contentType,
       contentStatus: contentStatus ?? this.contentStatus,
       contentTitle: contentTitle ?? this.contentTitle,
@@ -125,9 +112,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       contentDetailsPlot: contentDetailsPlot ?? this.contentDetailsPlot,
       contentDetailsDescription:
           contentDetailsDescription ?? this.contentDetailsDescription,
-      movieDialogTitle: movieDialogTitle ?? this.movieDialogTitle,
       movieDialogItem: movieDialogItem ?? this.movieDialogItem,
-      videoDialogTitle: videoDialogTitle ?? this.videoDialogTitle,
       videoDialogItem: videoDialogItem ?? this.videoDialogItem,
       tvSeriesDialogExpansionTitle:
           tvSeriesDialogExpansionTitle ?? this.tvSeriesDialogExpansionTitle,
@@ -153,7 +138,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       formFieldLabel: formFieldLabel ?? this.formFieldLabel,
       formFieldText: formFieldText ?? this.formFieldText,
       generalError: generalError ?? this.generalError,
-      mirrorDialogTitle: mirrorDialogTitle ?? this.mirrorDialogTitle,
       mirrorDialogItem: mirrorDialogItem ?? this.mirrorDialogItem,
     );
   }
@@ -168,7 +152,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     }
 
     return ThemeTextStyles(
-      test: TextStyle.lerp(test, other.test, t)!,
       contentType: TextStyle.lerp(contentType, other.contentType, t)!,
       contentStatus: TextStyle.lerp(contentStatus, other.contentStatus, t)!,
       contentTitle: TextStyle.lerp(contentTitle, other.contentTitle, t)!,
@@ -186,12 +169,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(contentDetailsPlot, other.contentDetailsPlot, t)!,
       contentDetailsDescription: TextStyle.lerp(
           contentDetailsDescription, other.contentDetailsDescription, t)!,
-      movieDialogTitle:
-          TextStyle.lerp(movieDialogTitle, other.movieDialogTitle, t)!,
       movieDialogItem:
           TextStyle.lerp(movieDialogItem, other.movieDialogItem, t)!,
-      videoDialogTitle:
-          TextStyle.lerp(videoDialogTitle, other.videoDialogTitle, t)!,
       videoDialogItem:
           TextStyle.lerp(videoDialogItem, other.videoDialogItem, t)!,
       tvSeriesDialogExpansionTitle: TextStyle.lerp(
@@ -223,21 +202,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       formFieldLabel: TextStyle.lerp(formFieldLabel, other.formFieldLabel, t)!,
       formFieldText: TextStyle.lerp(formFieldText, other.formFieldText, t)!,
       generalError: TextStyle.lerp(generalError, other.generalError, t)!,
-      mirrorDialogTitle:
-          TextStyle.lerp(mirrorDialogTitle, other.mirrorDialogTitle, t)!,
       mirrorDialogItem:
           TextStyle.lerp(mirrorDialogItem, other.mirrorDialogItem, t)!,
     );
   }
 
-  // TODO: implement text styles for light theme
   static get light => ThemeTextStyles(
-        test: headline1.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.w700,
-        ),
         contentType: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.lighterDark,
           fontWeight: FontWeight.w400,
         ),
         contentStatus: headline2.copyWith(
@@ -245,15 +217,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
         ),
         contentTitle: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.lighterDark,
           fontWeight: FontWeight.w400,
         ),
         contentShortInfo: headline2.copyWith(
-          color: AppColors.lighterGrey,
+          color: AppColors.lighterDark,
           fontWeight: FontWeight.w400,
         ),
         filterDialogMenuItem: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
           fontWeight: FontWeight.w400,
         ),
         filterButton: headline2.copyWith(
@@ -261,7 +233,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w500,
         ),
         refreshButton: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         contentDetailsTitle: headline2.copyWith(
           fontSize: 24,
@@ -269,97 +241,78 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.bold,
         ),
         contentDetailsData: headline1.copyWith(
-          color: AppColors.white,
+          color: AppColors.lightDark,
           fontWeight: FontWeight.w400,
         ),
         contentDetailsPlot: headline1.copyWith(
           fontSize: 20,
-          color: AppColors.white,
+          color: AppColors.lightDark,
           fontWeight: FontWeight.bold,
         ),
         contentDetailsDescription: headline1.copyWith(
-          color: AppColors.white,
-        ),
-        movieDialogTitle: headline1.copyWith(
-          fontSize: 18,
-          color: AppColors.white,
-          fontWeight: FontWeight.bold,
+          color: AppColors.lightDark,
         ),
         movieDialogItem: headline1.copyWith(
-          color: AppColors.white,
-        ),
-        videoDialogTitle: headline1.copyWith(
-          fontSize: 18,
-          color: AppColors.white,
-          fontWeight: FontWeight.bold,
+          color: AppColors.black,
         ),
         videoDialogItem: headline1.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         tvSeriesDialogExpansionTitle: headline1.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         tvSeriesDialogExpansionItem: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         tvSeriesDialogMenuItem: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         navigationRailSelectedStyle: headline2.copyWith(
           color: AppColors.red,
         ),
         navigationRailUnselectedStyle: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         searchHint: headline1.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         searchInput: headline1.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         historySubtitle: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         favoriteSubtitle: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         categoriesButton: headline2.copyWith(
           color: AppColors.white,
           fontWeight: FontWeight.w500,
         ),
         categoriesDialogMenuItem: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         settingsContainerTitle: headline1.copyWith(
           color: AppColors.red,
         ),
         settingsContainerItem: headline2.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         formFieldLabel: headline1.copyWith(
           color: AppColors.grey,
         ),
         formFieldText: headline1.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
         generalError: headline1.copyWith(
-          color: AppColors.white,
-        ),
-        mirrorDialogTitle: headline1.copyWith(
-          fontSize: 18,
-          color: AppColors.white,
-          fontWeight: FontWeight.bold,
+          color: AppColors.black,
         ),
         mirrorDialogItem: headline1.copyWith(
-          color: AppColors.white,
+          color: AppColors.black,
         ),
       );
 
   static get dark => ThemeTextStyles(
-        test: headline1.copyWith(
-          color: AppColors.white,
-          fontWeight: FontWeight.w700,
-        ),
         contentType: headline2.copyWith(
           color: AppColors.white,
           fontWeight: FontWeight.w400,
@@ -404,18 +357,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         contentDetailsDescription: headline1.copyWith(
           color: AppColors.white,
         ),
-        movieDialogTitle: headline1.copyWith(
-          fontSize: 18,
-          color: AppColors.white,
-          fontWeight: FontWeight.bold,
-        ),
         movieDialogItem: headline1.copyWith(
           color: AppColors.white,
-        ),
-        videoDialogTitle: headline1.copyWith(
-          fontSize: 18,
-          color: AppColors.white,
-          fontWeight: FontWeight.bold,
         ),
         videoDialogItem: headline1.copyWith(
           color: AppColors.white,
@@ -468,11 +411,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         generalError: headline1.copyWith(
           color: AppColors.white,
-        ),
-        mirrorDialogTitle: headline1.copyWith(
-          fontSize: 18,
-          color: AppColors.white,
-          fontWeight: FontWeight.bold,
         ),
         mirrorDialogItem: headline1.copyWith(
           color: AppColors.white,

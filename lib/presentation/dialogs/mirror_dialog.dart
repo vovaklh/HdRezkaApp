@@ -19,10 +19,7 @@ class MirrorDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       scrollable: true,
-      title: Text(
-        context.localizations.mirror,
-        style: context.text.mirrorDialogTitle,
-      ),
+      title: Text(context.localizations.mirror),
       content: SizedBox(
         width: MediaQuery.of(context).size.width * 0.5,
         height: MediaQuery.of(context).size.height * 0.5,

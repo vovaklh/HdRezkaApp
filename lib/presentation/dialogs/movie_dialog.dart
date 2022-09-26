@@ -38,10 +38,7 @@ class MovieDialog extends StatelessWidget {
       contentPadding: const EdgeInsets.symmetric(horizontal: 8),
       scrollable: true,
       titlePadding: const EdgeInsets.all(8),
-      title: Text(
-        context.localizations.voiceActing,
-        style: context.text.movieDialogTitle,
-      ),
+      title: Text(context.localizations.voiceActing),
       content: BlocBuilder<MovieBloc, MovieState>(
         bloc: _bloc..add(GetMovieTranslationsEvent(url)),
         builder: _blocBuilder,

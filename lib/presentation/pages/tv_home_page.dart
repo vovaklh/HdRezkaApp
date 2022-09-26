@@ -68,10 +68,10 @@ class _TvHomePageState extends State<TvHomePage> {
               selectedIconTheme: IconThemeData(
                 color: context.color.navigationRailSelectedIconColor,
               ),
-              selectedLabelTextStyle: context.text.navigationRailSelectedStyle,
               unselectedIconTheme: IconThemeData(
                 color: context.color.navigationRailUnselectedIconColor,
               ),
+              selectedLabelTextStyle: context.text.navigationRailSelectedStyle,
               unselectedLabelTextStyle:
                   context.text.navigationRailUnselectedStyle,
               destinations: [

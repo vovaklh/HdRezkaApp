@@ -170,6 +170,7 @@ class _SearchPageState extends State<SearchPage>
     super.build(context);
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: _buildSearchField(),
         actions: [
           IconButton(
