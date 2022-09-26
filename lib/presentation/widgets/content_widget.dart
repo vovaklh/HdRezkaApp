@@ -85,7 +85,7 @@ class _ContentWidgetState extends State<ContentWidget> {
         opacity: isFocused
             ? 1.0
             : MyPlatform.isTvMode
-                ? 0.5
+                ? 0.7
                 : 1.0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

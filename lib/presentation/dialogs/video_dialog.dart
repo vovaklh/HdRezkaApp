@@ -57,10 +57,7 @@ class VideoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
-        context.localizations.resolution,
-        style: context.text.videoDialogTitle,
-      ),
+      title: Text(context.localizations.resolution),
       content: BlocBuilder<VideoBloc, VideoState>(
         bloc: _bloc
           ..add(GetVideosEvent(url, translationId, seasonId, seriesId)),
