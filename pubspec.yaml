@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^1.20.1
   firebase_auth: ^3.6.3
   cloud_firestore: ^3.4.4
+  flutter_native_splash: ^2.2.10+1
 
 dev_dependencies:
   flutter_test:
@@ -58,3 +59,18 @@ flutter:
   generate: true
   assets:
     - assets/icons/
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/icons/hdrezka_text_icon.png
+  color_dark: "#000000"
+  image_dark: assets/icons/hdrezka_text_icon.png
+
+  android_12:
+    image: assets/icons/hdrezka_text_icon.png
+    icon_background_color: "#000000"
+    image_dark: assets/icons/hdrezka_text_icon.png
+    icon_background_color_dark: "#000000"
+
+  web: false
+  ios: false
