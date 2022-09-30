@@ -8,6 +8,7 @@ import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/presentation/blocs/search_bloc.dart/search_bloc.dart';
 import 'package:hdrezka_app/presentation/pages/content_details_page.dart';
 import 'package:hdrezka_app/presentation/widgets/content_widget.dart';
+import 'package:hdrezka_app/presentation/widgets/error_indicator.dart';
 import 'package:hdrezka_app/presentation/widgets/loader.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -56,6 +57,13 @@ class _SearchPageState extends State<SearchPage>
       orElse: () => 1,
     );
     return index == _lastFocuseIndex && MyPlatform.isTvMode && page > 1;
+  }
+
+  void _onQueryChanged(String query) {
+    if (query != _lastSearchQuery) {
+      _bloc.add(ContentSearchEvent(query, 1));
+      _lastSearchQuery = query;
+    }
   }
 
   void _onContentTap(Content content) {
@@ -171,7 +179,7 @@ class _SearchPageState extends State<SearchPage>
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: _buildSearchField(),
+        title: _SearchField(_controller, _textFieldFocusNode, _onQueryChanged),
         actions: [
           IconButton(
             icon: const Icon(Icons.clear),
@@ -202,31 +210,6 @@ class _SearchPageState extends State<SearchPage>
     );
   }
 
-  Widget _buildSearchField() {
-    return TextField(
-      focusNode: _textFieldFocusNode,
-      controller: _controller,
-      decoration: InputDecoration(
-        hintText: context.localizations.search,
-        hintStyle: context.text.searchHint,
-        border: InputBorder.none,
-        filled: true,
-        fillColor: context.color.searchFieldFillColor,
-        prefixIcon: Icon(
-          Icons.search,
-          color: context.color.searchFieldIconColor,
-        ),
-      ),
-      style: context.text.searchInput,
-      onChanged: (query) {
-        if (query != _lastSearchQuery) {
-          _bloc.add(ContentSearchEvent(query, 1));
-          _lastSearchQuery = query;
-        }
-      },
-    );
-  }
-
   Widget _blocBuilder(_, SearchState state) {
     return state.when(
       initial: () => Center(
@@ -238,7 +221,7 @@ class _SearchPageState extends State<SearchPage>
       loading: () => const Loader(),
       success: (_, __, ___, ____) => _buildContent(),
       error: (page, _) => page == 1
-          ? _buildErrorIndicator(_retryFirstPageFailedRequest)
+          ? ErrorIndicator(_, _retryFirstPageFailedRequest)
           : _buildContent(),
     );
   }
@@ -261,10 +244,14 @@ class _SearchPageState extends State<SearchPage>
             if (hasFocus) _lastFocuseIndex = index;
           },
         ),
-        firstPageErrorIndicatorBuilder: (_) =>
-            _buildErrorIndicator(_pagingController.refresh),
-        newPageErrorIndicatorBuilder: (_) =>
-            _buildErrorIndicator(_pagingController.retryLastFailedRequest),
+        firstPageErrorIndicatorBuilder: (_) => ErrorIndicator(
+          _pagingController.error,
+          _pagingController.refresh,
+        ),
+        newPageErrorIndicatorBuilder: (_) => ErrorIndicator(
+          _pagingController.error,
+          _pagingController.retryLastFailedRequest,
+        ),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 140,
@@ -274,35 +261,38 @@ class _SearchPageState extends State<SearchPage>
       ),
     );
   }
+}
 
-  Widget _buildErrorIndicator(VoidCallback onTryAgain) {
-    return Align(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 10),
-          Text(
-            _pagingController.error ?? context.localizations.error,
-            style: context.text.refreshButton,
-          ),
-          const SizedBox(height: 4),
-          _buildRetryButton(onTryAgain),
-        ],
-      ),
-    );
-  }
+class _SearchField extends StatelessWidget {
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final Function(String) onChanged;
 
-  Widget _buildRetryButton(VoidCallback onTryAgain) {
-    return IconButton(
-      onPressed: () =>
-          Future.delayed(const Duration(milliseconds: 100), onTryAgain),
-      splashRadius: 16,
-      iconSize: 30,
-      icon: Icon(
-        Icons.refresh,
-        color: context.color.refreshButtonIconColor,
+  const _SearchField(
+    this.controller,
+    this.focusNode,
+    this.onChanged, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      focusNode: focusNode,
+      controller: controller,
+      decoration: InputDecoration(
+        hintText: context.localizations.search,
+        hintStyle: context.text.searchHint,
+        border: InputBorder.none,
+        filled: true,
+        fillColor: context.color.searchFieldFillColor,
+        prefixIcon: Icon(
+          Icons.search,
+          color: context.color.searchFieldIconColor,
+        ),
       ),
+      style: context.text.searchInput,
+      onChanged: onChanged,
     );
   }
 }

@@ -19,25 +19,23 @@ class MirrorDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       scrollable: true,
+      titlePadding: const EdgeInsets.all(8),
       title: Text(context.localizations.mirror),
-      content: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.5,
-        height: MediaQuery.of(context).size.height * 0.5,
-        child: ListView(
-          shrinkWrap: true,
-          children: mirrors
-              .map(
-                (mirror) => ListTile(
-                  title: Text(
-                    mirror,
-                    style: context.text.mirrorDialogItem,
-                  ),
-                  onTap: () => _onMirrorTap(context, mirror),
-                  autofocus: mirror == currentMirror,
+      contentPadding: EdgeInsets.zero,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: mirrors
+            .map(
+              (mirror) => ListTile(
+                title: Text(
+                  mirror,
+                  style: context.text.mirrorDialogItem,
                 ),
-              )
-              .toList(),
-        ),
+                onTap: () => _onMirrorTap(context, mirror),
+                autofocus: mirror == currentMirror,
+              ),
+            )
+            .toList(),
       ),
     );
   }

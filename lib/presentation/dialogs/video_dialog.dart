@@ -57,46 +57,57 @@ class VideoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      scrollable: true,
+      titlePadding: const EdgeInsets.all(8),
       title: Text(context.localizations.resolution),
       content: BlocBuilder<VideoBloc, VideoState>(
         bloc: _bloc
           ..add(GetVideosEvent(url, translationId, seasonId, seriesId)),
-        builder: _blocBuilder,
+        builder: (_, state) {
+          return state.maybeWhen(
+            success: (videos) => _Videos(videos, _onResolutionTap),
+            orElse: () => const SizedBox(
+              height: 100,
+              child: Loader(),
+            ),
+          );
+        },
       ),
     );
   }
+}
 
-  Widget _blocBuilder(BuildContext context, VideoState state) {
-    return state.maybeWhen(
-      success: (videos) => _buildVideos(context, videos),
-      orElse: () => const SizedBox(
-        height: 100,
-        child: Loader(),
-      ),
-    );
-  }
+class _Videos extends StatelessWidget {
+  final Map<String, String> videos;
+  final Function(
+    BuildContext context,
+    Map<String, String> videos,
+    String url,
+  ) onResolutionTap;
 
-  Widget _buildVideos(BuildContext context, Map<String, String> videos) {
+  const _Videos(
+    this.videos,
+    this.onResolutionTap, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ...videos.entries.map(
-          (video) => SizedBox(
-            width: double.infinity,
-            child: TextButton(
-              onPressed: () => _onResolutionTap(
-                context,
-                videos,
-                video.value,
-              ),
-              style: TextButton.styleFrom(
-                alignment: Alignment.centerLeft,
-              ),
-              child: Text(
-                video.key,
-                style: context.text.videoDialogItem,
-              ),
+          (video) => ListTile(
+            title: Text(
+              video.key,
+              style: context.text.videoDialogItem,
+            ),
+            onTap: () => onResolutionTap(
+              context,
+              videos,
+              video.value,
             ),
           ),
         ),

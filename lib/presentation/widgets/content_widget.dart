@@ -28,6 +28,8 @@ class _ContentWidgetState extends State<ContentWidget> {
 
   bool isFocused = false;
 
+  Content get content => widget.content;
+
   KeyEventResult _onKeyHandler(_, RawKeyEvent event) {
     if (event is RawKeyUpEvent &&
         event.logicalKey == LogicalKeyboardKey.select) {
@@ -42,6 +44,16 @@ class _ContentWidgetState extends State<ContentWidget> {
       isFocused = focused;
     });
     widget.onFocusChange?.call(focused);
+  }
+
+  double _getScale() {
+    if (isFocused) return 1.0;
+    return MyPlatform.isTvMode ? 0.9 : 1.0;
+  }
+
+  double _getOpacity() {
+    if (isFocused) return 1.0;
+    return MyPlatform.isTvMode ? 0.7 : 1.0;
   }
 
   @override
@@ -65,70 +77,69 @@ class _ContentWidgetState extends State<ContentWidget> {
       onFocusChange: _onFocusChanged,
       onKey: _onKeyHandler,
       child: AnimatedScale(
-        scale: isFocused
-            ? 1.0
-            : MyPlatform.isTvMode
-                ? 0.9
-                : 1.0,
+        scale: _getScale(),
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
-        child: _buildContent(),
-      ),
-    );
-  }
-
-  Widget _buildContent() {
-    final content = widget.content;
-    return GestureDetector(
-      onTap: () => widget.onTap(content),
-      child: Opacity(
-        opacity: isFocused
-            ? 1.0
-            : MyPlatform.isTvMode
-                ? 0.7
-                : 1.0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+        child: GestureDetector(
+          onTap: () => widget.onTap(content),
+          child: Opacity(
+            opacity: _getOpacity(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildContentImage(),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: _buildContentType(),
-                ),
-                if (content.status != null)
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: _buildContentStatus(),
+                Stack(
+                  children: [
+                    _ContentImage(content.imageUrl),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: _ContentType(content),
                     ),
-                  ),
+                    if (content.status != null)
+                      Positioned.fill(
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: _ContentStatus(content.status),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                _ContentTitle(content.title),
+                const SizedBox(height: 2),
+                Expanded(child: _ContentShortInfo(content.shortInfo)),
               ],
             ),
-            const SizedBox(height: 6),
-            _buildContentTitle(),
-            const SizedBox(height: 2),
-            Expanded(child: _buildContentShortInfo()),
-          ],
+          ),
         ),
       ),
     );
   }
+}
 
-  Widget _buildContentImage() {
-    final content = widget.content;
+class _ContentImage extends StatelessWidget {
+  final String imageUrl;
+
+  const _ContentImage(this.imageUrl);
+
+  @override
+  Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 6 / 9,
       child: CachedNetworkImage(
-        imageUrl: content.imageUrl,
+        imageUrl: imageUrl,
         fit: BoxFit.cover,
       ),
     );
   }
+}
 
-  Widget _buildContentType() {
-    final content = widget.content;
+class _ContentType extends StatelessWidget {
+  final Content content;
+
+  const _ContentType(this.content);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       color: content.contentType.getColor(),
       padding: const EdgeInsets.all(4),
@@ -138,33 +149,51 @@ class _ContentWidgetState extends State<ContentWidget> {
       ),
     );
   }
+}
 
-  Widget _buildContentStatus() {
-    final content = widget.content;
+class _ContentStatus extends StatelessWidget {
+  final String? status;
+
+  const _ContentStatus(this.status);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       color: context.color.contentStatusBackground,
       padding: const EdgeInsets.all(4),
       child: Text(
-        content.status ?? "",
+        status ?? "",
         style: context.text.contentStatus,
       ),
     );
   }
+}
 
-  Widget _buildContentTitle() {
-    final content = widget.content;
+class _ContentTitle extends StatelessWidget {
+  final String title;
+
+  const _ContentTitle(this.title);
+
+  @override
+  Widget build(BuildContext context) {
     return Text(
-      content.title,
+      title,
       overflow: TextOverflow.ellipsis,
       maxLines: 2,
       style: context.text.contentTitle,
     );
   }
+}
 
-  Widget _buildContentShortInfo() {
-    final content = widget.content;
+class _ContentShortInfo extends StatelessWidget {
+  final String shortInfo;
+
+  const _ContentShortInfo(this.shortInfo);
+
+  @override
+  Widget build(BuildContext context) {
     return Text(
-      content.shortInfo,
+      shortInfo,
       style: context.text.contentShortInfo,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,

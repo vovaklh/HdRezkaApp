@@ -9,6 +9,7 @@ import 'package:hdrezka_app/presentation/cubits/categories_cubit/categories_cubi
 import 'package:hdrezka_app/presentation/dialogs/categories_diaolog.dart';
 import 'package:hdrezka_app/presentation/pages/content_details_page.dart';
 import 'package:hdrezka_app/presentation/widgets/content_widget.dart';
+import 'package:hdrezka_app/presentation/widgets/error_indicator.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class CategoriesPage extends StatefulWidget {
@@ -115,20 +116,42 @@ class _CategoriesPageState extends State<CategoriesPage>
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: RawMaterialButton(
-                  onPressed: _showDialog,
-                  fillColor: MyPlatform.isTvMode
-                      ? context.color.categoriesButtonFillColor
-                      : context.color.categoriesButtonFocusColor,
-                  focusColor: context.color.categoriesButtonFocusColor,
-                  child: Text(
-                    context.localizations.categories,
-                    style: context.text.categoriesButton,
-                  ),
-                ),
+                child: _CategoriesButton(_showDialog),
               ),
               Expanded(
-                child: _buildContent(),
+                child: PagedGridView<int, Content>(
+                  showNewPageProgressIndicatorAsGridChild: MyPlatform.isTvMode,
+                  showNewPageErrorIndicatorAsGridChild: false,
+                  pagingController: _pagingController,
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(20),
+                  builderDelegate: PagedChildBuilderDelegate<Content>(
+                    animateTransitions: true,
+                    itemBuilder: (_, item, index) => ContentWidget(
+                      hasFocus: _shouldHaveFocus(index),
+                      onFocusChange: (hasFocus) {
+                        if (hasFocus) _lastFocuseIndex = index;
+                      },
+                      content: item,
+                      onTap: _onContentTap,
+                    ),
+                    firstPageErrorIndicatorBuilder: (_) => ErrorIndicator(
+                      _pagingController.error,
+                      _pagingController.refresh,
+                    ),
+                    newPageErrorIndicatorBuilder: (_) => ErrorIndicator(
+                      _pagingController.error,
+                      _pagingController.retryLastFailedRequest,
+                    ),
+                  ),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 140,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.45,
+                    crossAxisSpacing: 12,
+                  ),
+                ),
               ),
             ],
           ),
@@ -136,66 +159,27 @@ class _CategoriesPageState extends State<CategoriesPage>
       ),
     );
   }
+}
 
-  Widget _buildContent() {
-    return PagedGridView<int, Content>(
-      showNewPageProgressIndicatorAsGridChild: MyPlatform.isTvMode,
-      showNewPageErrorIndicatorAsGridChild: false,
-      pagingController: _pagingController,
-      scrollDirection: Axis.vertical,
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.all(20),
-      builderDelegate: PagedChildBuilderDelegate<Content>(
-        animateTransitions: true,
-        itemBuilder: (_, item, index) => ContentWidget(
-          hasFocus: _shouldHaveFocus(index),
-          onFocusChange: (hasFocus) {
-            if (hasFocus) _lastFocuseIndex = index;
-          },
-          content: item,
-          onTap: _onContentTap,
-        ),
-        firstPageErrorIndicatorBuilder: (_) =>
-            _buildErrorIndicator(_pagingController.refresh),
-        newPageErrorIndicatorBuilder: (_) =>
-            _buildErrorIndicator(_pagingController.retryLastFailedRequest),
-      ),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 140,
-        mainAxisSpacing: 12,
-        childAspectRatio: 0.45,
-        crossAxisSpacing: 12,
-      ),
-    );
-  }
+class _CategoriesButton extends StatelessWidget {
+  final VoidCallback onPressed;
 
-  Widget _buildErrorIndicator(VoidCallback onTryAgain) {
-    return Align(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(height: 10),
-          Text(
-            _pagingController.error,
-            style: context.text.refreshButton,
-          ),
-          const SizedBox(height: 4),
-          _buildRetryButton(onTryAgain),
-        ],
-      ),
-    );
-  }
+  const _CategoriesButton(
+    this.onPressed, {
+    Key? key,
+  }) : super(key: key);
 
-  Widget _buildRetryButton(VoidCallback onTryAgain) {
-    return IconButton(
-      onPressed: () =>
-          Future.delayed(const Duration(milliseconds: 100), onTryAgain),
-      splashRadius: 16,
-      iconSize: 30,
-      icon: Icon(
-        Icons.refresh,
-        color: context.color.refreshButtonIconColor,
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onPressed,
+      fillColor: MyPlatform.isTvMode
+          ? context.color.categoriesButtonFillColor
+          : context.color.categoriesButtonFocusColor,
+      focusColor: context.color.categoriesButtonFocusColor,
+      child: Text(
+        context.localizations.categories,
+        style: context.text.categoriesButton,
       ),
     );
   }

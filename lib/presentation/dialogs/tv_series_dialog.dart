@@ -114,22 +114,16 @@ class TvSeriesDialog extends StatelessWidget {
             children: [
               ...wrapper.episodes[season.key]!.entries
                   .map(
-                    (episode) => SizedBox(
-                      width: double.infinity,
-                      child: TextButton(
-                        onPressed: () => _onSeriesTap(
-                          context,
-                          currentTranslationId,
-                          season.key,
-                          episode.key,
-                        ),
-                        style: TextButton.styleFrom(
-                          alignment: Alignment.centerLeft,
-                        ),
-                        child: Text(
-                          episode.value,
-                          style: context.text.tvSeriesDialogExpansionItem,
-                        ),
+                    (episode) => ListTile(
+                      title: Text(
+                        episode.value,
+                        style: context.text.tvSeriesDialogExpansionItem,
+                      ),
+                      onTap: () => _onSeriesTap(
+                        context,
+                        currentTranslationId,
+                        season.key,
+                        episode.key,
                       ),
                     ),
                   )
