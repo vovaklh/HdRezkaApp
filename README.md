@@ -1,16 +1,16 @@
-# hdrezka_app
+# HDRezka Application
 
-A new Flutter project.
+An application for watching content from hdrezka. Works on Android/AndroidTv. To run in tv mode, select tv configuration in VsCode. Before running the app, download and run the [server](https://github.com/vovaklh/HdRezkaApi). 
 
-## Getting Started
+## Features to implement
 
-This project is a starting point for a Flutter application.
+- Support for Ios/MacOs/Windows
+- Write custom videoplayer for AndroidTv
+- Subtitles support
+- Ability to delete content from history
+- More animations
+- More error handling
 
-A few resources to get you started if this is your first Flutter project:
+## Bugs to fix
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+There ase some bugs related to focus that appears only on Android Tv. Sometimes button is not clickable after moving focus programatically, etc.
