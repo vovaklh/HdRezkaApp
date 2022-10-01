@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
-import 'package:hdrezka_app/presentation/blocs/movie_bloc/movie_bloc.dart';
+import 'package:hdrezka_app/presentation/cubits/movie_cubit/movie_cubit.dart';
 import 'package:hdrezka_app/presentation/dialogs/video_dialog.dart';
 import 'package:hdrezka_app/presentation/widgets/loader.dart';
 
@@ -11,7 +11,7 @@ class MovieDialog extends StatelessWidget {
   final String title;
   final VoidCallback? onVideoTappped;
 
-  final _bloc = locator<MovieBloc>();
+  final _cubit = locator<MovieCubit>();
 
   MovieDialog({
     required this.url,
@@ -39,8 +39,8 @@ class MovieDialog extends StatelessWidget {
       scrollable: true,
       titlePadding: const EdgeInsets.all(8),
       title: Text(context.localizations.voiceActing),
-      content: BlocBuilder<MovieBloc, MovieState>(
-        bloc: _bloc..add(GetMovieTranslationsEvent(url)),
+      content: BlocBuilder<MovieCubit, MovieState>(
+        bloc: _cubit..getTranslations(url),
         builder: (_, state) {
           return state.maybeWhen(
             success: (translations) =>

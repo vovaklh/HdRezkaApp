@@ -1,4 +1,4 @@
-part of 'tv_series_bloc.dart';
+part of 'tv_series_cubit.dart';
 
 @freezed
 class TvSeriesState with _$TvSeriesState {

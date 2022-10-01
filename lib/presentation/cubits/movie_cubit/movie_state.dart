@@ -1,4 +1,4 @@
-part of 'movie_bloc.dart';
+part of 'movie_cubit.dart';
 
 @freezed
 class MovieState with _$MovieState {

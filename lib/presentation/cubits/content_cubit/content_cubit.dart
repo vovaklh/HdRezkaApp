@@ -5,24 +5,19 @@ import 'package:hdrezka_app/data/datasources/local/enums/content_type.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
 import 'package:hdrezka_app/domain/repositories/content_repository.dart';
 
-part 'content_bloc.freezed.dart';
-part 'content_event.dart';
+part 'content_cubit.freezed.dart';
 part 'content_state.dart';
 
-class ContentBloc extends Bloc<ContentEvent, ContentState> {
+class ContentCubit extends Cubit<ContentState> {
   final ContentRepository contentRepository;
 
-  ContentBloc({required this.contentRepository})
-      : super(const ContentState.initial()) {
-    on<GetContentEvent>((event, emit) =>
-        _getContent(event.page, event.filter, event.type, emit));
-  }
+  ContentCubit({required this.contentRepository})
+      : super(const ContentState.initial());
 
-  Future<void> _getContent(
+  Future<void> getContent(
     int page,
     ContentFilter filter,
     ContentType type,
-    Emitter emit,
   ) async {
     try {
       emit(const ContentState.loading());

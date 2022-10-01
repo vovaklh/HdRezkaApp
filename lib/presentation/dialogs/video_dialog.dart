@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 import 'package:hdrezka_app/core/utils/utils/my_platform.dart';
-import 'package:hdrezka_app/presentation/blocs/video_bloc/video_bloc.dart';
+import 'package:hdrezka_app/presentation/cubits/video_cubit/video_cubit.dart';
 import 'package:hdrezka_app/presentation/pages/video_page.dart';
 import 'package:hdrezka_app/presentation/widgets/loader.dart';
 
@@ -16,7 +16,7 @@ class VideoDialog extends StatelessWidget {
   final String? seasonId;
   final String? seriesId;
 
-  final _bloc = locator<VideoBloc>();
+  final _cubit = locator<VideoCubit>();
 
   VideoDialog({
     required this.title,
@@ -61,9 +61,8 @@ class VideoDialog extends StatelessWidget {
       scrollable: true,
       titlePadding: const EdgeInsets.all(8),
       title: Text(context.localizations.resolution),
-      content: BlocBuilder<VideoBloc, VideoState>(
-        bloc: _bloc
-          ..add(GetVideosEvent(url, translationId, seasonId, seriesId)),
+      content: BlocBuilder<VideoCubit, VideoState>(
+        bloc: _cubit..getVideos(url, translationId, seasonId, seriesId),
         builder: (_, state) {
           return state.maybeWhen(
             success: (videos) => _Videos(videos, _onResolutionTap),
