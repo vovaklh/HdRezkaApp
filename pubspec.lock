@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "47.0.0"
+  _flutterfire_internals:
+    dependency: transitive
+    description:
+      name: _flutterfire_internals
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   analyzer:
     dependency: transitive
     description:
@@ -196,21 +203,21 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.9"
+    version: "3.5.0"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.7.5"
+    version: "5.7.6"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.8"
+    version: "2.8.9"
   code_builder:
     dependency: transitive
     description:
@@ -322,28 +329,28 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.10.0"
+    version: "3.11.0"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.9.0"
+    version: "6.10.0"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.0"
+    version: "4.6.0"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.23.0"
+    version: "1.24.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -357,7 +364,7 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.2"
+    version: "1.7.3"
   fixnum:
     dependency: transitive
     description:
@@ -365,27 +372,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
-  floor:
-    dependency: "direct main"
-    description:
-      name: floor
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
-  floor_annotation:
-    dependency: transitive
-    description:
-      name: floor_annotation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
-  floor_generator:
-    dependency: "direct dev"
-    description:
-      name: floor_generator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -601,7 +587,7 @@ packages:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.4.0"
+    version: "6.4.1"
   lints:
     dependency: transitive
     description:
@@ -609,13 +595,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  lists:
-    dependency: transitive
-    description:
-      name: lists
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   logger:
     dependency: transitive
     description:
@@ -727,7 +706,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   path_provider_windows:
     dependency: transitive
     description:
@@ -964,20 +943,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
-  sqflite_common_ffi:
-    dependency: transitive
-    description:
-      name: sqflite_common_ffi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1+1"
-  sqlite3:
-    dependency: transitive
-    description:
-      name: sqlite3
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.9.0"
   stack_trace:
     dependency: transitive
     description:
@@ -1006,13 +971,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
-  strings:
-    dependency: transitive
-    description:
-      name: strings
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.2"
   synchronized:
     dependency: transitive
     description:
@@ -1055,13 +1013,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.1"
-  unicode:
-    dependency: transitive
-    description:
-      name: unicode
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
   universal_io:
     dependency: transitive
     description:

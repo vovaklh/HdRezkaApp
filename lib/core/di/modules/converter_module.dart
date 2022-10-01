@@ -1,7 +1,3 @@
-import 'package:hdrezka_app/data/datasources/local/database/converters.dart/content_favorite_converter.dart';
-import 'package:hdrezka_app/data/datasources/local/database/converters.dart/content_history_converter.dart';
-import 'package:hdrezka_app/data/datasources/local/database/db_models/content_favorite_db_model.dart';
-import 'package:hdrezka_app/data/datasources/local/database/db_models/content_history_db_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/converters/content_converter.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/converters/content_data_converter.dart';
 import 'package:hdrezka_app/data/datasources/remote/api/converters/content_details_converter.dart';
@@ -12,7 +8,6 @@ import 'package:hdrezka_app/data/datasources/remote/api/models/content_model.dar
 import 'package:hdrezka_app/data/datasources/remote/api/models/seasons_wrapper_model.dart';
 import 'package:hdrezka_app/data/datasources/remote/firebase/converters/content_fb_converter.dart';
 import 'package:hdrezka_app/data/datasources/remote/firebase/models/content_fb_model.dart';
-import 'package:hdrezka_app/domain/converters/db_converter.dart';
 import 'package:hdrezka_app/domain/converters/fb_converter.dart';
 import 'package:hdrezka_app/domain/converters/model_converter.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
@@ -44,17 +39,6 @@ abstract class ConverterModule {
   ModelConverter<SeasonsWrapperModel, SeasonsWrapper>
       seasonsWrapperConverter() {
     return SeasonsWrapperConverter();
-  }
-
-  // Db converters
-  @lazySingleton
-  DbConverter<ContentHistoryDbModel, Content> contentHistoryConveter() {
-    return ContentHistoryConverter();
-  }
-
-  @lazySingleton
-  DbConverter<ContentFavoriteDbModel, Content> contentFavoriteConveter() {
-    return ContentFavoriteConverter();
   }
 
   // Fb converters
