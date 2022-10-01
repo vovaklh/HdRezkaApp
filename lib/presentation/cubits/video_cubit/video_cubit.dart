@@ -2,39 +2,36 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hdrezka_app/domain/repositories/content_repository.dart';
 
-part 'video_bloc.freezed.dart';
-part 'video_event.dart';
+part 'video_cubit.freezed.dart';
 part 'video_state.dart';
 
-class VideoBloc extends Bloc<VideoEvent, VideoState> {
+class VideoCubit extends Cubit<VideoState> {
   final ContentRepository contentRepository;
 
-  VideoBloc({required this.contentRepository})
-      : super(const VideoState.initial()) {
-    on<GetVideosEvent>(
-      (event, emit) => _getVideos(event, emit),
-    );
-  }
+  VideoCubit({required this.contentRepository})
+      : super(const VideoState.initial());
 
-  Future<void> _getVideos(GetVideosEvent event, Emitter emit) async {
+  Future<void> getVideos(
+    String url,
+    String translationId, [
+    String? seasonId,
+    String? seriesId,
+  ]) async {
     try {
       emit(const VideoState.loading());
 
-      final seasonId = event.seasonId;
-      final seriesId = event.seriesId;
-
       if (seasonId != null && seriesId != null) {
         final videos = await contentRepository.getTvSeriesVideos(
-          event.url,
-          event.translationId,
+          url,
+          translationId,
           seasonId,
           seriesId,
         );
         emit(VideoState.success(videos));
       } else {
         final videos = await contentRepository.getMovieVideos(
-          event.url,
-          event.translationId,
+          url,
+          translationId,
         );
         emit(VideoState.success(videos));
       }

@@ -1,4 +1,4 @@
-part of 'content_bloc.dart';
+part of 'content_cubit.dart';
 
 @freezed
 class ContentState with _$ContentState {

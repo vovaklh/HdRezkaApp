@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hdrezka_app/core/di/locator.dart';
 import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 import 'package:hdrezka_app/domain/entities/seasons_wrapper.dart';
-import 'package:hdrezka_app/presentation/blocs/series_bloc/tv_series_bloc.dart';
+import 'package:hdrezka_app/presentation/cubits/series_cubit/tv_series_cubit.dart';
 import 'package:hdrezka_app/presentation/dialogs/video_dialog.dart';
 import 'package:hdrezka_app/presentation/widgets/loader.dart';
 
@@ -12,7 +12,7 @@ class TvSeriesDialog extends StatelessWidget {
   final String title;
   final VoidCallback? onVideoTappped;
 
-  final _bloc = locator<TvSeriesBloc>();
+  final _cubit = locator<TvSeriesCubit>();
 
   TvSeriesDialog({
     required this.url,
@@ -42,7 +42,7 @@ class TvSeriesDialog extends StatelessWidget {
 
   void _onTranslationChanged(String? translationId) {
     if (translationId != null) {
-      _bloc.add(GetTvSeriesSeasonsEvent(url, translationId));
+      _cubit.getTvSeriesSeasons(url, translationId);
     }
   }
 
@@ -51,8 +51,8 @@ class TvSeriesDialog extends StatelessWidget {
     return AlertDialog(
       contentPadding: const EdgeInsets.all(8),
       scrollable: true,
-      content: BlocBuilder<TvSeriesBloc, TvSeriesState>(
-        bloc: _bloc..add(GetTvSeriesSeasonsEvent(url)),
+      content: BlocBuilder<TvSeriesCubit, TvSeriesState>(
+        bloc: _cubit..getTvSeriesSeasons(url),
         builder: _blocBuilder,
       ),
     );

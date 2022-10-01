@@ -5,7 +5,7 @@ import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 import 'package:hdrezka_app/core/utils/utils/my_platform.dart';
 import 'package:hdrezka_app/data/datasources/local/models/content_filter_wrapper.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
-import 'package:hdrezka_app/presentation/blocs/content_bloc/content_bloc.dart';
+import 'package:hdrezka_app/presentation/cubits/content_cubit/content_cubit.dart';
 import 'package:hdrezka_app/presentation/dialogs/filter_dialog.dart';
 import 'package:hdrezka_app/presentation/pages/content_details_page.dart';
 import 'package:hdrezka_app/presentation/widgets/content_widget.dart';
@@ -21,7 +21,7 @@ class ContentPage extends StatefulWidget {
 
 class _ContentPageState extends State<ContentPage>
     with AutomaticKeepAliveClientMixin {
-  final ContentBloc _bloc = locator<ContentBloc>();
+  final ContentCubit _cubit = locator<ContentCubit>();
   final _pagingController = PagingController<int, Content>(
     firstPageKey: 1,
     invisibleItemsThreshold: 1,
@@ -81,12 +81,10 @@ class _ContentPageState extends State<ContentPage>
   void initState() {
     super.initState();
     _pagingController.addPageRequestListener((pageKey) {
-      _bloc.add(
-        GetContentEvent(
-          pageKey,
-          _currentFilterWrapper.filter,
-          _currentFilterWrapper.type,
-        ),
+      _cubit.getContent(
+        pageKey,
+        _currentFilterWrapper.filter,
+        _currentFilterWrapper.type,
       );
     });
   }
@@ -102,8 +100,8 @@ class _ContentPageState extends State<ContentPage>
     super.build(context);
     return Scaffold(
       body: SafeArea(
-        child: BlocListener<ContentBloc, ContentState>(
-          bloc: _bloc,
+        child: BlocListener<ContentCubit, ContentState>(
+          bloc: _cubit,
           listener: _handleState,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

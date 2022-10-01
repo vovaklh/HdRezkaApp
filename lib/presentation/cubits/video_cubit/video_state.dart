@@ -1,4 +1,4 @@
-part of 'video_bloc.dart';
+part of 'video_cubit.dart';
 
 @freezed
 class VideoState with _$VideoState {

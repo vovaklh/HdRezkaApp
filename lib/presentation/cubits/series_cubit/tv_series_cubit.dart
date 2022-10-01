@@ -3,26 +3,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hdrezka_app/domain/entities/seasons_wrapper.dart';
 import 'package:hdrezka_app/domain/repositories/content_repository.dart';
 
-part 'tv_series_bloc.freezed.dart';
-part 'tv_series_event.dart';
+part 'tv_series_cubit.freezed.dart';
 part 'tv_series_state.dart';
 
-class TvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
+class TvSeriesCubit extends Cubit<TvSeriesState> {
   final ContentRepository contentRepository;
 
-  TvSeriesBloc({required this.contentRepository})
-      : super(const TvSeriesState.initial()) {
-    on<GetTvSeriesSeasonsEvent>(
-      (event, emit) =>
-          _getTvSeriesSeasons(event.url, event.translationId, emit),
-    );
-  }
+  TvSeriesCubit({required this.contentRepository})
+      : super(const TvSeriesState.initial());
 
-  Future<void> _getTvSeriesSeasons(
-    String url,
+  Future<void> getTvSeriesSeasons(
+    String url, [
     String? translationId,
-    Emitter emit,
-  ) async {
+  ]) async {
     try {
       emit(const TvSeriesState.loading());
 

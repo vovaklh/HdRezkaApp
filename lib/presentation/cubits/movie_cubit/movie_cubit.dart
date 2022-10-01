@@ -2,21 +2,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hdrezka_app/domain/repositories/content_repository.dart';
 
-part 'movie_bloc.freezed.dart';
-part 'movie_event.dart';
+part 'movie_cubit.freezed.dart';
 part 'movie_state.dart';
 
-class MovieBloc extends Bloc<MovieEvent, MovieState> {
+class MovieCubit extends Cubit<MovieState> {
   final ContentRepository contentRepository;
 
-  MovieBloc({required this.contentRepository})
-      : super(const MovieState.initial()) {
-    on<GetMovieTranslationsEvent>(
-      (event, emit) => _getMovieTranslations(event.url, emit),
-    );
-  }
+  MovieCubit({required this.contentRepository})
+      : super(const MovieState.initial());
 
-  Future<void> _getMovieTranslations(String url, Emitter emit) async {
+  Future<void> getTranslations(String url) async {
     try {
       final movieTranslations =
           await contentRepository.getContentTranslations(url);
