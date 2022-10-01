@@ -7,6 +7,7 @@ import 'package:hdrezka_app/core/utils/extensions/build_context_ext.dart';
 import 'package:hdrezka_app/core/utils/mixins/error_provider.dart';
 import 'package:hdrezka_app/data/datasources/local/enums/content_affilation.dart';
 import 'package:hdrezka_app/domain/entities/content.dart';
+import 'package:hdrezka_app/domain/entities/content_data.dart';
 import 'package:hdrezka_app/domain/entities/content_details.dart';
 import 'package:hdrezka_app/presentation/cubits/content_details_cubit/content_details_cubit.dart';
 import 'package:hdrezka_app/presentation/dialogs/movie_dialog.dart';
@@ -85,22 +86,35 @@ class _ContentDetailsPageState extends State<ContentDetailsPage>
         child: BlocConsumer<ContentDetailsCubit, ContentDetailsState>(
           bloc: _cubit,
           listener: _blocListener,
-          builder: _blocBuilder,
+          builder: (_, state) {
+            return state.maybeWhen(
+              success: (contentDetails) =>
+                  _ContentDetails(contentDetails, _onPlay, _onFavoriteTap),
+              orElse: () => const Loader(),
+            );
+          },
           buildWhen: ((previous, current) =>
               current.maybeMap(error: (value) => false, orElse: () => true)),
         ),
       ),
     );
   }
+}
 
-  Widget _blocBuilder(_, ContentDetailsState state) {
-    return state.maybeWhen(
-      success: (contentDetails) => _buildContentDetails(contentDetails),
-      orElse: () => const Loader(),
-    );
-  }
+class _ContentDetails extends StatelessWidget {
+  final ContentDetails contentDetails;
+  final Function(ContentDetails) onPlay;
+  final Function(ContentDetails) onFavoriteTap;
 
-  Widget _buildContentDetails(ContentDetails contentDetails) {
+  const _ContentDetails(
+    this.contentDetails,
+    this.onPlay,
+    this.onFavoriteTap, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -117,7 +131,11 @@ class _ContentDetailsPageState extends State<ContentDetailsPage>
                   ),
                 ),
                 const SizedBox(height: 10),
-                _buildHeader(contentDetails),
+                _Header(
+                  contentDetails,
+                  onPlay,
+                  onFavoriteTap,
+                ),
                 const SizedBox(height: 16),
                 Text(
                   context.localizations.plot,
@@ -137,8 +155,22 @@ class _ContentDetailsPageState extends State<ContentDetailsPage>
       ),
     );
   }
+}
 
-  Row _buildHeader(ContentDetails contentDetails) {
+class _Header extends StatelessWidget {
+  final ContentDetails contentDetails;
+  final Function(ContentDetails) onPlay;
+  final Function(ContentDetails) onFavoriteTap;
+
+  const _Header(
+    this.contentDetails,
+    this.onPlay,
+    this.onFavoriteTap, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -149,52 +181,60 @@ class _ContentDetailsPageState extends State<ContentDetailsPage>
             children: [
               CachedNetworkImage(imageUrl: contentDetails.imageUrl),
               const SizedBox(height: 10),
-              _buildButtons(contentDetails),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () => onPlay(contentDetails),
+                    iconSize: 40,
+                    splashRadius: 28,
+                    focusColor: context.color.playButtonFocusColor,
+                    icon: Icon(
+                      Icons.play_arrow,
+                      color: context.color.playButtonIconColor,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => onFavoriteTap(contentDetails),
+                    iconSize: 40,
+                    splashRadius: 28,
+                    focusColor: context.color.favoriteButtonFocusColor,
+                    icon: Icon(
+                      contentDetails.isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: context.color.favoriteButtonIconColor,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
         const SizedBox(width: 8),
         Expanded(
           flex: 4,
-          child: _buildContentData(contentDetails),
+          child: _ContentData(contentDetails.data),
         ),
       ],
     );
   }
+}
 
-  Row _buildButtons(ContentDetails contentDetails) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        IconButton(
-          onPressed: () => _onPlay(contentDetails),
-          iconSize: 40,
-          splashRadius: 28,
-          focusColor: context.color.playButtonFocusColor,
-          icon: Icon(
-            Icons.play_arrow,
-            color: context.color.playButtonIconColor,
-          ),
-        ),
-        IconButton(
-          onPressed: () => _onFavoriteTap(contentDetails),
-          iconSize: 40,
-          splashRadius: 28,
-          focusColor: context.color.favoriteButtonFocusColor,
-          icon: Icon(
-            contentDetails.isFavorite ? Icons.favorite : Icons.favorite_border,
-            color: context.color.favoriteButtonIconColor,
-          ),
-        ),
-      ],
-    );
-  }
+class _ContentData extends StatelessWidget {
+  final List<ContentData> data;
 
-  Column _buildContentData(ContentDetails contentDetails) {
+  const _ContentData(
+    this.data, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ...contentDetails.data
+        ...data
             .map((data) => [
                   Text(
                     "${data.name} ${data.value}",

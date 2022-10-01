@@ -20,16 +20,6 @@ class _FavoritePageState extends State<FavoritePage>
     with AutomaticKeepAliveClientMixin {
   final _cubit = locator<FavoritesCubit>();
 
-  void _onContentTap(Content content) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ContentDetailsPage(
-          content: content,
-        ),
-      ),
-    );
-  }
-
   @override
   bool get wantKeepAlive => true;
 
@@ -40,26 +30,45 @@ class _FavoritePageState extends State<FavoritePage>
       body: SafeArea(
         child: BlocBuilder<FavoritesCubit, FavoritesState>(
           bloc: _cubit,
-          builder: _blocBuilder,
+          builder: (_, state) {
+            return state.maybeWhen(
+              success: (content) {
+                if (content.isEmpty) {
+                  return const _EmptyContent();
+                }
+                return _ContentGrid(content);
+              },
+              error: (error) =>
+                  MyErrorWidget(ErrorHandler.processError(context, error)),
+              orElse: () => const _EmptyContent(),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _ContentGrid extends StatelessWidget {
+  final List<Content> content;
+
+  const _ContentGrid(
+    this.content, {
+    Key? key,
+  }) : super(key: key);
+
+  void _onContentTap(Content content, BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ContentDetailsPage(
+          content: content,
         ),
       ),
     );
   }
 
-  Widget _blocBuilder(_, FavoritesState state) {
-    return state.maybeWhen(
-      success: _buildContent,
-      error: (error) =>
-          MyErrorWidget(ErrorHandler.processError(context, error)),
-      orElse: _buildEmptyContent,
-    );
-  }
-
-  Widget _buildContent(List<Content> content) {
-    if (content.isEmpty) {
-      return _buildEmptyContent();
-    }
-
+  @override
+  Widget build(BuildContext context) {
     return GridView.builder(
       scrollDirection: Axis.vertical,
       physics: const BouncingScrollPhysics(),
@@ -67,7 +76,7 @@ class _FavoritePageState extends State<FavoritePage>
       itemCount: content.length,
       itemBuilder: (_, index) => ContentWidget(
         content: content[index],
-        onTap: _onContentTap,
+        onTap: (content) => _onContentTap(content, context),
       ),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 140,
@@ -77,8 +86,13 @@ class _FavoritePageState extends State<FavoritePage>
       ),
     );
   }
+}
 
-  Widget _buildEmptyContent() {
+class _EmptyContent extends StatelessWidget {
+  const _EmptyContent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Text(
         context.localizations.favoritesIsEmpty,

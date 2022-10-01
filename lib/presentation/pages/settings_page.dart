@@ -38,19 +38,19 @@ class _SettingsPageState extends State<SettingsPage>
   }
 
   void _showMirrorDialog() async {
-    final SettingsDto? settingsDto = _cubit.state.maybeMap(
-      success: (value) => value.settingsDto,
-      orElse: () => null,
+    final String currentMirror = _cubit.state.maybeMap(
+      success: (value) => value.settingsDto.mirror,
+      orElse: () => AppConstants.mirrors.first,
     );
-    final String? mirror = await showDialog<String?>(
+    final String? newMirror = await showDialog<String?>(
       context: context,
       builder: (_) => MirrorDialog(
-        currentMirror: settingsDto?.mirror ?? AppConstants.mirrors.first,
+        currentMirror: currentMirror,
         mirrors: AppConstants.mirrors,
       ),
     );
-    if (mirror != null) {
-      _cubit.setMirror(mirror);
+    if (newMirror != null && newMirror != currentMirror) {
+      _cubit.setMirror(newMirror);
       Fluttertoast.showToast(
         msg: context.localizations.reloadAppToApplyChanges,
         toastLength: Toast.LENGTH_SHORT,
@@ -97,24 +97,24 @@ class _SettingsPageState extends State<SettingsPage>
       success: (dto) {
         return ListView(
           children: [
-            SettingsContainer(
+            _SettingsContainer(
               title: context.localizations.account,
               settingItems: _getAuthSettingItems(dto),
             ),
-            SettingsContainer(
+            _SettingsContainer(
               title: context.localizations.app,
               settingItems: [
-                IconedSettingsItem(
+                _IconedSettingsItem(
                   onTap: _showMirrorDialog,
                   text: context.localizations.mirror,
                   icon: Icons.follow_the_signs_rounded,
                 ),
               ],
             ),
-            SettingsContainer(
+            _SettingsContainer(
               title: context.localizations.interface,
               settingItems: [
-                CheckBoxSettingsItem(
+                _CheckBoxSettingsItem(
                   isChecked: context.isDarkMode,
                   text: context.localizations.enableDarkMode,
                   onTap: () => ThemeManager.switchTheme(context),
@@ -130,7 +130,7 @@ class _SettingsPageState extends State<SettingsPage>
   List<Widget> _getAuthSettingItems(SettingsDto dto) {
     if (dto.isLoggedIn) {
       return [
-        IconedSettingsItem(
+        _IconedSettingsItem(
           onTap: _cubit.signOut,
           text: context.localizations.signOut,
           icon: Icons.logout_outlined,
@@ -138,12 +138,12 @@ class _SettingsPageState extends State<SettingsPage>
       ];
     }
     return [
-      IconedSettingsItem(
+      _IconedSettingsItem(
         onTap: () => _showInputDialog(_cubit.signIn),
         text: context.localizations.signIn,
         icon: Icons.login,
       ),
-      IconedSettingsItem(
+      _IconedSettingsItem(
         onTap: () => _showInputDialog(_cubit.signUp),
         text: context.localizations.signUp,
         icon: Icons.login,
@@ -152,11 +152,11 @@ class _SettingsPageState extends State<SettingsPage>
   }
 }
 
-class SettingsContainer extends StatelessWidget {
+class _SettingsContainer extends StatelessWidget {
   final String title;
   final List<Widget> settingItems;
 
-  const SettingsContainer({
+  const _SettingsContainer({
     required this.title,
     required this.settingItems,
     Key? key,
@@ -179,12 +179,12 @@ class SettingsContainer extends StatelessWidget {
   }
 }
 
-class IconedSettingsItem extends StatelessWidget {
+class _IconedSettingsItem extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
   final IconData icon;
 
-  const IconedSettingsItem({
+  const _IconedSettingsItem({
     required this.onTap,
     required this.text,
     required this.icon,
@@ -212,17 +212,17 @@ class IconedSettingsItem extends StatelessWidget {
   }
 }
 
-class CheckBoxSettingsItem extends StatelessWidget {
+class _CheckBoxSettingsItem extends StatelessWidget {
   final bool isChecked;
   final String text;
   final VoidCallback onTap;
 
-  const CheckBoxSettingsItem({
+  const _CheckBoxSettingsItem({
     required this.isChecked,
     required this.text,
     required this.onTap,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

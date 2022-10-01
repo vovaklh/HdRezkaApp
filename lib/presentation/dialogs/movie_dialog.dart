@@ -35,54 +35,53 @@ class MovieDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+      contentPadding: EdgeInsets.zero,
       scrollable: true,
       titlePadding: const EdgeInsets.all(8),
       title: Text(context.localizations.voiceActing),
       content: BlocBuilder<MovieBloc, MovieState>(
         bloc: _bloc..add(GetMovieTranslationsEvent(url)),
-        builder: _blocBuilder,
+        builder: (_, state) {
+          return state.maybeWhen(
+            success: (translations) =>
+                _MovieTranslations(translations, _onTranslationTap),
+            orElse: () => const SizedBox(
+              height: 100,
+              child: Loader(),
+            ),
+          );
+        },
       ),
     );
   }
+}
 
-  Widget _blocBuilder(BuildContext context, MovieState state) {
-    return state.maybeWhen(
-      success: (translations) => _buildMovieTranslations(
-        context,
-        translations,
-      ),
-      orElse: () => const SizedBox(
-        height: 100,
-        child: Loader(),
-      ),
-    );
-  }
+class _MovieTranslations extends StatelessWidget {
+  final Map<String, String> movieTranslations;
+  final Function(BuildContext context, String translationId) onTranslationTap;
 
-  Widget _buildMovieTranslations(
-    BuildContext context,
-    Map<String, String> movieTranslations,
-  ) {
+  const _MovieTranslations(
+    this.movieTranslations,
+    this.onTranslationTap, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 10),
         ...movieTranslations.entries.map(
-          (translation) => SizedBox(
-            width: double.infinity,
-            child: TextButton(
-              onPressed: () => _onTranslationTap(context, translation.value),
-              style: TextButton.styleFrom(
-                alignment: Alignment.centerLeft,
-              ),
-              child: Text(
-                translation.key,
-                style: context.text.movieDialogItem,
-              ),
+          (translation) => ListTile(
+            title: Text(
+              translation.key,
+              style: context.text.movieDialogItem,
             ),
+            onTap: () => onTranslationTap(context, translation.value),
           ),
         ),
+        const SizedBox(height: 10),
       ],
     );
   }

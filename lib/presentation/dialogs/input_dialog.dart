@@ -84,7 +84,7 @@ class _InputDialogState extends State<InputDialog> with Validator {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            InputFormField(
+            _InputFormField(
               labelText: context.localizations.email,
               focusNode: _emailFocusNode,
               validator: (email) => validateEmail(email, context),
@@ -92,7 +92,7 @@ class _InputDialogState extends State<InputDialog> with Validator {
               onFieldSubmitted: (_) =>
                   FocusScope.of(context).requestFocus(_passwordFocusNode),
             ),
-            InputFormField(
+            _InputFormField(
               labelText: context.localizations.password,
               focusNode: _passwordFocusNode,
               validator: (password) => validatePassword(password, context),
@@ -108,7 +108,7 @@ class _InputDialogState extends State<InputDialog> with Validator {
   }
 }
 
-class InputFormField extends StatelessWidget {
+class _InputFormField extends StatelessWidget {
   final String labelText;
   final bool obscureText;
   final TextEditingController? controller;
@@ -116,7 +116,7 @@ class InputFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final Function(String?)? onFieldSubmitted;
 
-  const InputFormField({
+  const _InputFormField({
     required this.labelText,
     this.obscureText = false,
     this.controller,
