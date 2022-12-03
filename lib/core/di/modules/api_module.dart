@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class ApiModule {
   @Named("BaseUrl")
-  String get baseDevUrl => 'http://192.168.0.110:8888/';
+  String get baseDevUrl => 'http://192.168.0.111:8888/';
 
   @lazySingleton
   Dio dioClient() {

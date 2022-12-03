@@ -26,25 +26,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -58,5 +42,27 @@ class DefaultFirebaseOptions {
     messagingSenderId: '805982787634',
     projectId: 'hdrezkaapp',
     storageBucket: 'hdrezkaapp.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCiCw3vWpla2UC55rd0q1jnyvNxRZklFKk',
+    appId: '1:805982787634:ios:ebdc7f591eaf3a52b8442b',
+    messagingSenderId: '805982787634',
+    projectId: 'hdrezkaapp',
+    storageBucket: 'hdrezkaapp.appspot.com',
+    iosClientId:
+        '805982787634-24g3e9haglrmggppng50gqgej2scr9la.apps.googleusercontent.com',
+    iosBundleId: 'com.example.hdrezkaApp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCiCw3vWpla2UC55rd0q1jnyvNxRZklFKk',
+    appId: '1:805982787634:ios:ebdc7f591eaf3a52b8442b',
+    messagingSenderId: '805982787634',
+    projectId: 'hdrezkaapp',
+    storageBucket: 'hdrezkaapp.appspot.com',
+    iosClientId:
+        '805982787634-24g3e9haglrmggppng50gqgej2scr9la.apps.googleusercontent.com',
+    iosBundleId: 'com.example.hdrezkaApp',
   );
 }
