@@ -69,6 +69,7 @@ dev_dependencies:
   dart_code_metrics: ^4.18.3
   retrofit_generator: ^4.0.2
   freezed: ^2.1.0+1
+  flutter_launcher_icons: ^0.11.0
 
 flutter:
   uses-material-design: true
@@ -90,3 +91,15 @@ flutter_native_splash:
 
   web: false
   ios: false
+
+flutter_icons:
+  image_path: "assets/icons/hdrezka_icon.png"
+  android: false
+  remove_alpha_ios: true
+  ios: true
+  web:
+    generate: false
+  windows:
+    generate: false
+  macos:
+    generate: true
